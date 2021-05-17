@@ -1,0 +1,86 @@
+
+FILE: .../var/umc/Sportpat_Tabcontent/Block/Tabcontent/ListTabcontent.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 73 | WARNING | Method name "_prepareLayout" should not be prefixed
+    |         | with an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: ...portpat_Tabcontent/Model/ResourceModel/Tabcontent/Collection.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 18 | WARNING | Method name "_construct" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 31 | WARNING | Method name "_afterLoad" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 95 | WARNING | Method name "_renderFiltersBefore" should not be
+    |         | prefixed with an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: ...c/var/umc/Sportpat_Tabcontent/Model/ResourceModel/Tabcontent.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 13 | WARNING | Method name "_construct" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 42 | WARNING | Method name "_afterSave" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 74 | WARNING | Method name "_afterLoad" should not be prefixed with
+    |         | an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_Tabcontent/Model/Tabcontent.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 4 WARNINGS AFFECTING 4 LINES
+----------------------------------------------------------------------
+ 31 | WARNING | Property name "$_cacheTag" should not be prefixed
+    |         | with an underscore to indicate visibility
+ 37 | WARNING | Property name "$_eventPrefix" should not be prefixed
+    |         | with an underscore to indicate visibility
+ 43 | WARNING | Property name "$_eventObject" should not be prefixed
+    |         | with an underscore to indicate visibility
+ 89 | WARNING | Method name "_construct" should not be prefixed with
+    |         | an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_Tabcontent/Helper/Image.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 166 | WARNING | Method name "_reset" should not be prefixed with an
+     |         | underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: ...pat_Tabcontent/Ui/Component/Listing/Column/TabcontentActions.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 79 | WARNING | Line exceeds 120 characters; contains 124 characters
+----------------------------------------------------------------------
+
+
+FILE: ...ortpat_Tabcontent/Controller/Adminhtml/Tabcontent/InlineEdit.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 89 | WARNING | Line exceeds 120 characters; contains 123 characters
+----------------------------------------------------------------------
+
+
+FILE: .../umc/var/umc/Sportpat_Tabcontent/Controller/Adminhtml/Upload.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 69 | WARNING | Method name "_isAllowed" should not be prefixed with
+    |         | an underscore to indicate visibility
+----------------------------------------------------------------------
+
+Time: 678ms; Memory: 8Mb
+

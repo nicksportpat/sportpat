@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="review_booster_general_settings_template" label="Product Reviews &amp; Ratings - Review Reminder" file="review_reminder.html" type="html" module="Aitoc_ReviewBooster" area="frontend"/>
+    <template id="review_booster_admin_notification_template" label="Product Reviews &amp; Ratings - Admin Notification" file="admin_review_reminder.html" type="html" module="Aitoc_ReviewBooster" area="frontend"/>
+    <template id="review_booster_comment_notification_template" label="Product Reviews &amp; Ratings - Comment Notification" file="comment_review_reminder.html" type="html" module="Aitoc_ReviewBooster" area="frontend"/>
+</config>

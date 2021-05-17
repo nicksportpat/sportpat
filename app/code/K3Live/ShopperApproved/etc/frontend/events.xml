@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * K3Live Module for ShopperApproved
+ *
+ * @package   ShopperApproved
+ * @author    K3Live <support@k3live.com>
+ * @copyright 2018 Copyright (c) Woopra (http://www.k3live.com/)
+ * @license   Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_onepage_controller_success_action">
+        <observer name="shopperapproved_order_success" instance="K3Live\ShopperApproved\Observer\Observer" />
+    </event>
+    <event name="multishipping_checkout_controller_success_action">
+        <observer name="shopperapproved_order_success" instance="K3Live\ShopperApproved\Observer\Observer" />
+    </event>
+</config>

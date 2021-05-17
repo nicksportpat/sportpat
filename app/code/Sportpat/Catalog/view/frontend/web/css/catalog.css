@@ -1,0 +1,288 @@
+/* Sportpat Catalog related css file */
+
+.price-container .price {
+    font-size:1.8rem;
+}
+
+.products-grid .product-item-info:hover, .products-grid .product-item-info.active, .products-grid .product-item-info {
+    margin:0;
+    padding:9px;
+    height:573px;
+}
+
+.product-item-name, .product.name a {
+    font-size:80%;
+    font-weight:600;
+
+    padding-bottom:2%;
+}
+
+.amshopby-option-link {
+    display:block;
+    width:100%;
+    float:left;
+    text-align:center;
+    height:100px;
+    min-height:80px;
+    max-height:80px;
+    margin-top:-30px;
+    overflow:hidden;
+}
+
+.imageswatchcontainer {
+    height:auto !important;
+}
+
+.swcontainer {
+    max-height:88px;
+    display:block;
+    height:88px;
+    overflow:hidden;
+    margin-top:3%;
+    float:left;
+}
+
+.product.name.product-item-name a.product-item-link {
+    display:block;
+    width:100%;
+    float:left;
+
+}
+
+.product.details.product-item-details {
+    height:318px;
+    overflow:hidden;
+    display:block;
+    float:left;
+
+}
+
+[class^="product-swatch-container-"] {
+    max-height:270px !important;
+}
+
+@media (max-width:767px) {
+    [class^="product-swatch-container-"] {
+        /* max-height:150px !important;*/
+    }
+
+    .products-grid .product-item-info:hover, .products-grid .product-item-info.active, .products-grid .product-item-info {
+        height:500px;
+    }
+
+    .amshopby-option-link {
+        display:block;
+        width:100%;
+        float:left;
+        text-align:center;
+        height:100px;
+        min-height:80px;
+        max-height:80px;
+        margin-top:0px;
+        overflow:hidden;
+    }
+
+    .amshopby-option-link img {
+        width:75px;
+        height:75px;
+        margin-top:0;
+    }
+
+    .products.list .amasty-label-text {
+        font-size:80% !important;
+    }
+
+    [class^="amlabel-position-top-left-"] {
+        width:50% !important;
+    }
+
+    [class^="amlabel-position-top-left-"]  [class^="amasty-label-container"] {
+        width:100% !important;
+    }
+
+    .filter.active .filter-subtitle {
+        top:48px;
+        color:#ffffff;
+
+        border:none;
+        left:0;
+        z-index:100000;
+    }
+
+    .filter.active .filter-options {
+        top:120px;
+        z-index:200000;
+    }
+    .filter.active .filter-title {
+        border-bottom: none;
+        background:#444;
+        height: 48px;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 54px;
+        z-index: 100000;
+        display: block;
+
+        margin: 0;
+        width: 100%;
+    }
+
+    .filter.active .filter-title strong {
+        right: 10px;
+        top: 50px;
+        border: none !important;
+        position: absolute;
+    }
+
+    /*    div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:first-of-type {
+            display:none !important;
+        }*/
+    div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:last-of-type {
+        display:none !important;
+    }
+    div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:nth-of-type(2) {
+        display:none !important;
+    }
+
+
+
+
+
+    .filter-title strong {
+        color: transparent !important;
+        position: fixed;
+        top: 22%;
+        left: -1px;
+        width: 51px;
+        height: 47px;
+        border: #dcdcda solid 1px !important;
+        background-color: #f5f5f5;
+        text-align: center;
+        box-shadow: none;
+        border-radius: 0;
+        cursor: pointer;
+        line-height: 26px;
+        z-index: 2000000;
+    }
+
+    .sidebar.sidebar-main, .sidebar.sidebar-additional {
+        position: relative;
+    }
+
+    /* .filter::before {
+         content: "";
+         display: block;
+         width: 100%;
+         height: 100%;
+         background: #000;
+         position: fixed;
+         left: 0;
+         top: 50px;
+         opacity: 0;
+         visibility: hidden;
+         transition: all 0.3s;
+     }*/
+
+    .filter.active {
+        width: 100%;
+    }
+    .filter.active .filter-title strong {
+        right: 20px;
+        color:#ccc;
+        top: 0;
+        border: none !important;
+        position: absolute;
+    }
+    .filter.active .filter-title strong:before {
+        -webkit-font-smoothing: antialiased;
+        font-size: 16px;
+        line-height: inherit;
+        color: #fff;
+        content: '\f00d';
+        font-family: "FontAwesome";
+        vertical-align: middle;
+        display: inline-block;
+        font-weight: normal;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+
+    .filter.active .filter-title {
+        background-color: #444444;
+        margin: 0;
+        height: 47px;
+        border: none;
+        width: 100%;
+    }
+    .filter.active .filter-subtitle {
+        color: #fff !important;
+        text-transform: uppercase;
+        font-size: 135%;
+        font-weight: 400;
+
+        letter-spacing: 0.025em;
+        z-index: 2000001;
+        padding: 8px 30px !important;
+        padding-top:12px !important;
+        height: 47px;
+        pointer-events: none;
+        width: 100%;
+        right: auto;
+        border: 0;
+    }
+    .filter.active .filter-options {
+        padding: 10px 30px !important;
+        width: 100%;
+        right: auto;
+        top: 147px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    .filter.active .block-category-list .block-title, .filter.active .filter-options-title, .filter.active .filter .filter-current-subtitle {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .filter.active .block-category-list .block-content, .filter.active .filter-options-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    body.filter-active .page-wrapper {
+        visibility: visible;
+        height: auto;
+        margin-top: 0;
+    }
+
+    .filter.active:before {
+        opacity: 0.1;
+        visibility: visible;
+    }
+
+    .filter.active .filter-options {
+        display: block;
+        position: fixed;
+        top:100px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: scroll;
+        background: #fff;
+        z-index: 2000000;
+    }
+
+    .amlabel-position-wrapper {
+        z-index:50 !important;
+    }
+
+
+    .filter-title strong::before {
+        content: '\f1de';
+        font-family: "FontAwesome";
+        font-size: 27px;
+        color: #818181;
+        line-height: 30px;
+        display: block;
+        -webkit-font-smoothing: antialiased;
+    }
+}

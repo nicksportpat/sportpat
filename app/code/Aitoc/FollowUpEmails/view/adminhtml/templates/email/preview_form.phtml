@@ -1,0 +1,22 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+?>
+<?php
+/**
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+/** @var $block Aitoc\FollowUpEmails\Block\Adminhtml\Email\PreviewForm */
+?>
+
+<form action="<?= $block->escapeUrl($block->getPreviewUrl()) ?>" method="post" id="email_template_preview_form" target="_blank">
+    <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+    <div class="no-display">
+        <input type="hidden" id="preview_type" name="type" value="2" /> <!-- 2 - HTML template-->
+        <input type="hidden" id="preview_text" name="text" value="" />
+    </div>
+</form>

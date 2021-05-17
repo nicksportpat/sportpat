@@ -1,0 +1,71 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+?>
+<?php
+/**
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+use Aitoc\FollowUpEmails\Block\Unsubscribe;
+
+/**
+ * @var Unsubscribe $block
+ */
+?>
+<?php
+
+$activeEvents = $block->getActiveEvents();
+$unsubscribedEventsCodes = $block->getUnsubscribedEventsCodes();
+
+?>
+<form action="<?= $block->getUnsubscribeUrl() ?>" class="aitoc-fue-unsubscribe" id="aitoc-fue-unsubscribe">
+
+    <input type="hidden" name="code" value="<?= $block->getUnsubscribeCode() ?>" />
+
+    <div class="block unsubscribe-add">
+        <div class="block-title">
+            <strong id="block-title" class="block-title-message"><?= __('You can unsubscribe from some or all our emails. Just check the box if you don\'t want to receive those types of messages anymore.') ?></strong>
+        </div>
+    </div>
+
+    <div class="block-content">
+        <ul>
+        <?php foreach ($activeEvents as $activeEvent): ?>
+            <li>
+                <?php
+                    $activeEventCode = $activeEvent["code"];
+                ?>
+                <label>
+                    <input type="checkbox" id="event_<?= $activeEventCode ?>" name="events[<?= $activeEventCode ?>]"  <?= in_array($activeEventCode, $unsubscribedEventsCodes) ? 'checked="checked"' : '' ?>/>
+                    <?= $activeEvent["name"] ?>
+                </label>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+
+    <div class="actions">
+
+        <button class="action unsubscribe primary" name="unsubscribe" id="unsubscribe" title="Unsubscribe" type="submit">
+            <span>Unsubscribe</span>
+        </button>
+
+        <button class="action unsubscribe primary" name="unsubscribe_all" id="unsubscribe_all" title="Unsubscribe_from_all" type="submit">
+            <span>Unsubscribe from all</span>
+        </button>
+
+    </div>
+
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Aitoc_FollowUpEmails/js/unsubscribe": <?= json_encode($block->getConfig()) ?>
+        }
+    }
+</script>

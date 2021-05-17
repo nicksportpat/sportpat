@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Campaign -->
+    <preference for="Aitoc\FollowUpEmails\Api\Data\CampaignInterface"
+                type="Aitoc\FollowUpEmails\Model\Campaign"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Data\CampaignSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\CoreConfigDataManagerInterface"
+                type="Aitoc\FollowUpEmails\Model\CoreConfigDataManager"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\CampaignRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\CampaignRepository"/>
+
+    <!-- Campaign step -->
+    <preference for="Aitoc\FollowUpEmails\Api\Data\CampaignStepInterface"
+                type="Aitoc\FollowUpEmails\Model\CampaignStep"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Data\CampaignStepSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\CampaignStepRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\CampaignStepRepository"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\CampaignStepProviderInterface"
+                type="Aitoc\FollowUpEmails\Model\CampaignStepProvider"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\CampaignProviderInterface"
+                type="Aitoc\FollowUpEmails\Model\CampaignProvider"/>
+
+    <!-- Email -->
+    <preference for="Aitoc\FollowUpEmails\Api\Data\EmailInterface"
+                type="Aitoc\FollowUpEmails\Model\Email"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Data\EmailSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\EmailRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\EmailRepository"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\EmailRepository\WithOrderIdFilterInterface"
+                type="Aitoc\FollowUpEmails\Model\EmailRepository\WithOrderIdFilter"/>
+
+    <!-- Email Attribute -->
+    <preference for="Aitoc\FollowUpEmails\Api\Data\EmailAttributeInterface"
+                type="Aitoc\FollowUpEmails\Model\EmailAttribute"/>
+    <preference for="Aitoc\FollowUpEmails\Api\Data\EmailAttributeSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Aitoc\FollowUpEmails\Api\EmailAttributeRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\EmailAttributeRepository"/>
+
+
+    <!-- Email Template -->
+    <preference for="Aitoc\FollowUpEmails\Api\EmailTemplateRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\EmailTemplateRepository"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Data\EmailTemplateSearchResultsInterface"
+                type="\Aitoc\FollowUpEmails\Model\EmailTemplateSearchResults"/>
+
+    <!-- Unsubscribed list -->
+    <preference for="Aitoc\FollowUpEmails\Api\Data\UnsubscribedEmailAddressInterface"
+                type="Aitoc\FollowUpEmails\Model\UnsubscribedEmailAddress"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Data\UnsubscribedEmailAddressSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\UnsubscribedEmailAddressRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\UnsubscribedEmailAddressRepository"/>
+
+    <!-- Statistic -->
+    <preference for="Aitoc\FollowUpEmails\Api\Data\StatisticInterface"
+                type="Aitoc\FollowUpEmails\Model\Statistic"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Data\StatisticSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\StatisticRepositoryInterface"
+                type="Aitoc\FollowUpEmails\Model\StatisticRepository"/>
+
+
+    <!-- Other -->
+    <preference for="Aitoc\FollowUpEmails\Api\EventManagementInterface"
+                type="Aitoc\FollowUpEmails\Model\EventManagement"/>
+
+
+    <!-- Helpers -->
+    <preference for="Aitoc\FollowUpEmails\Api\Helper\BackendTemplateHelperInterface"
+                type="Aitoc\FollowUpEmails\Helper\BackendTemplateHelper"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Helper\EmailInterface"
+                type="Aitoc\FollowUpEmails\Helper\Email"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Helper\ProductsToHtmlConverterInterface"
+                type="Aitoc\FollowUpEmails\Helper\ProductsToHtmlConverter"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Helper\SearchCriteriaBuilderInterface"
+                type="Aitoc\FollowUpEmails\Helper\SearchCriteriaBuilder"/>
+
+    <preference for="Aitoc\FollowUpEmails\Helper\WebsiteInterface" type="Aitoc\FollowUpEmails\Helper\Website"/>
+
+    <!-- Service -->
+    <preference for="Aitoc\FollowUpEmails\Api\Service\CustomerGroupInterface"
+                type="Aitoc\FollowUpEmails\Service\CustomerGroup"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Service\Email\UnsubscribeCodeInterface"
+                type="Aitoc\FollowUpEmails\Service\Email\UnsubscribeCode"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Service\CampaignStepInterface"
+                type="Aitoc\FollowUpEmails\Service\CampaignStep"/>
+
+    <preference for="Aitoc\FollowUpEmails\Api\Service\UnsubscribedEmailAddressInterface"
+                type="Aitoc\FollowUpEmails\Service\UnsubscribedEmailAddress"/>
+
+    <type name="Magento\Email\Model\AbstractTemplate">
+        <plugin name="Aitoc_FollowUpEmails::urlModifier" type="Aitoc\FollowUpEmails\Plugin\Model\UrlModifier" />
+    </type>
+
+    <type name="Aitoc\FollowUpEmails\Model\Source\EmailVariables">
+        <arguments>
+            <argument name="configPaths" xsi:type="array">
+                <item name="web" xsi:type="array">
+                    <item name="web/unsecure/base_url" xsi:type="string">1</item>
+                    <item name="web/secure/base_url" xsi:type="string">1</item>
+                </item>
+                <item name="trans_email/ident_general" xsi:type="array">
+                    <item name="trans_email/ident_general/name" xsi:type="string">1</item>
+                    <item name="trans_email/ident_general/email" xsi:type="string">1</item>
+                </item>
+                <item name="trans_email/ident_sales" xsi:type="array">
+                    <item name="trans_email/ident_sales/name" xsi:type="string">1</item>
+                    <item name="trans_email/ident_sales/email" xsi:type="string">1</item>
+                </item>
+                <item name="trans_email/ident_custom1" xsi:type="array">
+                    <item name="trans_email/ident_custom1/name" xsi:type="string">1</item>
+                    <item name="trans_email/ident_custom1/email" xsi:type="string">1</item>
+                </item>
+                <item name="trans_email/ident_custom2" xsi:type="array">
+                    <item name="trans_email/ident_custom2/name" xsi:type="string">1</item>
+                    <item name="trans_email/ident_custom2/email" xsi:type="string">1</item>
+                </item>
+                <item name="general/store_information" xsi:type="array">
+                    <item name="general/store_information/name" xsi:type="string">1</item>
+                    <item name="general/store_information/phone" xsi:type="string">1</item>
+                    <item name="general/store_information/hours" xsi:type="string">1</item>
+                    <item name="general/store_information/country_id" xsi:type="string">1</item>
+                    <item name="general/store_information/region_id" xsi:type="string">1</item>
+                    <item name="general/store_information/postcode" xsi:type="string">1</item>
+                    <item name="general/store_information/city" xsi:type="string">1</item>
+                    <item name="general/store_information/street_line1" xsi:type="string">1</item>
+                    <item name="general/store_information/street_line2" xsi:type="string">1</item>
+                    <item name="general/store_information/merchant_vat_number" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

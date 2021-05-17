@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/amasty_labels/get/:id" method="GET">
+        <service class="Amasty\Label\Api\LabelRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Amasty_Label::labels"/>
+        </resources>
+    </route>
+    <route url="/V1/amasty_labels/delete/:id" method="DELETE">
+        <service class="Amasty\Label\Api\LabelRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Amasty_Label::labels"/>
+        </resources>
+    </route>
+    <route url="/V1/amasty_labels/save" method="POST">
+        <service class="Amasty\Label\Api\LabelRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Amasty_Label::labels"/>
+        </resources>
+    </route>
+    <route url="/V1/amasty_labels/all" method="GET">
+        <service class="Amasty\Label\Api\LabelRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="Amasty_Label::labels"/>
+        </resources>
+    </route>
+</routes>

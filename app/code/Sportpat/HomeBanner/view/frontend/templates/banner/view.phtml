@@ -1,0 +1,70 @@
+<?php
+/** @var \Sportpat\HomeBanner\Block\Banner\ViewBanner $block */
+?>
+<?php $banner = $block->getCurrentBanner();?>
+<div class="banner-view">
+    <div class="banner-banner-name">
+        <strong><?= $block->escapeHtml(__('Banner name (not visible)')) ?></strong>:
+        <?= $block->escapeHtml($banner->getBannerName());?>
+    </div>
+    <?php if ($banner->getBannerImage()) :?>
+    <div class="banner-banner-image">
+        <strong><?= $block->escapeHtml(__('Banner image')) ?></strong>:
+        <?= $block->getImage(
+            $banner,
+            'banner_list',
+            ['width' => 100, 'height' => 100, 'type' => 'banner_image']
+        )->toHtml(); ?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerLink = $banner->getBannerLink()) :?>
+    <div class="banner-banner-link">
+        <strong><?= $block->escapeHtml(__('Banner link to')) ?></strong>:
+        <?= $block->escapeHtml($bannerLink);?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerWidth = $banner->getBannerWidth()) :?>
+    <div class="banner-banner-width">
+        <strong><?= $block->escapeHtml(__('Banner width')) ?></strong>:
+        <?= $block->escapeHtml($bannerWidth);?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerHeight = $banner->getBannerHeight()) :?>
+    <div class="banner-banner-height">
+        <strong><?= $block->escapeHtml(__('Banner height')) ?></strong>:
+        <?= $block->escapeHtml($bannerHeight);?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerSize = $banner->getBannerSize()) :?>
+    <div class="banner-banner-size">
+        <strong><?= $block->escapeHtml(__('Banner size')) ?></strong>:
+        <?= $block->escapeHtml($banner->getAttributeText('banner_size'));?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerOrder = $banner->getBannerOrder()) :?>
+    <div class="banner-banner-order">
+        <strong><?= $block->escapeHtml(__('Banner order')) ?></strong>:
+        <?= $block->escapeHtml($bannerOrder);?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerShowfromdate = $banner->getBannerShowfromdate()) :?>
+    <div class="banner-banner-showfromdate">
+        <strong><?= $block->escapeHtml(__('Show from date')) ?></strong>:
+        <?= /* @noEscape */ $block->formatDate($bannerShowfromdate, \IntlDateFormatter::LONG);?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($bannerShowtodate = $banner->getBannerShowtodate()) :?>
+    <div class="banner-banner-showtodate">
+        <strong><?= $block->escapeHtml(__('Stop showing on')) ?></strong>:
+        <?= /* @noEscape */ $block->formatDate($bannerShowtodate, \IntlDateFormatter::LONG);?>
+    </div>
+    <?php endif;?>
+
+</div>

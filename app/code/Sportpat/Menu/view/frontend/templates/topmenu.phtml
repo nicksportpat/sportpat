@@ -1,0 +1,347 @@
+<!-- Mobile Header -->
+<div class="wsmobileheader clearfix ">
+    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+    <h1 style="position:absolute;left:-10000px">
+        Online store clothing, motorcycle, snowmobile, dirtbike, sport gears from the most popular brands like FXR, 509, FOX, CKX and a lot more
+    </h1>
+    <span class="smllogo"><img src="/media/logo/default/logo_new.png" width="100" alt="sportpat canada small logo"/></span>
+    <!--   <a href="#" class="callusbtn" style="right:80px;"">FR</a>
+   <a href="#" class="callusbtn" style="right:40px;""><i class="searchicon fas fa-search"></i></a>
+       <a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i></a>-->
+</div>
+<!-- Mobile Header -->
+
+<!--Main Menu HTML Code-->
+<div class="wsmainfull clearfix">
+    <div class="desktoplogo" style="display:none">
+        <div class="container"><a href="#"><img src="/media/logo/default/logo_new.png" alt="sportpat canada logo"></a></div>
+    </div>
+    <div class="clearfix">
+        <nav class="wsmenu clearfix">
+            <ul class="wsmenu-list">
+
+                <?php
+
+
+                $mainmenuArray = $block->getMainCategories();
+
+
+                for ($i = 0; $i < count($mainmenuArray); $i++) {
+
+                    $menuItem = $mainmenuArray[$i];
+
+                    $iconname = strtolower(str_replace(" UTV", "", $menuItem["name"]));
+                    $menuname = strtoupper($menuItem["name"]) . " ";
+
+                    ?>
+
+                    <li aria-haspopup="true"><a href="#"
+                                                style="padding-top:0;height:auto;overflow:hidden;width:100%;"><i
+                                    class="flaticon-<?php echo $iconname; ?>" style="float:left;"></i><span
+                                    style="display:block;float:left;width:auto;height:59px;margin-top:20px;"><?php echo $menuname; ?></span><span
+                                    class="wsarrow"></span></a>
+                        <div class="wsmegamenu clearfix">
+                            <div class="container">
+                                <div class="row">
+
+
+                                    <?php
+
+                                    $subCategories = $block->getCategorySubtitles($menuItem["id"]);
+
+                                    foreach ($subCategories as $subtitle) {
+
+
+                                        if ($subtitle["name"] == "STICKERS" || $subtitle["name"] == "FAN GEARS"
+
+                                        ) {
+                                            continue;
+                                        }
+
+                                        if ($subtitle["name"] == "KIDS") {
+                                            $liclass = "col-lg-12";
+                                        } else {
+                                            $liclass = "col-lg-6";
+                                        }
+
+                                        ?>
+                                        <ul class="<?php echo $liclass; ?> col-md-12 col-xs-12 link-list">
+                                            <li class="title"><?php echo $subtitle["name"]; ?></li>
+
+                                            <?php
+
+                                            $sub2 = $block->getSubCategoryHtml($subtitle["entity_id"], $menuname, $subtitle["name"]);
+
+                                            echo $sub2;
+                                            ?>
+
+                                        </ul>
+                                        <?php
+                                    }
+
+                                    ?>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                <?php }
+
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+                $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+                if ($storeManager->getStore()->getCode() == "fr") {
+                    $brand = "Marques";
+                } else {
+                    $brand = "Brands";
+                }
+                ?>
+
+
+                <li aria-haspopup="true"><a href="#"
+                                            style="padding-top:15px !important;display:block;float:right;height:60px;width:100%;"><i
+                                class="flaticon-famous"></i><span style="margin-top:-5px;"><?php echo $brand; ?></span>
+                        <span class="wsarrow"></span></a>
+                    <div class="wsmegamenu clearfix">
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <ul class="col-lg-8 col-md-10 col-xs-12 link-list mx-auto">
+                                    <li class="title"><?php echo __("Our brands"); ?></li>
+                                    <div class="home-brands-container">
+                                        <ul class="home-brands row">
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=__empty__&brand=509"><img
+                                                            src="/media/amasty/shopby/option_images/slider/509.jpg"
+                                                            alt="509" class="align-middle" height="85"></a></li>
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=THOR&brand=THOR"><img
+                                                            src="//imagessportpat.s3-accelerate.amazonaws.com/attribute/swatch/t/h/thor.jpg"
+                                                            alt="THOR" class="align-middle"
+                                                            height="85"></a></li>
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=CKX&brand=CKX"><img
+                                                            src="/media/amasty/shopby/option_images/slider/CKX.jpg"
+                                                            alt="CKX" class="align-middle" height="85"></a></li>
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=FOX RACING&brand=FOX RACING"><img
+                                                            src="/media/amasty/shopby/option_images/slider/Fox.jpg"
+                                                            alt="FOX RACING" class="align-middle" height="85"></a></li>
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=FXR RACING&brand=FXR RACING"><img
+                                                            src="/media/amasty/shopby/option_images/slider/FXR.jpg"
+                                                            alt="FXR RACING" class="align-middle" height="85"></a></li>
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=G-MAX&brand=G-MAX"><img
+                                                            src="/media/amasty/shopby/option_images/slider/Gmax-897843570.jpg"
+                                                            alt="G-MAX" class="align-middle" height="85"></a></li>
+                                            <li class="brand-item col-sm-12 col-md-3 my-auto mx-auto"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/catalogsearch/result/?q=__empty__&brand=TOBE"><img
+                                                            src="/media/amasty/shopby/option_images/slider/tobe-outerwear-coupons_1.png"
+                                                            alt="TOBE" class="align-middle" height="85"></a></li>
+                                            <li class="brand-item col-12 my-auto mx-auto text-center"><a
+                                                        href="/<?php echo $storeManager->getStore()->getCode(); ?>/brands" style="width:100%;background:white;height:auto;padding:5px;border:1px rgba(0,0,0,0.5) solid;text-align:center;"><?php echo __("VIEW ALL BRANDS"); ?></a></li>
+                                        </ul>
+                                    </div>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+        <!--Menu HTML Code-->
+    </div>
+</div>
+
+<style>
+
+    [class^=flaticon-]:before, [class*=" flaticon-"]:before, [class^=flaticon-]:after, [class*=" flaticon-"]:after {
+        font-family: Flaticon;
+        font-size: 34px;
+        font-style: normal;
+        margin-left: 0;
+        width: 100px;
+        height: 59px;
+        -webkit-padding-before: 15px;
+    }
+
+    .wsmegamenu .submenu-icon > img:hover, .wsmegamenu a:hover .submenu-icon > img {
+        border-color: red !important;
+        text-decoration: none !important;
+        transition: all ease-in 0.2s;
+    }
+
+    .wsmegamenu a {
+        text-decoration: none !important;
+        transition: all ease-in 0.2s;
+    }
+
+    .wsmenu > .wsmenu-list > li > a {
+        height: 69px !important;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+
+    }
+
+    .wsmenu > .wsmenu-list > li {
+        padding: 0 !important;
+    }
+
+
+    .flaticon-snowmobile:before, .flaticon-motoneige:before {
+        content: "\f104";
+        padding-right: 20px;
+        display: block;
+        margin-top: -15px;
+        height: 69px;
+        width: 100px;
+
+    }
+
+    .flaticon-famous:before {
+        content: "\f107";
+        display: block;
+
+        margin-top: -5px;
+        padding-bottom: 25px
+    }
+
+    .flaticon-casual:before, .flaticon-mode:before {
+        content: "\f106";
+        display: block;
+        font-size: 48px;
+        -webkit-padding-before: 20px;
+
+    }
+
+    @media (max-width: 999px) {
+        .wsmenu > .wsmenu-list > li > a i {
+            margin-right: 0px !important;
+        }
+
+        .flaticon-casual:before, .flaticon-mode:before {
+            content: "\f106";
+            display: block;
+            font-size: 48px;
+            margin-top: 20px;
+        }
+
+        .flaticon-famous:before {
+            content: "\f107";
+            display: block;
+            padding-top: 15px !important;
+            /*  margin-top: -25px;
+             padding-bottom: 25px*/
+        }
+
+        ul.home-promo-banners > li.promo-banner.rl, ul.home-promo-banners > li.promo-banner.ss {
+            height: auto !important;
+
+        }
+    }
+
+    @media not all and (min-resolution: .001dpcm) {
+        @media {
+            [class^=flaticon-]:before, [class*=" flaticon-"]:before, [class^=flaticon-]:after, [class*=" flaticon-"]:after {
+                font-family: Flaticon;
+                font-size: 34px;
+                font-style: normal;
+                margin-left: 0;
+                width: 100px;
+                height: 59px;
+                padding-top: 0 !important;
+
+            }
+
+            .flaticon-casual:before, .flaticon-mode:before {
+                content: "\f106";
+                display: block;
+                font-size: 48px !important;
+
+
+            }
+        }
+
+        @media (max-width: 999px) {
+
+            .flaticon-famous:before {
+                content: "\f107";
+                display: block;
+                padding-top: 15px !important;
+                /*  margin-top: -25px;
+                 padding-bottom: 25px*/
+            }
+        }
+
+
+    }
+
+    @media (max-width: 639px) {
+        .block-search {
+            width: 100% !important;
+            margin-top: 60px !important;
+        }
+
+.action.nav-toggle {display:none;}
+
+        .wsmobileheader {
+            height: 78px !important;
+        }
+    }
+
+    ul.home-promo-banners > li.promo-banner.rl, ul.home-promo-banners > li.promo-banner.ss {
+        height: auto !important;
+
+    }
+
+
+</style>
+
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+
+
+        var windowWidth = window.innerWidth;
+        if (window.innerWidth !== undefined && window.innerHeight !== undefined) {
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+        } else {
+            var w = document.documentElement.clientWidth;
+            var h = document.documentElement.clientHeight;
+        }
+        if (w < 990) {
+
+            $(".block.block-search").appendTo('.wsmobileheader');
+            $(".minicart-wrapper").appendTo('.wsmobileheader');
+
+            $(".minicart-wrapper").css('position', 'absolute');
+            $(".minicart-wrapper").css('top', '2px');
+            $(".minicart-wrapper").css('right', '10px');
+
+            /* $(".block.block-search").css('position', 'absolute');*/
+                $(".block.block-search").css('top', '30px');
+                 /*  $(".block.block-search").css('right', '40px');
+                         $(".block.block-search").css('z-index', 99);
+                             $(".block-search").css('width', '80%');
+                             $(".block-search .control").css('border', 0);*/
+            $(".page-header a.logo").css('display', 'none');
+            $(".page-wrapper").css('margin-top', '80px');
+
+        } else {
+
+
+        }
+
+    });
+</script>

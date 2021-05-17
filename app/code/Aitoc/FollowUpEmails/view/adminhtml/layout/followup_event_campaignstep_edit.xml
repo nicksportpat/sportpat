@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Edit Email</title>
+        <css src="Aitoc_FollowUpEmails::css/elements.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="aitoc_followup_event_campaignstep_edit"/>
+            <block class="Aitoc\FollowUpEmails\Block\Adminhtml\Email\PreviewForm" name="preview_form" template="Aitoc_FollowUpEmails::email/preview_form.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

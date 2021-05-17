@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Ncloutier_Shippingsentence::Sentences" sortOrder="10" title="Sentences">
+					<resource id="Ncloutier_Shippingsentence::Sentences_save" sortOrder="10" title="Save Sentences"/>
+					<resource id="Ncloutier_Shippingsentence::Sentences_delete" sortOrder="20" title="Delete Sentences"/>
+					<resource id="Ncloutier_Shippingsentence::Sentences_update" sortOrder="30" title="Update Sentences"/>
+					<resource id="Ncloutier_Shippingsentence::Sentences_view" sortOrder="40" title="View Sentences"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

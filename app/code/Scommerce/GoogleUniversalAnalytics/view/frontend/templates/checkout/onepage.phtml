@@ -1,0 +1,101 @@
+<?php
+/**
+ * @var $this \Scommerce\GoogleUniversalAnalytics\Block\Checkout\Onepage
+ */
+?>
+
+<?php
+
+$helper = $this->getHelper();
+
+if (!$helper->isEnhancedEcommerceEnabled()) return;
+$quote = $this->getQuote();
+$cartItems = $this->getCartItems();
+?>
+
+<script>
+    //<![CDATA[
+    <?php foreach($cartItems as $_quoteItem) : ?>
+    <?php if ($_quoteItem->getParentItemId()) continue; ?>
+    ga('ec:addProduct', {
+        'id': '<?php echo $this->escapeJsQuote($_quoteItem->getSku()) ?>',
+        'name': '<?php echo $this->escapeJsQuote($_quoteItem->getName()) ?>',
+        'category': '<?php echo $helper->getQuoteCategoryName($_quoteItem) ?>',
+        'brand': '<?php echo $this->escapeJsQuote($helper->getBrand($_quoteItem->getProduct())) ?>',
+        'price': '<?php echo $_quoteItem->getBasePrice() ?>',
+        'quantity': '<?php echo $_quoteItem->getQty() ?>'
+    });
+    <?php endforeach; ?>
+
+    ga('ec:setAction', 'checkout');
+
+    ga('send', 'pageview');
+
+    ga('send', 'event', 'UX', 'click', 'Check Out', {'nonInteraction': 1});
+
+    <?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+        <?php foreach($cartItems as $_quoteItem) : ?>
+        <?php if ($_quoteItem->getParentItemId()) continue; ?>
+        ga('<?php echo $helper->getLinkedAccountName()?>.ec:addProduct', {
+            'id': '<?php echo $this->escapeJsQuote($_quoteItem->getSku()) ?>',
+            'name': '<?php echo $this->escapeJsQuote($_quoteItem->getName()) ?>',
+            'category': '<?php echo $helper->getQuoteCategoryName($_quoteItem) ?>',
+            'brand': '<?php echo $this->escapeJsQuote($helper->getBrand($_quoteItem->getProduct())) ?>',
+            'price': '<?php echo $_quoteItem->getBasePrice() ?>',
+            'quantity': '<?php echo $_quoteItem->getQty() ?>'
+        });
+        <?php endforeach; ?>
+
+        ga('<?php echo $helper->getLinkedAccountName()?>.ec:setAction', 'checkout');
+
+        ga('<?php echo $helper->getLinkedAccountName()?>.send', 'pageview');
+
+        ga('<?php echo $helper->getLinkedAccountName()?>.send', 'event', 'UX', 'click', 'Check Out', {'nonInteraction': 1});
+    <?php endif;?>
+    require(['jquery', 'Magento_Checkout/js/model/quote', 'domReady!'],function (jQuery, quote) {
+        jQuery(window).load(function() {
+			var old_shipping =''; var old_payment='';
+            jQuery('input:radio, button, submit').live('click', function(e){
+				//shipping
+				if (quote.shippingMethod()!=null){
+					var shipping = quote.shippingMethod().carrier_code;
+					if(shipping!=undefined && old_shipping!=shipping){
+						old_shipping = shipping;
+						steps('<?php echo __('Shipping Selected - ')?>'+shipping, 1);
+					}
+				}
+				//payment
+				if (quote.paymentMethod()!=null){
+					var payment = quote.paymentMethod().method;					
+					if(payment!=undefined && old_payment!=payment){
+						old_payment = payment;
+						steps('<?php echo __('Payment Selected - ')?>'+payment, 2);
+					}
+				}
+            });
+			
+            function steps(value, pos){
+                if (value!=undefined){
+                    //console.log(value+' '+pos);
+                    ga('ec:setAction', 'checkout', {
+                        'step': pos,
+                        'option': value
+                    });
+
+                    ga('send', 'event', 'UX', 'click', value, {'nonInteraction': 1});
+
+                    <?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+                        ga('<?php echo $helper->getLinkedAccountName()?>.ec:setAction', 'checkout', {
+                            'step': pos,
+                            'option': value
+                        });
+
+                        ga('<?php echo $helper->getLinkedAccountName()?>.send', 'event', 'UX', 'click', value, {'nonInteraction': 1});
+
+                    <?php endif;?>
+                }
+            }
+        });
+    });
+    //]]>
+</script>

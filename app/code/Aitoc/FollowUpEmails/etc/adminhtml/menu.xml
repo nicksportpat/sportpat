@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aitoc_FollowUpEmails::campaign_index" title="Follow Up Emails" translate="title" module="Aitoc_FollowUpEmails" parent="Magento_Backend::marketing" dependsOnModule="Magento_Backend" sortOrder="110" resource="Aitoc_FollowUpEmails::campaign_index"/>
+        <add id="Aitoc_FollowUpEmails::events" toolTip="Aitoc Extension" title="Events" module="Aitoc_FollowUpEmails" parent="Aitoc_FollowUpEmails::campaign_index" action="followup/event/index" resource="Aitoc_FollowUpEmails::event"/>
+        <add id="Aitoc_FollowUpEmails::emails" toolTip="Aitoc Extension" title="Email Queue" module="Aitoc_FollowUpEmails" parent="Aitoc_FollowUpEmails::campaign_index" action="followup/email/index" resource="Aitoc_FollowUpEmails::email"/>
+    </menu>
+</config>

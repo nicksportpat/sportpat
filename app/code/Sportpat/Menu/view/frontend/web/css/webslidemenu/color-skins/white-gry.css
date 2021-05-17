@@ -1,0 +1,122 @@
+/* Desktop Main Menu Color */
+
+.wsmainfull {
+  background-color: #fff;
+}
+
+.wsactive .wsmenu>.wsmenu-list {
+  background-color: #ccc;
+}
+
+.desktoplogo {
+  border-bottom-color: #dfdfdf;
+}
+
+/* Mobile Header */
+
+.wsmobileheader {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.wsactive .wsmenu>.wsmenu-list>li>a>i {
+  color: #333;
+}
+
+.wsactive .wsmenu>.wsmenu-list>li>a.active {
+  color: #333;
+}
+
+.wsactive .wsmenu>.wsmenu-list>li>a {
+  color: #333;
+}
+
+.wsactive .wsmenu>.wsmenu-list>li>a.active i {
+  color: #333;
+}
+
+.wsactive .wsmenu>.wsmenu-list>li:hover>a>i {
+  color: #333;
+}
+
+.wsactive .wsmenu>.wsmenu-list>li>a:hover i {
+  color: #333;
+}
+
+.wsactive .wsactive .wsmenu>.wsmenu-list>li:hover>a {
+  color: #333;
+}
+
+.wsactive .wsmenu>.wsmenu-list>li:hover>a {
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>a {
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>a .wsarrow:after {
+  border-top-color: #b3b3b3;
+}
+
+.wsmenu>.wsmenu-list>li>a:hover .wsarrow:after {
+  border-top-color: #b3b3b3;
+}
+
+.wsmenu>.wsmenu-list>li>a.active .wsarrow:after {
+  border-top-color: #b3b3b3;
+}
+
+.wsmenu>.wsmenu-list>li:hover>a .wsarrow:after {
+  border-top-color: #b3b3b3;
+}
+
+.wsmenu>.wsmenu-list>li>a>i {
+  color: #7a7a7a;
+}
+
+.wsmenu>.wsmenu-list>li>a.active i {
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li:hover>a>i {
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>a:hover i {
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>.wsmegamenu .menu_form input[type="submit"] {
+  background-color: #ccc;
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>.wsmegamenu .menu_form input[type="button"] {
+  background-color: #ccc;
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>a.active {
+  color: #333;
+  border-bottom-color: #ccc;
+}
+
+.wsmenu>.wsmenu-list>li:hover>a {
+  color: #333;
+  border-bottom-color: #ccc;
+}
+
+.wsmenu>.wsmenu-list>li>ul.sub-menu>li:hover>a {
+  background-color: #ccc;
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>ul.sub-menu>li>ul.sub-menu>li:hover>a {
+  background-color: #ccc;
+  color: #333;
+}
+
+.wsmenu>.wsmenu-list>li>ul.sub-menu>li>ul.sub-menu>li>ul.sub-menu>li:hover a {
+  background-color: #ccc;
+  color: #333;
+}

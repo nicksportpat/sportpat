@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <settings>
+        <buttons>
+            <button name="ViewOrderInLS" class="Sportpat\OrderSync\Block\Adminhtml\Sales\ViewOrderInLS"/>
+        </buttons>
+    </settings>
+    <columns name="sales_order_columns">
+        <column name="lightspeed_actions" class="Sportpat\OrderSync\Ui\Component\Listing\Column\LsAction">
+
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="visible"  xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string">Sync Status</item>
+                    <item name="sortOrder" xsi:type="number">999</item>
+                    <item name="fieldAction" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

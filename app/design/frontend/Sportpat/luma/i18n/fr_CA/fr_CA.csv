@@ -1,0 +1,232 @@
+"FORGOT PASSWORD","FORGOT PASSWORD"
+"* Required Fields","* Required Fields"
+"Please enter your email address below. You will receive a link to reset your password.","Veuillez entrer votre adresse courriel ci-dessous. Vous recevrez un lien avec votre nouveau mot de passe."
+"Email Address","Email Address"
+Submit,Submit
+"Go back","Go back"
+Loading...,Loading...
+"We can't find posts matching the selection.","We can't find posts matching the selection."
+"Read more &#187;","Read more &#187;"
+"Related Posts","Related Posts"
+"Related Products","Related Products"
+"Add to Cart","Ajouter au panier"
+"In stock","In stock"
+"Out of stock","Out of stock"
+"Add to Wish List","Add to Wish List"
+"Add to Compare","Add to Compare"
+"Read more >","Read more >"
+Archive,Archive
+"Archive %s","Archive %s"
+Categories,Categories
+"Recent Posts","Recent Posts"
+"RSS Feed","RSS Feed"
+Search,Search
+"Search posts here...","Search posts here..."
+None,None
+Quantity,Quantity
+"Choose a selection...","Faire un choix..."
+"Compare Products","Compare Products"
+"We can't find products matching the selection.","We can't find products matching the selection."
+"Learn More","Learn More"
+"We found other products you might like!","We found other products you might like!"
+"More Choices:","More Choices:"
+"New Products","Nouveaux produits"
+"Check items to add to the cart or","Check items to add to the cart or"
+"select all","select all"
+"Regular Price","Prix régulier"
+"Special Price","Prix spécial"
+Qty,Qté
+"Previous Product","Previous Product"
+"Next Product","Next Product"
+"Update Cart","Mettre à jour le panier"
+Item,Produit
+Price,Prix
+"See price before order confirmation.","See price before order confirmation."
+"What's this?","What's this?"
+Subtotal,Sous-total
+"My Cart","Mon panier"
+Contact,Contact
+Details,Détails
+Write,Write
+Us,Us
+Name,Name
+Email,Email
+"Phone Number","Phone Number"
+"What’s on your mind?","What’s on your mind?"
+Currency,Currency
+"Grouped product items","Grouped product items"
+"Product Name","Product Name"
+Availability,Availability
+"No options of this product are available.","No options of this product are available."
+"Now Shopping by","Now Shopping by"
+Previous,Previous
+Remove,Remove
+"Remove This Item","Remove This Item"
+"Shop By","Shop By"
+"Clear All","Clear All"
+"Shopping Options","Shopping Options"
+"Please select a shipping address for applicable items.","Please select a shipping address for applicable items."
+Product,Product
+"Send To","Send To"
+"A shipping selection is not applicable.","A shipping selection is not applicable."
+Actions,Actions
+"Remove Item","Remove Item"
+"Remove item","Remove item"
+"Go to Shipping Information","Go to Shipping Information"
+"Update Qty &amp; Addresses","Update Qty &amp; Addresses"
+"Enter a New Address","Enter a New Address"
+"Back to Shopping Cart","Back to Shopping Cart"
+"Enter your email address","Enter your email address"
+"Sign Up for Our Newsletter:","Sign Up for Our Newsletter:"
+Subscribe,Subscribe
+Go!,Go!
+Go,Go
+"Don't show this popup again","Don't show this popup again"
+Language,Language
+"Select Store","Select Store"
+"Your Store","Your Store"
+"Share Wish List","Share Wish List"
+"Add All to Cart","Add All to Cart"
+"Update Wish List","Update Wish List"
+"Shop by","Shop by"
+"Load More","Load More"
+Filter,Filter
+Links,Links
+Password,Password
+"Sign In","Sign In"
+"Forgot Your Password?","Forgot Your Password?"
+"iwdMy billing and shipping address are the same","iwdMy billing and shipping address are the same"
+Update,Update
+Cancel,Cancel
+Edit,Edit
+"Save in address book","Save in address book"
+"!!My billing and shipping address are the same","!!My billing and shipping address are the same"
+"Estimated Total","Estimated Total"
+"You already have an account with us. Sign in or continue as guest.","You already have an account with us. Sign in or continue as guest."
+Login,Login
+"Grand Total","Grand Total"
+Close,Close
+item,item
+items,items
+"Go to Checkout","Go to Checkout"
+"Recently added item(s)","Recently added item(s)"
+"You have no items in your shopping cart.","You have no items in your shopping cart."
+"View and edit cart","View and edit cart"
+"See Details","See Details"
+"Options Details","Options Details"
+"Cart Subtotal","Cart Subtotal"
+"No Payment Methods","No Payment Methods"
+"Payment Method","Payment Method"
+"Payment Information","Payment Information"
+"No Payment method available.","No Payment method available."
+"Discount Codes","Discount Codes"
+"Enter your coupon code:","Enter your coupon code:"
+Apply,Apply
+"You can track your order status by creating an account.","You can track your order status by creating an account."
+"A letter with further instructions will be sent to your email.","A letter with further instructions will be sent to your email."
+"Place Order Now","Place Order Now"
+"Forgot an Item?","Forgot an Item?"
+"Edit Your Cart","Edit Your Cart"
+"Ship Here","Ship Here"
+"Shipping Address","Shipping Address"
+"Ship To:","Ship To:"
+edit,edit
+"Shipping Method:","Shipping Method:"
+"Name & Address","Name & Address"
+"New Address","New Address"
+"Shipping Method","Shipping Method"
+"Select Method","Select Method"
+"Method Title","Method Title"
+Next,Next
+"Sorry, no quotes are available for this order at this time","Sorry, no quotes are available for this order at this time"
+"Review Your Order","Review Your Order"
+"Item in Cart","Item in Cart"
+"Items in Cart","Items in Cart"
+"View Details","View Details"
+"Order Summary","Order Summary"
+"Welcome to %store_name","Welcome to %store_name"
+"%name,","%name,"
+"Welcome to %store_name.","Welcome to %store_name."
+"To sign in to our site, use these credentials during checkout or on the <a href=""%customer_url"">My Account</a> page:","To sign in to our site, use these credentials during checkout or on the <a href=""%customer_url"">My Account</a> page:"
+Email:,Email:
+Password:,Password:
+"Password you set when creating account","Password you set when creating account"
+"Forgot your account password? Click <a href=""%reset_url"">here</a> to reset it.","Forgot your account password? Click <a href=""%reset_url"">here</a> to reset it."
+"When you sign in to your account, you will be able to:","When you sign in to your account, you will be able to:"
+"Quick Checkout","Quick Checkout"
+"Proceed through checkout faster","Proceed through checkout faster"
+"Order Status","Order Status"
+"Check the status of orders","Check the status of orders"
+"Manage Addresses","Manage Addresses"
+"Store alternative addresses","Store alternative addresses"
+"For shipping to multiple family members and friends","For shipping to multiple family members and friends"
+"Order History","Order History"
+"View past orders","View past orders"
+Footer,Footer
+"About Us","About Us"
+"Customer Service","Customer Service"
+"<a href=""tel:%store_phone"">%store_phone</a>","<a href=""tel:%store_phone"">%store_phone</a>"
+"Hours of Operation:<br /><span class=""no-link"">%store_hours</span>.","Hours of Operation:<br /><span class=""no-link"">%store_hours</span>."
+"Credit memo for your %store_name order","Credit memo for your %store_name order"
+"Thank you for your order from %store_name.","Thank you for your order from %store_name."
+"You can check the status of your order by <a href=""%account_url"">logging into your account</a>.","You can check the status of your order by <a href=""%account_url"">logging into your account</a>."
+"If you have questions about your order, you can email us at <a href=""mailto:%store_email"">%store_email</a>.","If you have questions about your order, you can email us at <a href=""mailto:%store_email"">%store_email</a>."
+"Your Credit Memo #%creditmemo_id for Order #%order_id","Your Credit Memo #%creditmemo_id for Order #%order_id"
+"Billing Info","Billing Info"
+"Shipping Info","Shipping Info"
+"Update to your %store_name credit memo","Update to your %store_name credit memo"
+"Your order #%increment_id has been updated with a status of <strong>%order_status</strong>.","Your order #%increment_id has been updated with a status of <strong>%order_status</strong>."
+"Invoice for your %store_name order","Invoice for your %store_name order"
+"Your Invoice #%invoice_id for Order #%order_id","Your Invoice #%invoice_id for Order #%order_id"
+"Update to your %store_name invoice","Update to your %store_name invoice"
+"Your %store_name order confirmation","Your %store_name order confirmation"
+"%customer_name,","%customer_name,"
+"Once your package ships we will send you a tracking number.","Once your package ships we will send you a tracking number."
+"Your Order <span class=""no-link"">#%increment_id</span>","Your Order <span class=""no-link"">#%increment_id</span>"
+"Placed on <span class=""no-link"">%created_at</span>","Placed on <span class=""no-link"">%created_at</span>"
+"Update to your %store_name order","Update to your %store_name order"
+"Your %store_name order has shipped","Your %store_name order has shipped"
+"Your shipping confirmation is below. Thank you again for your business.","Your shipping confirmation is below. Thank you again for your business."
+"Your Shipment #%shipment_id for Order #%order_id","Your Shipment #%shipment_id for Order #%order_id"
+"Update to your %store_name shipment","Update to your %store_name shipment"
+"Your coupon was successfully removed","Your coupon was successfully removed"
+"Your information was saved.","Your information was saved."
+"Your coupon was successfully applied","Your coupon was successfully applied"
+"Back to Checkout","Back to Checkout"
+"Provided Zip/Postal Code seems to be invalid.","Provided Zip/Postal Code seems to be invalid."
+" Example: "," Example: "
+"If you believe it is the right one you can ignore this notice.","If you believe it is the right one you can ignore this notice."
+"Save Address","Save Address"
+"More Information","Information nutritionelle"
+"Reviews","Commentaires"
+"Nickname","Nom",
+"Summary","Sommaire",
+"Review","Commentaire"
+"Categorie","Catégories"
+"New","Nouveautés"
+"Sort By","Trier par"
+"We found other products you might like!","D'autres produits que vous pourriez aimer!"
+"Have a question?","Vous avez une question?"
+"You're reviewing:","Vous laissez une &eacute;valuation pour:"
+"Your Rating","Votre &eacute;valuation"
+"Submit Review","Soumettre l'&eacute;valuation"
+"Be the first to review this product","&Eacute;valuez en premier"
+"In stock","En stock"
+"Home","Accueil"
+"FREE SHIPPING","LIVRAISON GRATUITE"
+"You need to choose options for your item.","Vous devez choisir le format pour ce produit."
+"View and edit cart","Voir mon panier"
+"Proceed to Checkout", "Passez a la caisse"
+"You added %1 to your shopping cart.","Vous avez ajout&eacute; %1 &agrave; votre panier."
+"Quantity","Quantité"
+"Category","Catégorie"
+"View All","Voir tout"
+"Recently Ordered","Commandés récemment"
+"Shipping Address","Addresse de livraison"
+"Items in Cart","Produits dans le panier"
+"Close","Fermer"
+'My Account','Mon compte'
+"Sign Out","Déconnexion"
+"Go to Checkout","Completer mon achat"
+"Now Shopping by","Filtr&eacute; par"
+"Quickview","Apper&ccedil;u"

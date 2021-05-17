@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch">
+        <observer name="absolute_cachebust_update" instance="Absolute\CacheBust\Update\UpdateObserver" />
+    </event>
+</config>

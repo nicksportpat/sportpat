@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="sportpat_tabcontent" sortOrder="999">
+            <label>Manage tab content</label>
+        </tab>
+        <section id="sportpat_tabcontent" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Manage tab content</label>
+            <tab>sportpat_tabcontent</tab>
+            <resource>Sportpat_Tabcontent::tabcontent_config</resource>
+            <group id="tabcontent" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Manage Contents</label>
+                <field id="breadcrumbs" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable Breadcrumbs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="meta_title" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Manage Content list meta title</label>
+                </field>
+                <field id="meta_description" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Manage Content list meta description</label>
+                </field>
+                <field id="meta_keywords" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Manage Content list meta keywords</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

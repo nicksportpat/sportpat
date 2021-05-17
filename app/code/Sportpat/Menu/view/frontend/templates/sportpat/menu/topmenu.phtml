@@ -1,0 +1,120 @@
+<!-- Mobile Header -->
+<div class="wsmobileheader clearfix ">
+    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+    <span class="smllogo"><img src="./media/logo/default/logo_new.png" width="100" alt="sportpat"/></span>
+    <a href="tel:123456789" class="callusbtn"><i class="fas fa-phone"></i></a>
+</div>
+<!-- Mobile Header -->
+
+<!--Main Menu HTML Code-->
+<div class="wsmainfull clearfix">
+    <div class="desktoplogo">
+        <div class="container"><a href="#"><img src="./media/logo/default/logo_new.png" alt=""></a></div>
+    </div>
+    <div class="clearfix">
+        <nav class="wsmenu clearfix">
+            <ul class="wsmenu-list">
+ <li aria-haspopup="true" class="rightmenu">
+            <form class="topmenusearch">
+              <input placeholder="Search...">
+              <button class="btnstyle"><i class="searchicon fas fa-search"></i></button>
+            </form>
+          </li>
+                <?php
+
+                for ($i = 0; $i < count($mainmenuArray); $i++) {
+
+                    $menuItem = $mainmenuArray[$i];
+
+                    $iconname = strtolower(str_replace(" UTV", "", $menuItem["name"]));
+                    $menuname = strtoupper($menuItem["name"]) . " ";
+
+                    ?>
+
+                    <li aria-haspopup="true"><a href="#"><i
+                                class="flaticon-<?php echo $iconname; ?>"></i><?php echo $menuname; ?><span
+                                class="wsarrow"></span></a>
+                        <div class="wsmegamenu clearfix">
+                            <div class="container">
+                                <div class="row">
+
+
+                                    <?php
+
+                                    $subCategories = $block->getCategorySubtitles($menuItem["id"]);
+
+                                    foreach ($subCategories as $subtitle) {
+
+
+                                        if ($subtitle["name"] == "STICKERS" || $subtitle["name"] == "FAN GEARS DEV "
+
+                                        ) {
+                                            continue;
+                                        }
+
+                                        if ($subtitle["name"] == "KIDS") {
+                                            $liclass = "col-lg-12";
+                                        } else {
+                                            $liclass = "col-lg-6";
+                                        }
+
+                                        ?>
+                                        <ul class="<?php echo $liclass; ?> col-md-12 col-xs-12 link-list">
+                                            <li class="title"><?php echo $subtitle["name"]; ?></li>
+
+                                            <?php
+
+                                            $sub2 = $block->getSubCategoryHtml($subtitle["entity_id"], $menuname, $subtitle["name"]);
+
+                                            echo $sub2;
+                                            ?>
+
+                                        </ul>
+                                        <?php
+                                    }
+
+                                    ?>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                <?php } ?>
+
+
+                <li aria-haspopup="true"><a href="#"><i class="flaticon-famous"></i>Brands <span class="wsarrow"></span></a>
+                    <div class="wsmegamenu clearfix">
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <ul class="col-lg-12 col-md-12 col-xs-12 link-list">
+                                    <li class="title">Our brands</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+        <!--Menu HTML Code-->
+
+    </div>
+</div>
+<style>
+    .wsmegamenu .submenu-icon > img:hover, .wsmegamenu a:hover .submenu-icon > img {
+        border-color: red !important;
+        text-decoration: none !important;
+        transition: all ease-in 0.2s;
+    }
+
+    .wsmegamenu a {
+        text-decoration: none !important;
+        transition: all ease-in 0.2s;
+    }
+</style>

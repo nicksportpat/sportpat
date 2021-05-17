@@ -1,0 +1,74 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ReviewsImport
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php
+// @codingStandardsIgnoreFile
+/*
+ * @var $block \Bss\ReviewsImport\Block\ImportExportReview
+ *
+ */
+?>
+</br>
+<?php
+    $resource=$block->getRoleResource();
+?>
+<?php
+if (in_array('Magento_Backend::all', $resource)||
+    in_array('Bss_ReviewsImport::import_product_review', $resource)
+) {
+?>
+    <input type="hidden" value="<?php echo $block->getUrl('reviewsimport/index/validate'); ?>" id="validate-url"/>
+    <form action="<?php echo $block->getUrl('reviewsimport/index/import'); ?>" enctype="multipart/form-data" id="import-form" method="post">
+        <div style="margin-left:18%;">
+            <b class="admin__field-label"><?php echo __('Import Product Reviews:'); ?></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="file" name="file" id="file" class="input-file required-entry"/>&nbsp;
+            <input type="submit" class="action-default scalable" name="import" id="import"
+                   value="<?php echo __('Check Data'); ?>" disabled="disabled"/>
+            </br><a style="margin-left: 14%;" href="<?php echo $block->getUrl('reviewsimport/index/download'); ?>">
+                <?php echo __('Download Sample File'); ?>
+            </a>
+            </br></br>
+            <input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey() ?>" />
+        </div>
+    </form>
+    <?php } ?>
+    <?php
+    if (in_array('Magento_Backend::all', $resource)||
+        in_array('Bss_ReviewsImport::export_product_review', $resource)
+    ) {
+    ?>
+    <form action="<?php echo $block->getUrl('reviewsimport/index/export'); ?>" enctype="multipart/form-data" method="post">
+        <div style="margin-left:18%; margin-top: 15px;">
+            <b class="admin__field-label"><?php echo __('Export Product Reviews:'); ?></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select name="export_file_type" class=" select admin__control-select">
+                <option>CSV</option>
+            </select>&nbsp;&nbsp;
+            <input type="submit" class="action-default scalable" name="export" id="export"
+                   value="<?php echo __('Export Product Reviews'); ?>"/>
+            <input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey() ?>" />
+        </div>
+    </form>
+<?php } ?>
+<div><b><?= __('Version: 1.0.8')?></b></div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_ReviewsImport/js/index":{}
+        }
+    }
+</script>

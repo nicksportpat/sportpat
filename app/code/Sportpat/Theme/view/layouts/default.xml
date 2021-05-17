@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Sportpat_Theme::css/bootstrap.min.css" />
+        <css src="Sportpat_Theme::css/fontawesome5/css/fontawesome.css" />
+        <css src="Sportpat_Theme::css/fontawesome5/css/brands.css" />
+        <css src="Sportpat_Theme::css/fontawesome5/css/solid.css" />
+        <css src="Sportpat_Theme::css/custom.css" />
+        <script src="Sportpat_Theme::js/bootstrap.min.js"/>
+
+    </head>
+
+</page>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View" name="sizechart.tab" template="Sportpat_CustomTabs::sizechart.phtml" group="detailed_info">
+
+
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Size Chart</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View" name="comparison.tab" template="Sportpat_CustomTabs::comparison.phtml" group="detailed_info">
+
+
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Comparison Chart</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

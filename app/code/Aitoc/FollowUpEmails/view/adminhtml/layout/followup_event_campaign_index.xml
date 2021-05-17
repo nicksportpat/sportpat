@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <head>
+        <title>Manage Event Campaigns</title>
+        <css src="Aitoc_FollowUpEmails::css/listing.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Aitoc\FollowUpEmails\Block\Adminhtml\Events\SectionSwitcher" name="category.store.switcher" template="Aitoc_FollowUpEmails::events/section_switcher.phtml">
+                <arguments>
+                    <argument name="default.name" xsi:type="string">Follow Up Menu</argument>
+                    <argument name="links" xsi:type="array">
+                        <item name="events" xsi:type="array">
+                            <item name="text" xsi:type="string">Events</item>
+                            <item name="url" xsi:type="string">followup/event/index</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <uiComponent name="aitoc_followup_event_campaign_top"/>
+            <uiComponent name="aitoc_followup_event_campaign_listing"/>
+        </referenceContainer>
+    </body>
+</page>

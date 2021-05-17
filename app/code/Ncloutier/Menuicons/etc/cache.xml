@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+	<type instance="Ncloutier\Menuicons\Model\Cache\Icons" name="icons_cache_tag" translate="label,description">
+		<label>icons</label>
+		<description>mega menu icons cache</description>
+	</type>
+</config>

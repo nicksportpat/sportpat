@@ -1,0 +1,291 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+?>
+<?php
+/**
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+use Aitoc\ReviewBooster\Api\Data\ReviewDetailsInterface;
+use Aitoc\ReviewBooster\Api\Service\ConfigProviderInterface as ConfigHelperInterface;
+use Aitoc\ReviewBooster\Helper\Image as ImageHelper;
+use Aitoc\ReviewBooster\Helper\Rating as RatingHelper;
+use Aitoc\ReviewBooster\Helper\ReportAbuse as ReportAbuseHelper;
+use Aitoc\ReviewBooster\Helper\UsefulnessVote as UsefulnessVoteHelper;
+use Magento\Review\Block\Product\View\ListView as ListViewBlock;
+use Magento\Review\Model\Review;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\App\ObjectManager;
+
+// @codingStandardsIgnoreFile
+/**
+ * @var ListViewBlock $block;
+ */
+
+/** @var ObjectManagerInterface $objectManager */
+$objectManager = ObjectManager::getInstance();
+/** @var StoreManagerInterface $storeManager */
+$storeManager = $objectManager->get(StoreManagerInterface::class);
+$websiteId = $storeManager->getWebsite()->getId();
+
+/** @var ConfigHelperInterface $helperConfig */
+$helperConfig = $this->helper(ConfigHelperInterface::class);
+$reviewRatingNames = $helperConfig->getRatingNames($websiteId);
+
+/** @var ImageHelper $helperImage */
+$helperImage = $this->helper(ImageHelper::class);
+
+/** @var RatingHelper $helperRating */
+$helperRating = $this->helper(RatingHelper::class);
+$ratingParam = $helperRating->getRequestedRating();
+
+$reviewsCollection = $block->getReviewsCollection();
+
+/** @var Review $items */
+$items = $reviewsCollection->getItems();
+
+$format = $block->getDateFormat() ?: IntlDateFormatter::SHORT;
+
+/** @var UsefulnessVoteHelper $helperUsefulnessVote */
+$helperUsefulnessVote = $this->helper(UsefulnessVoteHelper::class);
+
+/** @var ReportAbuseHelper $helperReportAbuse */
+$helperReportAbuse = $this->helper(ReportAbuseHelper::class);
+?>
+<?php if (count($items)):?>
+    <div class="block review-list" id="customer-reviews">
+        <div class="block-title">
+            <?php if ($helperRating->isValidRatingValue($ratingParam)): ?>
+                <?php if($ratingParam > 1): ?>
+                    <strong><?php echo __('Customer Reviews with %1 stars - ', $ratingParam) ?><a href="?rating=#reviews"><?php echo __('Show all') ?></a></strong>
+                <?php else: ?>
+                    <strong><?php echo __('Customer Reviews with %1 star - ', $ratingParam) ?></strong><a href="?rating=#reviews"><?php echo __('Show all') ?></a>
+                <?php endif; ?>
+            <?php else: ?>
+                <strong><?php echo __('Customer Reviews') ?></strong>
+            <?php endif ?>
+        </div>
+        <?php include ($block->getTemplateFile('Aitoc_ReviewBooster::product/view/list/rating.phtml')) ?>
+        <div class="block-content">
+            <div class="toolbar review-toolbar">
+                <?php echo $block->getChildHtml('toolbar') ?>
+            </div>
+            <ol class="items review-items">
+                <?php foreach ($items as $review):?>
+                <?php $reviewId = $review->getReviewId();
+                    $imagesArray = $helperImage->getImagesFilenamesByReviewId($reviewId);
+                ?>
+                    <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+                        <div class="review-title" itemprop="name"><?php echo $block->escapeHtml($review->getTitle()) ?></div>
+
+                        <?php
+                        $helpfulAmount = $review->getData(ReviewDetailsInterface::REVIEW_HELPFUL);
+                        $unhelpfulAmount = $review->getData(ReviewDetailsInterface::REVIEW_HELPFUL);
+                        ?>
+                        <?php if ($helpfulAmount > 0): ?>
+                            <div class="review-helpful-summary"><?php echo __('%1 of %2 people found this helpful', $helpfulAmount, $helpfulAmount + $unhelpfulAmount) ?></div>
+                        <?php endif ?>
+
+                        <div class="review-details-ratings-box">
+                            <div class="review-details">
+                                <p class="review-author">
+                                    <?php if ($review->getData(ReviewDetailsInterface::CUSTOMER_VERIFIED)): ?>
+                                    <span class="review-details-verified" title="<?php echo __('Verified reviews are written by shoppers who purchased this item.') ?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                            <path d="M0 0h24v24h-24z" fill="none"/>
+                                            <path d="M9 16.17l-4.17-4.17-1.42 1.41 5.59 5.59 12-12-1.41-1.41z"/>
+                                        </svg>
+                                        <?php echo __('Verified')?>
+                                    </span>
+                                    <?php endif ?>
+                                    <span class="review-details-label"><?php echo __('Review by')?></span>
+                                    <strong class="review-details-value" itemprop="author"><?php echo $block->escapeHtml($review->getNickname()) ?></strong>
+                                </p>
+                                <p class="review-date">
+                                    <span class="review-details-label"><?php echo __('Posted on') ?></span>
+                                    <time class="review-details-value" itemprop="datePublished" datetime="<?php echo $block->formatDate($review->getCreatedAt(), $format) ?>"><?php echo $block->formatDate($review->getCreatedAt(), $format) ?></time>
+                                </p>
+                            </div>
+                            <?php if (count($review->getRatingVotes())): ?>
+                                <div class="review-ratings">
+                                    <?php foreach ($review->getRatingVotes() as $vote): ?>
+                                        <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                            <span class="label rating-label"><span><?php echo $block->escapeHtml($vote->getRatingCode()) ?></span></span>
+                                            <div class="rating-result" title="<?php echo $reviewRatingNames[$helperRating->convertRatingToPoints($vote->getPercent(), true)] ?>">
+                                                <meta itemprop="worstRating" content = "1"/>
+                                                <meta itemprop="bestRating" content = "100"/>
+                                                <span style="width:<?php echo $vote->getPercent() ?>%">
+                                                    <span itemprop="ratingValue"><?php echo $reviewRatingNames[$helperRating->convertRatingToPoints($vote->getPercent(), true)] ?></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="review-content" itemprop="description">
+                        <?php $reviewDetail = $block->escapeHtml($review->getDetail()); ?>
+                        <?php if (strlen($reviewDetail) > 1000): ?>
+                        <span class="review-trimmed-<?php echo $block->escapeHtml($review->getReviewId()) ?>">
+                            <?php echo nl2br(substr($reviewDetail, 0, strpos($reviewDetail, ' ', 1000))) ?>
+                        </span>
+                        <span class="review-link-<?php echo $block->escapeHtml($review->getReviewId()) ?>">
+                            <?php echo __('...') ?> <a href="javascript:void(0)" id="review-link-<?php echo $block->escapeHtml($review->getReviewId()) ?>"><?php echo __('Show full review') ?></a>
+                        </span>
+                        <span class="review-rest-<?php echo $block->escapeHtml($review->getReviewId()) ?>" style="display: none;">
+                            <?php echo nl2br(substr($reviewDetail, strpos($reviewDetail, ' ', 1000))) ?>
+                        </span>
+                        <?php else: ?>
+                            <?php echo nl2br($reviewDetail); ?>
+                        <?php endif ?>
+
+                        </div>
+                        <?php if ($imagesArray): ?>
+                            <?php $i=0; foreach ($imagesArray as $image): ?>
+                            <?php $img = $helperImage->getResizedImageUrlAndResizeIfRequired($image, $websiteId);  ?>
+                            <img class="aitoc_review_image" src="<?php echo $img; ?>"/>
+                            <?php $i++; endforeach ?>
+                        <?php endif ?>
+                        <div class="review-short">
+                            <?php if ($review->getData(ReviewDetailsInterface::PRODUCT_ADVANTAGES)): ?>
+                                <div class="good-exp">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                    <path d="M0 0h18v18h-18z" fill="none"/>
+                                    <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-4v4h-2v-4h-4v-2h4v-4h2v4h4v2z"/>
+                                </svg>
+                            </span>
+                            <span>
+                                <?php echo $block->escapeHtml($review->getData(ReviewDetailsInterface::PRODUCT_ADVANTAGES)) ?>
+                            </span>
+                                </div>
+                            <?php endif ?>
+                            <?php if ($review->getData(ReviewDetailsInterface::PRODUCT_DISADVANTAGES)): ?>
+                                <div class="bad-exp">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                    <path d="M0 0h18v18h-18z" fill="none"/>
+                                    <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm5 11h-10v-2h10v2z"/>
+                                </svg>
+                            </span>
+                            <span>
+                                <?php echo $block->escapeHtml($review->getData(ReviewDetailsInterface::PRODUCT_DISADVANTAGES)) ?>
+                            </span>
+                                </div>
+                            <?php endif ?>
+                        </div>
+                        <?php if ($review->getComment()): ?>
+                        <div class="comment_content" itemprop="description" style="padding-left: 40px; color:#777; font-size: 0.9em; font-style: italic;">
+                            <?php if ($review->getAdminTitle()): ?>
+                            <b><?php echo $block->escapeHtml($review->getAdminTitle()); ?></b><br/>
+                            <?php endif ?>
+                            <?php echo $block->escapeHtml($review->getComment()); ?>
+                        </div>
+                        <br/>
+                        <?php endif ?>
+                        <div class="actions-toolbar review-form-actions">
+                            <div class="primary actions-primary" id="review-rate-<?php echo $block->escapeHtml($review->getReviewId()) ?>">
+                                <?php if (!$helperUsefulnessVote->isReviewRated($review->getReviewId())): ?>
+                                    <p><?php echo __('Was this review helpful?') ?></p>
+                                    <button type="submit" class="action submit" id="action-helpful-<?php echo $block->escapeHtml($review->getReviewId()) ?>" value="<?php echo $block->escapeHtml($review->getReviewId()) ?>"><span><?php echo __('Yes') ?></span></button>
+                                    <button type="submit" class="action submit" id="action-unhelpful-<?php echo $block->escapeHtml($review->getReviewId()) ?>" value="<?php echo $block->escapeHtml($review->getReviewId()) ?>"><span><?php echo __('No') ?></span></button>
+                                <?php else: ?>
+                                    <?php echo $helperUsefulnessVote->getChoiceMessage($review->getReviewId()) ?>
+                                <?php endif ?>
+                            </div>
+                            <div class="primary actions-primary" id="review-report-<?php echo $block->escapeHtml($review->getReviewId()) ?>">
+                                <?php if (!$helperReportAbuse->isReviewReported($review->getReviewId())): ?>
+                                    <a href="javascript:void(0)" id="action-report-<?php echo $block->escapeHtml($review->getReviewId()) ?>"><?php echo __('Report Abuse') ?></a>
+                                <?php else: ?>
+                                    <?php echo __($helperReportAbuse->getReportedMessage()) ?>
+                                <?php endif ?>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <div class="toolbar review-toolbar">
+                <?php echo $block->getChildHtml('toolbar') ?>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        require([
+            "jquery"
+        ], function ($) {
+            function rateReview(url, reviewId, choice, event)
+            {
+                $.ajax({
+                    url: url,
+                    dataType: 'html',
+                    data: {
+                        'reviewId': reviewId,
+                        'choice': choice
+                    }
+                }).done(function(){
+                    event.preventDefault();
+                }).complete(function(){
+                    if (choice == 'helpful') {
+                        $('#review-rate-' + reviewId).text('<?php echo __($helperUsefulnessVote->getHelpfulMessage()) ?>');
+                    } else if (choice == 'unhelpful') {
+                        $('#review-rate-' + reviewId).text('<?php echo __($helperUsefulnessVote->getUnhelpfulMessage()) ?>');
+                    }
+                });
+            }
+
+            function reportReview(url, reviewId, type, event)
+            {
+                $.ajax({
+                    url: url,
+                    dataType: 'html',
+                    data: {
+                        'reviewId': reviewId,
+                        'type': type
+                    }
+                }).done(function(){
+                    event.preventDefault();
+                }).complete(function(){
+                    $('#review-report-' + reviewId).text('<?php echo __($helperReportAbuse->getReportedMessage()) ?>');
+                });
+            }
+
+            $(function () {
+                $('[id^="action-helpful-"]').click(
+                    function(event){
+                        rateReview('<?php echo $helperUsefulnessVote->getRateUrl();?>', this.value, 'helpful', event);
+                    });
+            });
+
+            $(function () {
+                $('[id^="action-unhelpful-"]').click(
+                    function(event){
+                        rateReview('<?php echo $helperUsefulnessVote->getRateUrl();?>', this.value, 'unhelpful', event);
+                    });
+            });
+
+            $(function () {
+                $('[id^="action-report-"]').click(
+                    function(event){
+                        var id = this.id.replace('action-report-', '');
+                        reportReview('<?php echo $helperReportAbuse->getReportUrl();?>', id, 'report', event);
+                    });
+            });
+
+            $(function () {
+                $('[id^="review-link-"]').click(
+                    function(event){
+                        event.preventDefault();
+                        var id = this.id.replace('review-link-', '');
+                        $('.review-link-' + id).hide();
+                        $('.review-rest-' + id).show();
+                    });
+            });
+        });
+    </script>
+<?php endif;?>

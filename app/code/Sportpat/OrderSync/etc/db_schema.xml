@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sportpat_order_sync_syncedorder" resource="default" engine="innodb" comment="Synced Order Table">
+        <column xsi:type="smallint" name="syncedorder_id" padding="6" unsigned="false" nullable="false" identity="true"  comment="Synced Order ID"/>
+        <column xsi:type="int" name="magento_orderid" padding="11" nullable="false" comment="Synced Order Magento Order Id"/>
+        <column xsi:type="int" name="lightspeed_orderid" padding="11" nullable="true" comment="Synced Order Lightspeed Order id"/>
+        <column xsi:type="int" name="status" padding="11" nullable="true" comment="Synced Order Status"/>
+        <column xsi:type="varchar" name="details" length="255" nullable="true" comment="Synced Order Details"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Synced Order Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Synced Order Updated At"/>
+        <index referenceId="SPORTPAT_ORDER_SYNC_SYNCEDORDER_FULLTEXT" indexType="fulltext">
+            <column name="details" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="syncedorder_id"/>
+        </constraint>
+    </table>
+</schema>

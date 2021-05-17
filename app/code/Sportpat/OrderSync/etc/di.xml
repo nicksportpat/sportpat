@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Sportpat\OrderSync\Api\SyncedorderRepositoryInterface" type="Sportpat\OrderSync\Model\SyncedorderRepository"/>
+    <preference for="Sportpat\OrderSync\Api\Data\SyncedorderInterface" type="Sportpat\OrderSync\Model\Syncedorder"/>
+    <preference for="Sportpat\OrderSync\Api\Data\SyncedorderSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sportpat_ordersync_syncedorder_listing_data_source" xsi:type="string">SportpatOrderSyncSyncedorderGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\OrderSync\Model\ResourceModel\Syncedorder\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Sportpat\OrderSync\Model\Syncedorder</argument>
+            <argument name="resourceModel" xsi:type="string">Sportpat\OrderSync\Model\ResourceModel\Syncedorder</argument>
+            <argument name="idFieldName" xsi:type="string">syncedorder_id</argument>
+            <argument name="eventPrefix" xsi:type="string">sportpat_order_sync_syncedorder_collection</argument>
+            <argument name="eventObject" xsi:type="string">syncedorder_collection</argument>
+        </arguments>
+    </type>
+    <virtualType name="SportpatOrderSyncSyncedorderGridCollection" type="Sportpat\OrderSync\Model\ResourceModel\Syncedorder\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+            <argument name="resourceModel" xsi:type="string">Sportpat\OrderSync\Model\ResourceModel\Syncedorder</argument>
+            <argument name="idFieldName" xsi:type="string">syncedorder_id</argument>
+            <argument name="eventPrefix" xsi:type="string">sportpat_order_sync_syncedorder_collection</argument>
+            <argument name="eventObject" xsi:type="string">syncedorder_collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="ordersync" xsi:type="object">Sportpat\OrderSync\Console\Ordersync</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

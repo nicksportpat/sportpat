@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Aitoc_ReviewBooster" setup_version="2.0.2">
+        <sequence>
+            <module name="Aitoc_FollowUpEmails"/>
+            <module name="Magento_Reviews"/>
+            <module name="Magento_Customer"/>
+        </sequence>
+    </module>
+</config>

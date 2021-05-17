@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="code" type="xs:string"/>
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="class" type="xs:string"/>
+    <xs:element name="short_description" type="xs:string"/>
+    <xs:element name="description" type="xs:string"/>
+    <xs:element name="status">
+        <xs:simpleType>
+            <xs:restriction>
+                <xs:enumeration value="active"/>
+                <xs:enumeration value="inactive"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="display">
+        <xs:simpleType>
+            <xs:restriction>
+                <xs:enumeration value="show"/>
+                <xs:enumeration value="hide"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="item">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute type="xs:string" name="name" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="event">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="code"/>
+                <xs:element ref="name" minOccurs="0"/>
+                <xs:element ref="class" minOccurs="0"/>
+                <xs:element ref="short_description" minOccurs="0"/>
+                <xs:element ref="description" minOccurs="0"/>
+                <xs:element ref="status" minOccurs="0"/>
+                <xs:element ref="display" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="events">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="event" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="events"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

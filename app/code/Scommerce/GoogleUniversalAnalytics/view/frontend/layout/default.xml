@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Scommerce Mage. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!--head>
+        <link src="Scommerce_GoogleUniversalAnalytics::js/jquery.cookie.js"/>
+    </head-->
+    <body>
+        <referenceContainer name="head.additional">
+            <block class="Scommerce\GoogleUniversalAnalytics\Block\Ga" name="universal_analytics" as="universal_analytics" template="ga.phtml">
+                <action method="setPageType">
+                    <argument name="prefix" xsi:type="string">other</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

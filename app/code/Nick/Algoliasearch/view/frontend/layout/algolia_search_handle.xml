@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <!-- Uncomment the following line to include files with front-end hook methods -->
+       <!-- <remove src="Algolia_AlgoliaSearch::internals/common.js" />-->
+
+        <script src="Nick_Algoliasearch::hooks.js" />
+
+        <!-- Uncomment the following line to remove the main algolia CSS file -->
+      <remove src="Algolia_AlgoliaSearch::internals/algoliasearch.css" />
+
+        <!-- Uncomment the following line to load your custom CSS file -->
+       <css src="Nick_Algoliasearch::customalgolia.css" />
+
+        <!-- Uncomment the following line to remove the main algolia autocomplete.js file -->
+        <!-- <remove src="Algolia_AlgoliaSearch::autocomplete.js" /> -->
+
+        <!-- Uncomment the following line to load your custom autocomplete.js file -->
+        <!-- <script src="Algolia_CustomAlgolia::autocomplete.js" /> -->
+    </head>
+    <body>
+
+        <referenceBlock name="before.body.end">
+            <block class="Algolia\AlgoliaSearch\Block\Instant\Wrapper" name="algolia.instant.wrapper" template="Nick_Algoliasearch::instant/wrapper.phtml"/>
+            <block class="Algolia\AlgoliaSearch\Block\Instant\Hit" name="algolia.instant.hit" template="Nick_Algoliasearch::instant/hit.phtml"/>
+
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,295 @@
+/*
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+/* page menu */
+
+.followup-menu {
+    float: left;
+    line-height: 1.36;
+    margin-left: .3rem;
+    z-index: 490;
+    margin-top: 7px;
+}
+.followup-menu .admin__action-dropdown {
+    padding-right: 2.8rem;
+    height: 3.3rem;
+    padding-bottom: 0.4rem;
+    padding-left: 1.7rem;
+    padding-top: 0.7rem;
+    font-size: 1.4rem;
+    background-color: transparent;
+}
+.followup-menu .admin__action-dropdown.active {
+    background-color: #ffffffff;
+}
+.followup-menu .admin__action-dropdown-menu {
+    min-width: 20rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.followup-menu .admin__action-dropdown-menu > li > a {
+    padding-left: .5em;
+    padding-right: 1.8rem;
+    transition: background-color 0.1s linear;
+    white-space: nowrap;
+}
+.followup-menu.admin__action-dropdown-wrap .admin__action-dropdown-menu {
+    left: 0;
+    right: auto;
+}
+.followup-menu.admin__action-dropdown-wrap .admin__action-dropdown-text:after {
+    left: 0;
+    right: 0;
+}
+.followup-menu .admin__action-dropdown:after {
+    border-width: 0.5rem 0.4rem 0 0.4rem;
+    top: 53%;
+}
+.followup-menu .admin__action-dropdown-menu {
+    margin-top: 1px;
+}
+
+/* custom grid statistic table */
+
+.followup-stat-item {
+    display: inline-block;
+}
+
+.followup-stat-title {
+    font-size: 14px;
+}
+
+.followup-stat-value {
+    font-size: 18px;
+}
+
+.followup-stat-note {
+    font-size: 10px;
+}
+
+/* custom grid */
+
+.ait-ext-grid tr:hover td {
+    background-color: #fff;
+}
+.ait-ext-grid tr._odd-row td {
+    background-color: #fff;
+}
+.ait-ext-grid td:last-child {
+    border-left-style: none;
+    border-right-style: none;
+}
+.ait-ext-grid td {
+    border-left: none;
+    border-right: none;
+    padding: 2rem 0rem;
+}
+.ait-ext-grid td {
+    border-top: 0.1rem solid #d6d6d6;
+}
+.ait-ext-grid td .title {
+    color: #41362f;
+    font-size: 2.0rem;
+    float:left;
+    width: 48%;
+}
+.ait-ext-grid td .toolbar {
+    float:right;
+    width: 50%;
+    text-align: right;
+}
+.ait-ext-grid td .toolbar a, .ait-ext-grid td .toolbar button {
+    margin-left: 15px;
+}
+.ait-ext-grid td .status {
+    width: 100%;
+    float: left;
+}
+.ait-ext-grid td .status span {
+    color: #00cc00;
+}
+.ait-ext-grid td .description {
+    width: 100%;
+    float: left;
+}
+.action-select-wrap.followup-tips .action-menu .action-content {
+    xborder: unset;
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 40px;
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+    -webkit-column-rule: unset;
+    -moz-column-rule: unset;
+    column-rule: unset;
+}
+.action-select-wrap.followup-tips .action-menu {
+    border: none;
+    box-shadow: none;
+    position: inherit;
+    
+    transition: all 1s ease;
+    height: 0px;
+    display: block;
+}
+.action-select-wrap.followup-tips .action-menu._active {
+    position: inherit;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 20px 0 0;
+    
+    transition: all 1s ease;
+    height: 390px;
+    display: block;
+}
+.ait-ext-grid td .description .action-select-wrap .action-menu h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    color: #E84B14;
+}
+.ait-ext-grid td .description .action-select-wrap .action-menu p {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.ait-ext-grid td .description .action-select-wrap .action-menu ul {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-bottom: 20px;
+}
+.ait-ext-grid td .short-description {
+    float:left;
+    width: calc(100% - 700px);
+    min-width: 400px;
+    padding: 2.0rem 0;
+    font-size: 1.5rem;
+}
+.ait-ext-grid td .statistics {
+    float:right;
+    width: 680px;
+    text-align: right;
+}
+.ait-ext-grid td .statistics ul.ui-tabs-nav {
+    margin-bottom: 5px;
+}
+.ait-ext-grid td .statistics ul.ui-tabs-nav li {
+    display: inline;
+    padding: 0 8px;
+    font-size: 1.1rem;
+}
+.ait-ext-grid td .statistics ul.ui-tabs-nav li.ui-state-active a {
+    font-weight: bold;
+    color: #41362f;
+}
+.ait-ext-grid td .statistics .stat-wrapper {
+    display: inline-block;
+    border: 0.1rem solid #d6d6d6;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px #ddd;
+    margin-right: 4px;
+    padding: 5px 10px;
+}
+.ait-ext-grid td .statistics .ui-tabs-panel {
+    text-align: left;
+}
+.ait-ext-grid td .statistics .ui-tabs-panel td {
+    border: none;
+    padding: 0;
+    min-width: 90px;
+}
+.ait-ext-grid td .statistics .ui-tabs-panel tr.stat-headers td {
+    color: #4A4A4A;
+    font-size: 12px;
+}
+.ait-ext-grid td .statistics .ui-tabs-panel tr.stat-values td {
+    color: #E84B14;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 1px;
+}
+.ait-ext-grid td .statistics .ui-tabs-panel tr.stat-notes td {
+    color: #4A4A4A;
+    font-size: 10px;
+    font-weight: bold;
+}
+.ait-ext-grid td .statistics .ui-tabs-panel tr.stat-notes td b {
+    color: #11AC1C;
+}
+.ait-ext-grid td .toolbar .action-activate {
+    background-color: #0bc7ff;
+    color: #ffffff;
+    font-size: 1.6rem;
+    padding: 0.6rem 1em;
+    min-width: 310px;
+    border: none;
+    text-shadow: none;
+}
+.ait-ext-grid td .toolbar .action-activate:hover {
+    box-shadow: none;
+}
+
+/* custom grid campaigns */
+
+.ait-ext-grid td .inner-title {
+    color: #E84B14;
+    font-weight: bold;
+}
+.ait-ext-grid td .inner-toolbar {
+    padding-top: 15px;
+    padding-right: 20px;
+}
+.ait-ext-grid td .header-status {
+    background-color: floralwhite;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    float: none;
+}
+.ait-ext-grid td .step-grid {
+    width: 100%;
+    float: left;
+}
+.ait-ext-grid td .step-grid table th {
+    font-size: 16px;
+    color: #4A4A4A;
+    background-color: transparent;
+    padding: 20px 5px;
+    border: none;
+}
+.ait-ext-grid td .step-grid table td:first-child {
+    border-left: none;
+    padding-left: 20px;
+}
+.ait-ext-grid td .step-grid table th:first-child {
+    padding-left: 20px;
+}
+.ait-ext-grid td .step-grid table td {
+    padding: 20px 5px;
+    background-color: transparent;
+}
+.ait-ext-grid td .step-grid table .stat-value {
+    width: 105px;
+    text-align: right;
+}
+.ait-ext-grid td .step-grid table .email-action {
+    width: 120px;
+    text-align: center;
+}
+.followup-event-campaign-index .ait-ext-grid td.mono-row {
+    border: none;
+    padding: 2rem;
+}
+.followup-event-campaign-index .ait-ext-grid tr:last-child td.mono-row {
+    border-bottom: none;
+}
+.followup-event-campaign-index .ait-ext-grid tr td.mono-row {
+    background-color: #f8f8f8;
+}
+.followup-event-campaign-index .ait-ext-grid tr._odd-row td.mono-row {
+    background-color: transparent;
+}
+.followup-event-campaign-index .admin__data-grid-outer-wrap:first-child .ait-ext-grid tr td.mono-row{
+    background-color: transparent;
+}

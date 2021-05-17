@@ -1,0 +1,39 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<div class="admin__data-grid-wrap" data-role="grid-wrapper">
+    <table class="data-grid inside-grid" data-role="grid">
+       <thead>
+            <tr>
+                <th translate="'Name'" width="20%"/>
+                <th translate="'Send Period'" width="5%" />
+                <th translate="'Send Period Unit'"/>
+                <th translate="'Template'" width="40%"/>
+                <th class="stat-value" translate="'Sent'" width="5%"/>
+                <th class="stat-value" translate="'Opened'" width="5%"/>
+                <th class="stat-value" translate="'Clicks'" width="5%"/>
+                <th class="stat-value" translate="'Open Rate'" width="5%"/>
+                <th class="stat-value" translate="'Click Rate'" width="5%"/>
+                <th class="email-action" translate="'Actions'" width="10%"/>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="data-row" repeat="foreach: $row().emails, item: '$email'" css="'_odd-row': $index % 2">
+                <td text="$email().name"/>
+                <td text="$email().delay_period"/>
+                <td text="$email().unit"/>
+                <td text="$email().template"/>
+                <td class="stat-value" text="$email().sent"/>
+                <td class="stat-value" text="$email().opened"/>
+                <td class="stat-value" text="$email().transited"/>
+                <td class="stat-value" text="$email().open_rate"/>
+                <td class="stat-value" text="$email().click_rate"/>
+                <td class="email-action" render="$data.emailActions"/>
+            </tr>
+            
+            <tr ifnot="$row().emails" class="data-grid-tr-no-data">
+                <td attr="colspan: 6" translate="'We couldn\'t find any records.'"/>
+            </tr>
+        </tbody>
+    </table>
+</div>

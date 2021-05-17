@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <ca_std>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Nick\Canadapost\Model\Carrier\CanadaPostStandard</model>
+                <name>Canada Post Standard</name>
+                <price>15.00</price>
+                <title>Canada Post Standard</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </ca_std>
+
+            <ca_acc>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Nick\Canadapost\Model\Carrier\CanadaPostAccelerated</model>
+                <name>Canada Post Accelerated</name>
+                <price>25.00</price>
+                <discount_price>15.00</discount_price>
+                <title>Canada Post Accelerated</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </ca_acc>
+        </carriers>
+    </default>
+</config>

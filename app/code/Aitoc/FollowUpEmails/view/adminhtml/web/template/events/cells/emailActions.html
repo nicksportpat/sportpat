@@ -1,0 +1,11 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<div class="action-select-wrap" if="$email().actions" collapsible>
+    <button class="action-select" translate="'Select'" toggleCollapsible/>
+    <ul class="action-menu" css="_active: $collapsible.opened">
+        <li repeat="foreach: $email().actions, item: '$action'">
+            <a class="action-menu-item" text="$action().label" attr="href: $action().href, 'data-action': 'item-' + $action().index"/>
+        </li>
+    </ul>
+</div>

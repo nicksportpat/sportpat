@@ -1,0 +1,157 @@
+<?php
+/**
+ * @var $this \Scommerce\GoogleUniversalAnalytics\Block\View
+ */
+?>
+<?php
+$helper = $this->getHelper();
+
+if (!$helper->isEnhancedEcommerceEnabled()) return;
+
+$_product = $this->getProduct();
+
+$_category = $this->getCurrentCategory();
+
+if ($_category){
+	$_categoryName = $_category->getName();
+}
+else{
+	$_categoryName = $helper->getProductCategoryName($_product);
+}
+
+$_relatedProductIds = $_product->getRelatedProductIds();
+$_JsRelatedProducts = '';
+$_JsRelatedProductUrls='';
+if (count($_relatedProductIds)){
+	$_relatedProducts =  $this->getProducts($_relatedProductIds);
+
+	$_relatedProductUrls = array();
+	$_relatedProductItems = array();
+	$_relatedImpressionList = 'Related Product';
+	$_relatedClickLabel = 'Related';
+	$_loop = 1;
+
+	foreach ($_relatedProducts as $_relatedProduct){
+		$_relatedProductUrls[] = $_relatedProduct->getProductUrl();
+		//$_relatedProductUrls[] = substr($_relatedProductUrl,0, strpos($_relatedProductUrl, '?'));
+
+		$_relatedProductItems[] = array(
+			'id' => $this->escapeJsQuote($_relatedProduct->getSku()),
+			'name'  => $this->escapeJsQuote($_relatedProduct->getName()),
+			'category' => $this->escapeJsQuote($helper->getProductCategoryName($_relatedProduct)),
+			'brand' => $this->escapeJsQuote($helper->getBrand($_relatedProduct)),
+			'list'  => $_relatedImpressionList,
+			'position' => $_loop
+		);
+
+		$_loop++;
+	}
+
+	$_JsRelatedProducts = json_encode($_relatedProductItems);
+	$_JsRelatedProductUrls = json_encode($_relatedProductUrls);
+	
+	echo $this->getLayout()
+		->createBlock('Scommerce\GoogleUniversalAnalytics\Block\Impression')
+		->setJsProducts($_JsRelatedProducts)
+		->setJsProductUrls($_JsRelatedProductUrls)
+		->setclickLabel($_relatedClickLabel)
+		->setPageView($_relatedClickLabel)
+		->setTemplate('Scommerce_GoogleUniversalAnalytics::impression.phtml')
+		->toHtml();
+}
+
+$_upsellProductIds = $_product->getUpSellProductIds();
+$_JsUpsellProducts = '';
+$_JsUpsellProductUrls = '';
+
+if (count($_upsellProductIds)){
+	$_upsellProducts = $this->getProducts($_upsellProductIds);
+
+	$_upsellProductUrls = array();
+	$_upsellProductItems = array();
+	$_upsellImpressionList = 'Upsell Product';
+	$_upsellClickLabel = 'Upsell';
+	$_loop = 1;
+
+	foreach ($_upsellProducts as $_upsellProduct) {
+		$_upsellProductUrls[] = $_upsellProduct->getProductUrl();
+		//$_upsellProductUrls[] = substr($_upsellProductUrl, 0, strpos($_upsellProductUrl, '?'));
+
+		$_upsellProductItems[] = array(
+			'id' => $this->escapeJsQuote($_upsellProduct->getSku()),
+			'name' => $this->escapeJsQuote($_upsellProduct->getName()),
+			'category' => $this->escapeJsQuote($helper->getProductCategoryName($_upsellProduct)),
+			'brand' => $this->escapeJsQuote($helper->getBrand($_upsellProduct)),
+			'list' => $_upsellImpressionList,
+			'position' => $_loop
+		);
+
+		$_loop++;
+	}
+
+	$_JsUpsellProducts = json_encode($_upsellProductItems);
+	$_JsUpsellProductUrls = json_encode($_upsellProductUrls);
+	
+	echo $this->getLayout()
+		->createBlock('Scommerce\GoogleUniversalAnalytics\Block\Impression')
+		->setJsProducts($_JsUpsellProducts)
+		->setJsProductUrls($_JsUpsellProductUrls)
+		->setclickLabel($_upsellClickLabel)
+		->setPageView($_upsellClickLabel)
+		->setTemplate('Scommerce_GoogleUniversalAnalytics::impression.phtml')
+		->toHtml();
+
+}
+?>
+<script>
+	//<![CDATA[
+	ga('ec:addProduct', {
+		'id': '<?php echo $this->escapeJsQuote($_product->getSku()) ?>',
+		'name': '<?php echo $this->escapeJsQuote($_product->getName()) ?>',
+		'category': '<?php echo $this->escapeJsQuote($_categoryName) ?>',
+		'brand': '<?php echo $this->escapeJsQuote($helper->getBrand($_product)) ?>'
+	});
+	ga('ec:setAction', 'detail');
+
+    <?php if ($helper->isLinkAccountsEnabled()):?>
+	ga('<?php echo $helper->getLinkedAccountName()?>.ec:addProduct', {
+		'id': '<?php echo $this->escapeJsQuote($_product->getSku()) ?>',
+		'name': '<?php echo $this->escapeJsQuote($_product->getName()) ?>',
+		'category': '<?php echo $_categoryName ?>',
+		'brand': '<?php echo $helper->getBrand($_product) ?>'
+	});
+	ga('<?php echo $helper->getLinkedAccountName()?>.ec:setAction', 'detail');
+    <?php endif;?>
+	
+	<?php echo $this->getLayout()
+						->createBlock('Scommerce\GoogleUniversalAnalytics\Block\SendView')
+						->setEventLabel('Product Detail - '.$this->escapeJsQuote($_product->getName()) . ' - '. $this->escapeJsQuote($_product->getSku()))
+						->setTemplate('Scommerce_GoogleUniversalAnalytics::sendview.phtml')
+						->toHtml();?>
+	//]]>
+</script>
+<?php if ($helper->isAjaxEnabled()):?>
+<script>
+    require([
+        'jquery',
+        'mage/mage',
+        'Magento_Catalog/product/view/validation',
+        'Scommerce_GoogleUniversalAnalytics/js/add-to-cart'
+    ], function ($) {
+        'use strict';
+
+        $('#product_addtocart_form').mage('validation', {
+            radioCheckboxClosest: '.nested',
+            submitHandler: function (form) {
+                /*var widget = $(form).catalogAddToCart({
+                    bindSubmit: false
+                });*/
+
+              //  widget.catalogAddToCart('submitForm', $(form));
+
+                return false;
+            }
+        });
+    });
+</script>
+<?php endif;?>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * K3Live Module for ShopperApproved
+ *
+ * @package   ShopperApproved
+ * @author    K3Live <support@k3live.com>
+ * @copyright 2018 Copyright (c) Woopra (http://www.k3live.com/)
+ * @license   Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="K3Live_ShopperApproved" setup_version="0.0.1" />
+</config>

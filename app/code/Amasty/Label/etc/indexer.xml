@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="amasty_label" view_id="amasty_label" class="Amasty\Label\Model\Indexer\LabelIndexer" shared_index="amasty_label">
+        <title translate="true">Amasty Product Label</title>
+        <description translate="true">Indexed product/label association</description>
+    </indexer>
+    <indexer id="amasty_label_main" view_id="amasty_label_main" class="Amasty\Label\Model\Indexer\LabelMainIndexer" shared_index="amasty_label">
+        <title translate="true">Amasty Product Label</title>
+        <description translate="true">Indexed label/product association</description>
+    </indexer>
+</config>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Module Interfaces -->
+    <preference for="Aitoc\ReviewBooster\Api\Service\ConfigProviderInterface"
+                type="Aitoc\ReviewBooster\Service\ConfigProvider"/>
+
+    <preference for="Aitoc\ReviewBooster\Api\Service\ConfigProviderForV130Interface"
+                type="Aitoc\ReviewBooster\Helper\ConfigProviderForV130"/>
+
+    <preference for="Aitoc\ReviewBooster\Api\ImageRepositoryInterface"
+                type="Aitoc\ReviewBooster\Model\ImageRepository"/>
+
+    <preference for="Aitoc\ReviewBooster\Api\ReviewDetailsRepositoryInterface"
+                type="Aitoc\ReviewBooster\Model\ReviewDetailsRepository"/>
+
+    <preference for="Aitoc\ReviewBooster\Api\CoreConfigDataManagerInterface"
+                type="Aitoc\ReviewBooster\Model\CoreConfigDataManager"/>
+
+    <!-- Magento bugfix -->
+    <preference for="Magento\Framework\Mail\Template\ConfigInterface" type="Magento\Email\Model\Template\Config"/>
+
+    <!-- Plugins -->
+    <type name="Magento\Review\Model\Review">
+        <plugin name="loadExtendedFields" type="Aitoc\ReviewBooster\Plugin\Review" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Review\Controller\Product\Post">
+        <plugin name="allowAnonymousReview" type="Aitoc\ReviewBooster\Plugin\Controller\ReviewPost" sortOrder="100" />
+    </type>
+
+    <type name="Magento\Review\Model\ResourceModel\Review\Collection">
+        <plugin name="addTableNameForAddFieldToFilter" type="Aitoc\ReviewBooster\Plugin\Review\Model\ResourceModel\Review\Collection" />
+    </type>
+</config>

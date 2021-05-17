@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_Core
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aitoc_Core::menu" title="Aitoc" module="Aitoc_Core" translate="title" sortOrder="81" resource="Aitoc_Core::menu"/>
+        <add id="Aitoc_Core::common" title="Configuration &amp; Promo" translate="title" module="Aitoc_Core" sortOrder="1498" parent="Aitoc_Core::menu" resource="Aitoc_Core::menu"/>
+    </menu>
+</config>

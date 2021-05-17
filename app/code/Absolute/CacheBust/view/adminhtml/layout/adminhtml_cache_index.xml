@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Absolute Commerce Ltd.
+ * @license https://abscom.co/terms
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Absolute\CacheBust\Block\Buttons"
+                   name="absolute_cachebust_buttons"
+                   before="cache.additional"
+                   template="Absolute_CacheBust::buttons.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

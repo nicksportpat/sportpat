@@ -1,0 +1,45 @@
+
+FILE: /home/umc/var/umc/Sportpat_HomeBanner/Setup/Uninstall.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 29 | WARNING | The method parameter $context is never used
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_HomeBanner/Setup/InstallSchema.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 19 | WARNING | The method parameter $context is never used
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_HomeBanner/Helper/Image.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 894 | WARNING | Comment refers to a TODO task "return entity name
+     |         | here"
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_HomeBanner/Model/Banner.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 64 | WARNING | The method parameter $uploaderPool is never used
+----------------------------------------------------------------------
+
+
+FILE: ...mc/Sportpat_HomeBanner/Model/ResourceModel/Banner/Collection.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 42 | WARNING | fetchAll() can be memory inefficient for large data
+    |         | sets.
+ 90 | WARNING | Possible slow SQL method group detected
+----------------------------------------------------------------------
+
+Time: 641ms; Memory: 8Mb
+

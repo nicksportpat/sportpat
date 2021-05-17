@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <review_booster>
+
+            <general>
+                <order_statuses>complete</order_statuses>
+                <add_rich_snippets>1</add_rich_snippets>
+                <rating_names>Terrible,Poor,Average,Very good,Excellent</rating_names>
+            </general>
+
+            <review_email_notification>
+                <enabled>0</enabled>
+                <recipient>general</recipient>
+            </review_email_notification>
+
+            <review_images>
+                <enabled>1</enabled>
+                <width>300</width>
+                <height>300</height>
+            </review_images>
+
+        </review_booster>
+    </default>
+</config>

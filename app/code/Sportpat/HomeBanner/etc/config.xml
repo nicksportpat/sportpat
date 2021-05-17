@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sportpat_home_banner>
+            <banner>
+                <breadcrumbs>1</breadcrumbs>
+                <meta_title>Banners</meta_title>
+            </banner>
+        </sportpat_home_banner>
+    </default>
+</config>

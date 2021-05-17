@@ -1,0 +1,14 @@
+<?php;
+/** @var $block \Sportpat\Tabcontent\Block\Image */
+?>
+<span class="image-container"
+      style="width:<?= /* @escapeNotVerified */ $block->getWidth()?>px;">
+    <span class="image-wrapper"
+          style="padding-bottom: <?= /* @escapeNotVerified */ ($block->getRatio() * 100); ?>%;">
+        <img class="image-photo"
+            <?= /* @escapeNotVerified */ $block->getCustomAttributes(); ?>
+             src="<?= /* @escapeNotVerified */ $block->getImageUrl(); ?>"
+             width="<?= /* @escapeNotVerified */ $block->getResizedImageWidth(); ?>"
+             height="<?= /* @escapeNotVerified */ $block->getResizedImageHeight(); ?>"
+             alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true); ?>"/></span>
+</span>

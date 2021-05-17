@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright © 2019 Wyomind. All rights reserved.
+  ~ See LICENSE.txt for license details.
+  -->
+<!-- configuration file used for the Wyomind's demo store: https://demo2.wyomind.com -->
+<config>
+    <login>SimpleGoogleShopping</login>
+    <password>SimpleGoogleShopping123</password>
+    <acl>
+        Magento_Catalog::catalog
+        Wyomind_SimpleGoogleShopping::global
+        Wyomind_SimpleGoogleShopping::main
+        {{system/config}}
+        Wyomind_SimpleGoogleShopping::simplegoogleshopping_config
+    </acl>
+</config>

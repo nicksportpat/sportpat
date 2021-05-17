@@ -1,0 +1,28 @@
+{
+  "name": "sportpat/module-tabcontent",
+  "description": "Sportpat_Tabcontent magento 2 extension",
+  "require": {
+    "php": "~7.0.13|~7.1.0",
+    "magento/module-backend": "*",
+    "magento/module-config": "*",
+    "magento/module-ui": "*",
+    "magento/module-media-storage": "*",
+    "magento/module-store": "*",
+    "magento/module-widget": "*",
+    "magento/module-theme": "*",
+    "magento/framework": "*.*"
+  },
+  "type": "magento2-module",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Sportpat\\Tabcontent\\": ""
+    }
+  }
+}

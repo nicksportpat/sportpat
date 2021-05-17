@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    jQuery(function($){ //shortcut to $(document).ready and put the $ in scope if other scripts ever use it too it avoids conflicts
+
+        function GetValueOfButtonClicked(formName) {
+            $('.btn-form-submit').on('click', function(e) {
+
+                var buttonClicked = $(this).attr('value');
+
+
+            });
+        }
+
+
+
+    })
+</script>
+
+</body>
+</html>

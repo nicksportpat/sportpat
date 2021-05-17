@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Ncloutier\Shippingsentence\Api\SentencesRepositoryInterface" type="Ncloutier\Shippingsentence\Model\SentencesRepository"/>
+	<preference for="Ncloutier\Shippingsentence\Api\Data\SentencesInterface" type="Ncloutier\Shippingsentence\Model\Sentences"/>
+	<preference for="Ncloutier\Shippingsentence\Api\Data\SentencesSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Ncloutier\Shippingsentence\Model\ResourceModel\Sentences\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">ncloutier_shippingsentence_sentences</argument>
+			<argument name="resourceModel" xsi:type="string">Ncloutier\Shippingsentence\Model\ResourceModel\Sentences\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="ncloutier_shippingsentence_sentences_grid_data_source" xsi:type="string">Ncloutier\Shippingsentence\Model\ResourceModel\Sentences\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

@@ -1,0 +1,22 @@
+{
+    "name": "ncloutier/module-shippingsentence",
+    "description": "",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ncloutier\\Shippingsentence\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

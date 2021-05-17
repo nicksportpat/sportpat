@@ -1,0 +1,50 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+?>
+<?php
+/**
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+use Magento\Catalog\Api\Data\ProductInterface;
+use Aitoc\FollowUpEmails\Block\Products as ProductsBlock;
+
+/** @var ProductInterface[] $products */
+$products = $block->getData('products');
+$productsCount = count($products);
+
+if (!$productsCount) {
+    return;
+}
+
+/** @var ProductsBlock $block */
+?>
+<table style="font-family: 'Roboto', sans-serif;" border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+    <tr>
+        <?php
+        $linkColor = $block->getData('link_color');
+
+        if (!$linkColor) {
+            $linkColor = '#09c7ff';
+        }
+
+        $cellWidth =  floor(100 * 100 / $productsCount) / 100;
+
+        foreach ($products as $product) {
+            $fullProduct = $block->getFullProductByProduct($product);//todo: prevent this call by load $products with media gallery
+            $escapedProductTrackedLoginUrl = $block->getProductTrackedLoginUrl($fullProduct);
+            $productImageUrl = $block->getProductImageUrl($fullProduct);
+            $escapedProductName = $block->escapeHtml($fullProduct->getName());
+            ?>
+            <td style="text-align: center;" width="<?= $cellWidth ?>%">
+                <div><a href="<?= $escapedProductTrackedLoginUrl ?>"><img style="width: 80%;" src="<?= $productImageUrl ?>"/></a></div>
+                <br/>
+                <div style="margin-right: 15px; margin-left: 15px; text-align: center;"><a href="<?= $escapedProductTrackedLoginUrl ?>" style="color: <?= $linkColor ?>; text-decoration: none; font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400;" ><?= $escapedProductName ?></a></div>
+            </td>
+        <?php } ?>
+    </tr>
+</table>

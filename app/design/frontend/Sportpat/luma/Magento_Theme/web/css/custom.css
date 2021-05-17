@@ -1,0 +1,166 @@
+body {
+    font-size: 14px;
+    background:#ffffff !important;
+}
+
+a, a:visited, .alink:visited,  .breadcrumbs a {
+    color:#444 !important;
+}
+
+a:hover, .breadcrumbs a:hover {
+    color:#E43635 !important;
+}
+
+.action.primary {
+    background:#E43635;
+    border-color:rgba(0,0,0,0.1);
+}
+
+.action.primary:hover {
+    background:rgba(0,0,0,0.5);
+}
+.category-image .image {
+    width:100%;
+}
+
+.breadcrumbs {
+    margin-top:10px;
+    font-size:1.5rem !important;
+    color:#E43635 !important;
+}
+
+.breadcrumbs .item {
+    font-size:1.5rem !important;
+    color:#E43635 !important;
+    text-transform:uppercase;
+}
+
+.price-container .price {
+    font-size:1.8rem;
+}
+
+.product.name.product-item-name {
+    font-size:2rem;
+    text-transform:capitalize;
+}
+
+.product.name.product-item-name a.product-item-link {
+    display:block;
+    height:100px;
+    overflow:hidden;
+
+}
+
+.product.photo.product-item-photo {
+    display:block;
+    width:100%;
+    height:278px;
+    overflow:hidden;
+
+}
+
+.product.details.product-item-details {
+    display:block;
+    width:100%;
+    height:298px;
+    overflow:hidden;
+}
+
+.product-item-info {
+    height:573px;
+}
+
+.products-grid .product-item-info:hover, .products-grid .product-item-info.active {
+    border:none;
+    box-shadow:none;
+    border:1px #ccc solid;
+}
+
+.abs-visually-hidden-desktop-s, .products-grid .product-item-info:not(:hover):not(.active) .product-item-inner,.products-grid .product-item-inner {
+    position:relative;
+    display:block;
+    width:100%;
+    border:none;
+    box-shadow:none;
+}
+
+.page-products .products-grid .product-item-inner::before {
+    position:relative;
+    height:auto;
+    width:100%;
+    display:block;
+}
+
+.amshopby-option-link {
+    max-height:30px;
+    min-height:30px;
+    margin-bottom:30px;
+}
+
+.toolbar select {
+    background-color:#ffffff;
+}
+
+.toolbar-products .pages {
+    display:block;
+}
+.pages .action {
+    background-color:#ffffff;
+}
+
+.pages strong.page {
+    background-color:#E43635;
+    color:#ffffff;
+    padding:5px;
+    padding-left:8px;
+    padding-right:8px;
+}
+
+.products.wrapper ~ .toolbar .toolbar-amount {
+    left: 0;
+    line-height: 18px;
+    margin: 0;
+    padding: 7px 0;
+    text-align: left;
+    top: 0;
+    vertical-align: middle;
+    display:inline-block;
+
+}
+.products.wrapper ~ .toolbar .pages {
+    float:none;
+    display:inline-block;
+}
+
+.block-search {
+    width:450px;
+}
+
+.amsearch-item.product-item {
+    max-height:150px;
+    overflow:hidden;
+}
+
+.amsearch-item.product-item  .product.details.product-item-details {
+    max-height:150px;
+    width:100%;
+}
+
+.amsearch-form-container.-opened .amsearch-wrapper-input, .search-autocomplete, .amsearch-results {
+    max-width:100%;
+}
+
+.wsarrow {
+    display:none !important;
+}
+
+.wsmegamenu .submenu-icon > img:hover, .wsmegamenu a:hover .submenu-icon > img {
+    border-color: red !important;
+    text-decoration: none !important;
+    transition: all ease-in 0.2s;
+}
+
+.wsmegamenu a {
+    text-decoration: none !important;
+    transition: all ease-in 0.2s;
+}

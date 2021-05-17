@@ -1,0 +1,64 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+?>
+<?php
+/**
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+use Aitoc\ReviewBooster\Block\Header;
+use Magento\Catalog\Api\Data\ProductAttributeInterface;
+
+$currentProduct = $this->getCurrentProduct();
+
+/** @var Header $this */
+if (!$this->getConfigIsAddRichSnippets() || !$currentProduct) {
+    return;
+}
+
+$productName = $currentProduct->getName();
+$productPrice = round($currentProduct->getPrice(), 2);
+$productDescription = $currentProduct->getData(ProductAttributeInterface::CODE_DESCRIPTION);
+$productImage = $currentProduct->getImage();
+$productPath = $currentProduct->getRequestPath();
+
+$productCurrency = $this->getCurrencyCode();
+$productRatingSummary = $this->getRatingSummary();
+$productReviewsCount = $this->getCurrentApprovedReviewsCount();
+
+$ratingData = [
+    '@context' => 'http://schema.org/',
+    '@type' => "Product",
+    'name' => $productName,
+    'description' => $productDescription,
+    'image' => $productImage,
+    'url' => $productPath,
+    'offers' => [
+        '@type' => 'http://schema.org/Offer',
+        'price' => $productPrice,
+        'priceCurrency' => $productCurrency,
+        'availability' => 'http://schema.org/InStock',
+    ],
+];
+
+if ($productReviewsCount) {
+    $aggregateRating = [
+        '@type' => 'AggregateRating',
+        'ratingValue' => $productRatingSummary,
+        'reviewCount' => $productReviewsCount,
+        'bestRating' => 5,
+        'worstRating' => 0,
+    ];
+
+    $ratingData['aggregateRating'] = $aggregateRating;
+}
+
+$ratingDataJson = json_encode($ratingData);
+?>
+<script type="application/ld+json">
+<?= $ratingDataJson ?>
+</script>

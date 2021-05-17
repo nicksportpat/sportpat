@@ -1,0 +1,20 @@
+<?php
+/**
+ * @var $this Scommerce\GoogleUniversalanalytics\Block\Sendview
+ */
+?>
+<?php $helper = $this->getHelper();
+$label = $this->getEventLabel();
+?>
+<?php if ($helper->isEnhancedEcommerceEnabled()):?>
+ga('send', 'pageview', {'page': location.pathname + location.search + location.hash});
+<?php if (strlen($label)>0):?>
+ga('send', 'event', 'UX', 'click', '<?php echo $label?>', {'nonInteraction': 1});
+<?php endif;?>
+<?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+ga('<?php echo $helper->getLinkedAccountName()?>.send', 'pageview', {'page': location.pathname + location.search + location.hash});
+<?php if (strlen($label)>0):?>
+ga('<?php echo $helper->getLinkedAccountName()?>.send', 'event', 'UX', 'click', '<?php echo $label?>', {'nonInteraction': 1});
+<?php endif;?>
+<?php endif;?>
+<?php endif;?>

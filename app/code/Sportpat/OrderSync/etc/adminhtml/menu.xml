@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sportpat_OrderSync::ordersync"
+             title="OrderSync"
+             module="Sportpat_OrderSync"
+             sortOrder="999"
+             resource="Sportpat_OrderSync::ordersync"
+             parent="Magento_Sales::sales" />
+        <add id="Sportpat_OrderSync::ordersync_syncedorder"
+             title="Synced Orders"
+             module="Sportpat_OrderSync"
+             sortOrder="10"
+             action="sportpat_ordersync/syncedorder"
+             resource="Sportpat_OrderSync::ordersync_syncedorder"
+             parent="Sportpat_OrderSync::ordersync"
+        />
+    </menu>
+</config>

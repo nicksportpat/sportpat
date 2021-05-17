@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+            <tab id="emipro" translate="label" sortOrder="90">
+                <label>Emipro</label>
+            </tab>
+            <section id="emipro_socialshare" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Share</label>
+                <tab>emipro</tab>
+                <resource>Emipro_SocialShare::configuration</resource>
+                <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>General</label>
+                    <field id="is_enabled" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="enable_in_product_page_only" translate="label" type="select" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Share Button Visibility</label>
+                        <source_model>Emipro\SocialShare\Model\ProductPageOnly</source_model>
+                    </field>
+                </group>
+                <group id="facebook" translate="label" type="text" sortOrder="2" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Facebook</label>
+                    <field id="enable_facebook" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Enable Facebook Share Button</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="googleplus" translate="label" type="text" sortOrder="4" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Google+</label>
+                    <field id="enable_google_plus" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Enable Google+ Share Button</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="twitter" translate="label" type="text" sortOrder="5" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Twitter</label>
+                    <field id="enable_twitter" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Enable Twitter Share Button</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="pinterest" translate="label" type="text" sortOrder="6" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>Pinterest</label>
+                    <field id="enable_pinterest" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Enable PInterest Share Button</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+                <group id="whatsapp" translate="label" type="text" sortOrder="6" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>WhatsApp</label>
+                    <field id="enable_whatsapp" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Enable WhatsApp Share Button</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>The icon will be visible only on mobile devices.</comment>
+                    </field>
+                </group>
+                <group id="linkedin" translate="label" type="text" sortOrder="6" showInDefault="1" showInStore="1" showInWebsite="1">
+                    <label>LinkedIn</label>
+                    <field id="enable_linkedin" translate="label" type="select" sortOrder="1" showInDefault="1" showInStore="1" showInWebsite="1">
+                        <label>Enable LinkedIn Share Button</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                </group>
+            </section>
+    </system>
+</config>

@@ -1,0 +1,89 @@
+.amlabel-table-position {
+    border-spacing: 2px;
+    border-collapse: initial;
+}
+
+.amlabel-table-position td {
+    padding: 20px;
+    border: 2px solid;
+}
+
+.amlabel-table-position td:hover {
+    background-color: #FAEBD7;
+}
+
+.amlabel-table-position td.selected {
+    background-color: #FF8C00 !important;
+}
+
+#labels_prod_pos, #labels_cat_pos {
+    display: none;
+}
+
+img.amlabel-shape-image {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.amlabel-shape {
+    display: inline-block;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aaa #c8c8c8 #c8c8c8 #aaa;
+    margin: 0 10px 10px 0;
+    height: 40px;
+    vertical-align: top;
+    padding: 2px;
+}
+
+div.amlabel-shapes-container label {
+    display: inline;
+}
+
+div.amlabel-choose-container {
+    margin-bottom: 20px;
+    line-height: 3.2rem;
+}
+
+.amlabel-image-preview{
+    display: inline-block;
+    margin-right: 5px;
+    max-width: 60px;
+    vertical-align: top;
+}
+
+.amlabel-image-preview img {
+    width: 100%
+}
+
+.amlabel-image-upload {
+    max-width: 225px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.preview {
+    margin-top: 10px;
+    overflow: hidden;
+}
+.preview img {
+    max-width: 100%;
+}
+
+#note_preview {
+    text-align: center;
+    margin-top: 5px;
+}
+
+#note_preview a {
+    cursor: pointer;
+}
+
+.amasty-label-container,
+.amlabel-position-wrapper {
+    z-index: 99 !important;
+}
+
+.amlabel-choose-container label {
+    margin-right: 15px;
+}

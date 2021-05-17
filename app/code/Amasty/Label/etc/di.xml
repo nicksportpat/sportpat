@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Amasty\Label\Model\Rule">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="amastySerializer" xsi:type="object">Amasty\Base\Model\Serializer</item>
+                <item name="stockHelper" xsi:type="object">Amasty\Label\Helper\Stock</item>
+                <item name="storeEmulation" xsi:type="object">Magento\Store\Model\App\Emulation</item>
+                <item name="scopeCodeResolver" xsi:type="object">Amasty\Label\Plugin\App\Config\ScopeCodeResolver</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Amasty\Label\Api\Data\LabelInterface" type="Amasty\Label\Model\Labels" />
+    <preference for="Amasty\Label\Api\LabelRepositoryInterface" type="Amasty\Label\Model\Repository\LabelsRepository" />
+
+    <type name="Amasty\Label\Model\Config\Backend\StockStatus">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="object">Amasty\Label\Helper\Config</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\Label\Model\Config\Backend\DefaultStockLabel">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="object">Amasty\Label\Helper\Config</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Amasty\Label\Model\ResourceModel\Labels\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">am_label</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\Label\Model\ResourceModel\Labels</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amasty_labels_listing_data_source" xsi:type="string">Amasty\Label\Model\ResourceModel\Labels\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Cron\RefreshSpecialPrices">
+        <plugin name="Amasty_Label::detect-refresh-price" type="Amasty\Label\Plugin\Catalog\Indexer\Product\Price"/>
+    </type>
+    <type name="Magento\Catalog\Model\Indexer\Product\Price">
+        <plugin name="Amasty_Label::reindex-label-price-changes" type="Amasty\Label\Plugin\Catalog\Indexer\Product\Price"/>
+    </type>
+
+    <type name="Magento\Framework\App\Config\ScopeCodeResolver">
+        <plugin name="Amasty_Label::clean-scope-code" type="Amasty\Label\Plugin\App\Config\ScopeCodeResolver"/>
+    </type>
+</config>

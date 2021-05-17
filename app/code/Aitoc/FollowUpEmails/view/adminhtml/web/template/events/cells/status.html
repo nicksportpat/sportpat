@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<div
+    if="$col.getLabel($row()) > 0 && $row().status == 'active'">
+    Active: <span><span text="$col.getLabel($row())"/> campaign(s)</span>
+</div>
+<div
+    if="$col.getLabel($row()) == 0 && $row().status == 'active'">
+    Active: no campaigns
+</div>
+<div
+    if="$row().status !== 'active'">
+    Status: <b>install to activate</b>
+</div>

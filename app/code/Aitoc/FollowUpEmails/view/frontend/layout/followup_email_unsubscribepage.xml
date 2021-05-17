@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Aitoc_FollowUpEmails::css/style.css"/>
+    </head>
+
+    <referenceContainer name="content">
+        <block class="Aitoc\FollowUpEmails\Block\Unsubscribe" name="followup_unsubscribe" template="Aitoc_FollowUpEmails::unsubscribe.phtml" cacheable="false" />
+    </referenceContainer>
+</page>

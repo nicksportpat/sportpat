@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Review\Block\Form">
+        <plugin name="setTemplate" type="Aitoc\ReviewBooster\Plugin\Review\Block\Form" sortOrder="1"/>
+    </type>
+    <type name="Magento\Review\Block\Product\View\ListView">
+        <plugin name="setTemplate" type="Aitoc\ReviewBooster\Plugin\Review\Block\Product\View\ListView" sortOrder="1"/>
+    </type>
+    <type name="Magento\Review\Block\Product\Review">
+        <plugin name="modifyProductReviewUrl" type="Aitoc\ReviewBooster\Plugin\Review\Block\Product\Review" sortOrder="1"/>
+    </type>
+</config>

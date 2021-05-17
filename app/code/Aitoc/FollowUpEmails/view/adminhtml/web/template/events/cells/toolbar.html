@@ -1,0 +1,9 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<a
+    class="action-menu-item"
+    repeat="foreach: $col.getVisibleActions($row()._rowIndex), item: '$action'"
+    click="$col.getActionHandler($action())"
+    text="$action().label"
+    attr="target: $col.getTarget($action()), href: $action().href, class: $action().class"/>

@@ -1,0 +1,79 @@
+<?php
+/**
+ *
+ * @var $this Scommerce\GoogleUniversalAnalytics\Block\ListProduct
+ */
+?>
+
+<?php
+$helper = $this->getHelper();
+if (!$helper->isEnhancedEcommerceEnabled()) return;
+$_category = $this->getLayer()->getCurrentCategory();
+if ($_category->getDisplayMode() == $this->getCMDisplayMode()):?>
+<script>
+//<![CDATA[
+<?php echo $this->getLayout()
+			->createBlock('Scommerce\GoogleUniversalAnalytics\Block\SendView')
+			->setEventLabel('')
+			->setTemplate('Scommerce_GoogleUniversalAnalytics::sendview.phtml')
+			->toHtml();
+?>
+//]]>
+</script>
+<?php return;
+endif;?>
+<?php 
+$_productCollection = $this->getProductCollection();
+$_categoryName = '';
+$_impressionList = '';
+$_clickLabel ='';
+
+if ($_category){
+	$_categoryName = $_category->getName();
+}
+
+//Zend_Debug::dump($_categoryName);
+
+$_mode = $this->getMode();
+$_productUrls = array();
+$_products = array();
+
+if ($_mode == 'category'){
+	$_impressionList = 'Category' .' - '. $_categoryName;
+	$_clickLabel   = $_impressionList;//'Category';
+}
+elseif ($_mode == 'search'){
+	$_impressionList = 'Search Results';
+	$_clickLabel   = $_impressionList;//'Results';
+}
+
+$_loop = 1;
+
+foreach ($_productCollection as $_product){
+	$_productUrls[] = $_product->getProductUrl();
+
+	$_products[] = array(
+		'id' => $this->escapeJsQuote($_product->getSku()),
+		'name'  => $this->escapeJsQuote($_product->getName()),
+		'category' => ($_mode=="category") ? $this->escapeJsQuote($helper->getParentsCategory($_category)) : $this->escapeJsQuote($helper->getProductCategoryName($_product)),
+		'brand' => $this->escapeJsQuote($helper->getBrand($_product)),
+		'list'  => $_impressionList,
+		'position' => $_loop
+	);
+
+	$_loop++;
+}
+
+$_JsProducts = json_encode($_products);
+$_JsProductUrls = json_encode($_productUrls);
+
+echo $this->getLayout()
+			->createBlock('Scommerce\GoogleUniversalAnalytics\Block\Impression')
+			->setJsProducts($_JsProducts)
+			->setJsProductUrls($_JsProductUrls)
+			->setclickLabel($_clickLabel)
+			->setPageView('Listing')
+			->setSIOSEnabled($helper->isSIOSEnabled())
+			->setPCIText($helper->getPICText())
+			->setTemplate('Scommerce_GoogleUniversalAnalytics::impression.phtml')
+			->toHtml();?>

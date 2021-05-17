@@ -1,0 +1,41 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+?>
+<?php
+    /** @var \Amasty\Label\Model\Labels  $label */
+    /** @var \Amasty\Label\Block\Label  $block */
+
+    $label = $block->getLabel();
+    $productId = $label->getParentProduct() ? $label->getParentProduct()->getId() : $label->getProduct()->getId();
+    $key = $label->getId() . '-' . $productId . '-' . $label->getMode();
+    $text = $label->getText();
+    $nativeText = strip_tags($text);
+?>
+<div class="amasty-label-container
+            amasty-label-container-<?= $block->escapeHtml($key); ?>
+            amasty-label-for-<?= $block->escapeHtml($productId); ?>"
+     style="display: none; <?= $block->escapeHtml($label->getStyle()); ?>"
+     data-mage-init='{"Amasty_Label/js/initLabel":{
+         "mode": "<?= $block->escapeHtml($label->getMode()); ?>",
+         "isAdminArea": "<?= /* @noEscape */ $block->isAdminArea(); ?>",
+         "config": <?= /* @noEscape */ $block->getJsonConfig(); ?>,
+         "productId": "<?= $block->escapeHtml($productId); ?>",
+         "selector": "<?= $block->escapeHtml('.amasty-label-container-' . $key); ?>"
+     }}'>
+    <div class="amasty-label-text" style="<?= $block->escapeHtml($label->getValue('text_style')); ?>">
+        <?= /* @noEscape */ strip_tags($text, '<br>,<a>,<b>'); ?>
+    </div>
+    <?php if ($block->getImageSrc()): ?>
+       <img id="amasty-label-image-<?= $block->escapeHtml($key); ?>"
+            class="amasty-label-image"
+            src="<?= $block->escapeUrl($block->getImageSrc()); ?>"
+            style="opacity: 1 !important;vertical-align: top;"
+            title="<?= $block->escapeHtml($nativeText); ?>"
+            alt="<?= $block->escapeHtml($nativeText ? $nativeText : $label->getProduct()->getName()); ?>"
+       >
+    <?php endif;?>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sportpat_Tabcontent::tabcontent"
+             title="Tabs Content"
+             module="Sportpat_Tabcontent"
+             sortOrder="999"
+             resource="Sportpat_Tabcontent::tabcontent"
+             parent="Magento_Backend::content_elements" />
+        <add id="Sportpat_Tabcontent::tabcontent_tabcontent"
+             title="Manage Contents"
+             module="Sportpat_Tabcontent"
+             sortOrder="10"
+             action="sportpat_tabcontent/tabcontent"
+             resource="Sportpat_Tabcontent::tabcontent_tabcontent"
+             parent="Sportpat_Tabcontent::tabcontent"
+        />
+    </menu>
+</config>

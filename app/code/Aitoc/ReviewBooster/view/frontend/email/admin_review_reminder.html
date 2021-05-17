@@ -1,0 +1,221 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+
+<!--@subject Hey {{var customer_name}}, your review is now live! @-->
+<!--@vars {
+"var product_name":"Product Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<!-- ======= shop section ======= -->
+<table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff" class="">
+
+    <tr>
+        <td height="70" style="font-size: 70px; line-height: 70px;">&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td align="center">
+            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590 ">
+
+                <tr>
+                    <td align="left"
+                        style="color: #121214; font-size: 28px; font-family: 'Roboto', sans-serif; font-weight: 300; line-height: 22px;"
+                        class="main-header align-center">
+                        <!-- ======= section text ====== -->
+
+                        <div style="line-height: 22px">
+
+                            Wanna see how cool it is?
+
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td height="35" style="font-size: 35px; line-height: 35px;">&nbsp;</td>
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+    </tr>
+
+</table>
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="1c1d1f">
+    <tr align="center">
+        <td style="background-image: url({{config path="web/unsecure/base_url"}}pub/media/followup/icons/towers_background.png); background-size: cover; background-position: center center; background-repeat: no-repeat;"
+        background="{{config path="web/unsecure/base_url"}}pub/media/followup/icons/towers_background.png">
+
+        <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+
+            <tr>
+                <td height="90" style="font-size: 90px; line-height: 90px;">&nbsp;</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <table border="0" align="left" cellpadding="0" cellspacing="0" width="290"
+                           style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"
+                           class="container590">
+                        <tr>
+                            <td align="left"
+                                style="color: #ffffff; font-size: 18px; font-family: 'Roboto', sans-serif; font-weight: 300; line-height: 25px;"
+                                class="align-center">
+                                <div style="line-height: 25px">
+
+                                    Just click the link and find your awesome review.
+                                    Thanks for sharing your honest opinion, it helps us get better.
+
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td height="15" style="font-size: 15px; line-height: 15px;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <table border="0" align="left" cellpadding="0" cellspacing="0" class="container590">
+                                    <tr>
+                                        <td>
+
+                                            <table border="0" align="center" width="170" cellpadding="0"
+                                                   cellspacing="0" bgcolor="09C7FF" style="border-radius: 5px;">
+
+                                                <tr>
+                                                    <td height="10" style="font-size: 10px; line-height: 10px;">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td height="10" style="font-size: 10px; line-height: 10px;">
+                                                        &nbsp;
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td height="90" style="font-size: 90px; line-height: 90px;">&nbsp;</td>
+            </tr>
+
+        </table>
+        </td>
+    </tr>
+</table>
+
+<!-- ======= end section ======= -->
+
+
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+
+                <tr>
+                    <td height="35" style="font-size: 35px; line-height: 35px;">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    {{var product_name}}
+                </tr>
+
+                <tr>
+                    <td height="35" style="font-size: 35px; line-height: 35px;">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td align="center"
+                        style="color: #121214; font-size: 28px; font-family: 'Roboto', sans-serif; font-weight: 300; line-height: 25px;"
+                        class="main-header">
+
+                        <!-- ======= main header ======= -->
+
+                        <div style="line-height: 24px;">
+                            Need assistance?
+                        </div>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td height="35" style="font-size: 35px; line-height: 35px;">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td align="center"
+                        style="color: #777777; line-height: 25px; font-size: 16px; font-family: 'Roboto', sans-serif;">
+                        <div style="line-height: 25px">
+
+                            If you have questions about our product, we’re here to help support@example.com
+
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td height="45" style="font-size: 45px; line-height: 45px;">&nbsp;</td>
+                </tr>
+
+            </table>
+
+        </td>
+    </tr>
+
+    <tr>
+        <td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+    </tr>
+
+</table>
+
+<!-- ======= Discount ======= -->
+{{depend coupon.coupon_code}}
+<table border="0" width="100%" cellpadding="0" cellspacing="0">
+
+    <tr>
+        <td height="30" style="font-size: 30px; line-height: 30px;">&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td align="center">
+            <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590">
+                <tr>
+                    <td align="left"
+                        style=" font-size: 16px; font-weight: 300; font-family: 'Roboto', sans-serif; line-height: 24px;"
+                        class="align-center">
+                        <p>Feel free to click the links in this email. And don’t forget to use this awesome {{var coupon.discount_amount}} discount code along with your purchase: <strong>{{var coupon.coupon_code}}</strong>.</p>
+                        <p style="font-size:14px;" >{{trans "*The coupon expires in %expiry_days day(s)." expiry_days=$coupon.expiry_days}}</p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td height="70" style="font-size: 70px; line-height: 70px;">&nbsp;</td>
+    </tr>
+
+</table>
+{{/depend}}
+<!-- ======= /Discount ======= -->
+
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,107 @@
+<?php
+/** @var \Algolia\AlgoliaSearch\Block\Instant\Hit $block */
+$priceKey = $block->getPriceKey();
+$origFormatedVar = 'price.CAD.group_0_formated';
+$oldPrice = 'price.CAD.default_original_formated';
+$tierFormatedVar = null;
+
+?>
+
+<script type="text/template" id="instant-hit-template">
+    <div class="col-md-4 col-sm-6" style="height:520px !important; overflow:hidden;">
+        <div class="result-wrapper" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product" style="height:500px !important;">
+            <a itemprop="url" href="{{url}}" class="result" data-objectid="{{objectID}}" data-position="{{__position}}" style="height:100%;">
+                <div class="result-content">
+                    {{#label}}<div itemprop="rebate" style="position:absolute;z-index:100;right:10px;top:0px;color:#fff; padding:5px;">
+                        <span style="position:absolute;z-index:101;top:25px;right:12%; font-size:1.7rem; font-weight:700;">
+                           -{{label}}
+                        </span>
+                        <img src="/media/amasty/amlabel/red_label.png" style="width:80px !important;height:auto !important;" />
+                    </div>{{/label}}
+                    {{#gender_label}}<div class="gender-label-container" style="display:block;">
+                        {{{gender_label}}}
+                       </div>    {{/gender_label}}
+                    <div class="result-thumbnail">
+                        {{#image_url}}<img itemprop="image" src="{{{image_url}}}" alt="{{{name}}}"  id="{{objectID}}" style="height:180px !important;"/>{{/image_url}}
+                        {{^image_url}}<span class="no-image"></span>{{/image_url}}
+                    </div>
+                    <div class="result-swatches" style="padding-top:10px;text-align:center;">
+                        {{{html_swatches}}}
+                    </div>
+                    <div class="result-sub-content">
+                        <h3 itemprop="name" class="result-title text-ellipsis col-12" >
+                            {{{ _highlightResult.name.value }}}
+                        </h3>
+                        <div class="ratings">
+                            <div class="result-sub-content">
+                                <div class="product-reviews-summary short">
+                                    <div class="rating-summary">
+                                        <span class="label"><span><?php echo __('Rating') ?>:</span></span>
+                                        <div class="rating-result" title="{{rating_summary}}%">
+                                            <span style="width:{{rating_summary}}%">
+                                                <span>{{rating_summary}}%</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer" class="price">
+
+                                    <div class="price-wrapper">
+                                        <div>
+                                            <span itemprop="lowPrice" class="after_special
+                                                    {{#<?php echo $block->escapeHtml($origFormatedVar); ?>}}
+                                                        promotion
+                                                    {{/<?php echo $block->escapeHtml($origFormatedVar); ?>}}">
+                                                {{<?php echo $block->escapeHtml($origFormatedVar); ?>}}
+                                            </span>
+                                            {{#<?php echo $block->escapeHtml($oldPrice); ?>}}
+                                            <span itemprop="highPrice" class="before_special" style="color:rgba(0,0,0,0.8);">
+                                                   <br /> {{<?php echo $block->escapeHtml($oldPrice); ?>}}
+                                                </span>
+                                            {{/<?php echo $block->escapeHtml($oldPrice); ?>}}
+                                            {{#<?php echo $block->escapeHtml($tierFormatedVar); ?>}}
+                                            <span class="tier_price">
+                                                    <?php echo __('As low as') ?>
+                                                    <span class="tier_value">{{<?php echo $block->escapeHtml($tierFormatedVar); ?>}}</span>
+                                                </span>
+                                            {{/<?php echo $block->escapeHtml($tierFormatedVar); ?>}}
+                                        </div>
+
+                                    </div>
+                                    <div itemprop="brand" style="font-size:0.9rem;display:block;width:100%;text-align:center;margin-top:30px;margin-bottom:20px;">
+
+                                        {{{brand_image}}}
+                                    </div>
+                                    <div itemprop="sku" style="color:rgba(0,0,0,0.7); font-size:1.2rem; font-weight:500;display:block;width:100%;text-align:center;">
+                                        <strong> {{#sku.0}}
+                                            {{{ sku.0}}}
+                                            {{/sku.0}}
+                                            {{^sku.0}}
+                                            {{{ sku }}}
+                                            {{/sku.0}} </strong>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="result-description text-ellipsis">{{{ _highlightResult.description.value }}}</div>
+
+                        {{#isAddToCartEnabled}}
+                        <form data-role="tocart-form" action="{{ addToCart.action }}" method="post">
+                            <input type="hidden" name="product" value="{{objectID}}">
+                            <input type="hidden" name="uenc" value="{{ addToCart.uenc }}">
+                            <input name="form_key" type="hidden" value="{{ addToCart.formKey }}">
+                            <button type="submit" title="<?php echo __('Add to Cart') ?>" class="action tocart primary" data-objectid="{{objectID}}" data-position="{{__position}}">
+                                <span><?php echo __('Add to Cart') ?></span>
+                            </button>
+                        </form>
+                        {{/isAddToCartEnabled}}
+                    </div>
+                </div>
+                <div class="algolia-clearfix"></div>
+            </a>
+        </div>
+    </div>
+</script>
+

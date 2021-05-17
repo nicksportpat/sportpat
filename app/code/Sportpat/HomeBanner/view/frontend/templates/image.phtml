@@ -1,0 +1,10 @@
+<?php;
+/** @var $block \Sportpat\HomeBanner\Block\Image */
+?>
+<img class="photo image"
+    <?= /* @escapeNotVerified */ $block->getCustomAttributes(); ?>
+     src="<?= /* @escapeNotVerified */ $block->getImageUrl(); ?>"
+     width="<?= /* @escapeNotVerified */ $block->getWidth(); ?>"
+     height="<?= /* @escapeNotVerified */ $block->getHeight(); ?>"
+     style="height: <? echo $block->getHeight(); ?>!important;"
+     alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true); ?>" class="lazyhome" />

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aitoc_followup_event_campaign_listing.aitoc_followup_event_campaign_listing_data_source</item>
+            <item name="deps" xsi:type="string">aitoc_followup_event_campaign_listing.aitoc_followup_event_campaign_listing_data_source</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Aitoc\FollowUpEmails\Block\Adminhtml\Campaign\BackButton</item>
+            <item name="add_new_event_campaign" xsi:type="string">Aitoc\FollowUpEmails\Block\Adminhtml\Campaign\AddButton</item>
+        </item>
+        <item name="spinner" xsi:type="string">aitoc_followup_event_campaign_columns</item>
+    </argument>
+
+    <dataSource name="aitoc_followup_event_campaign_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aitoc\FollowUpEmails\Ui\Component\Listing\DataProvider\Event\CampaignDataProvider</argument>
+            <argument name="name" xsi:type="string">aitoc_followup_event_campaign_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="filter_url_params" xsi:type="array">
+                        <item name="event_code" xsi:type="string">*</item>
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+
+    <columns name="aitoc_followup_event_campaign_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/events/listing</item>
+            </item>
+        </argument>
+        <column name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fieldClass" xsi:type="string">title inner-title</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="Aitoc\FollowUpEmails\Ui\Component\Listing\Column\EventCampaignToolbar">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/events/columns/toolbar</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                    <item name="viewUrlPath" xsi:type="string">followup/event_campaign/edit</item>
+                    <item name="fieldClass" xsi:type="string">toolbar</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </actionsColumn>
+        <column name="emails" class="Aitoc\FollowUpEmails\Ui\Component\Listing\Column\CampaignEmails">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/events/columns/emails</item>
+                    <item name="fieldClass" xsi:type="string">step-grid</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

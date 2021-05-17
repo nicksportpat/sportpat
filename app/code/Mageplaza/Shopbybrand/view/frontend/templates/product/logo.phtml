@@ -1,0 +1,42 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Shopbybrand
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php if ($brand = $block->getProductBrand()) : ?>
+    <?php if ($block->showBrandInfo() === 'logo') : ?>
+        <div class="product-brand-logo">
+            <a href="<?= /** @noEscape */ $block->helper()->getBrandUrl($brand) ?>">
+                <img src="<?= /** @noEscape */ $block->helper()->getBrandImageUrl($brand) ?>"
+                     title="<?= /** @noEscape */ $brand->getValue() ?>"
+                     alt="<?= /** @noEscape */ $brand->getValue() ?>">
+            </a>
+        </div>
+    <?php else : ?>
+        <div class="product-brand-name">
+            <span><?= $block->escapeHtml($brand->getValue()) ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+<style type="text/css">
+    .product-brand-logo img {
+        width: <?= /** @noEscape */ $block->getLogoWidth() . 'px' ?>;
+        height: <?= /** @noEscape */ $block->getLogoHeight() . 'px' ?>;
+    }
+</style>

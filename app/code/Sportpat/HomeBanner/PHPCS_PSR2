@@ -1,0 +1,78 @@
+
+FILE: ...portpat_HomeBanner/Ui/Component/Listing/Column/BannerActions.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 79 | WARNING | Line exceeds 120 characters; contains 122 characters
+----------------------------------------------------------------------
+
+
+FILE: .../umc/var/umc/Sportpat_HomeBanner/Controller/Adminhtml/Upload.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 69 | WARNING | Method name "_isAllowed" should not be prefixed with
+    |         | an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: ...home/umc/var/umc/Sportpat_HomeBanner/Block/Banner/ListBanner.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 73 | WARNING | Method name "_prepareLayout" should not be prefixed
+    |         | with an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_HomeBanner/Helper/Image.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 166 | WARNING | Method name "_reset" should not be prefixed with an
+     |         | underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_HomeBanner/Model/Banner.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 4 WARNINGS AFFECTING 4 LINES
+----------------------------------------------------------------------
+ 31 | WARNING | Property name "$_cacheTag" should not be prefixed
+    |         | with an underscore to indicate visibility
+ 37 | WARNING | Property name "$_eventPrefix" should not be prefixed
+    |         | with an underscore to indicate visibility
+ 43 | WARNING | Property name "$_eventObject" should not be prefixed
+    |         | with an underscore to indicate visibility
+ 82 | WARNING | Method name "_construct" should not be prefixed with
+    |         | an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: ...mc/Sportpat_HomeBanner/Model/ResourceModel/Banner/Collection.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 18 | WARNING | Method name "_construct" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 31 | WARNING | Method name "_afterLoad" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 84 | WARNING | Method name "_renderFiltersBefore" should not be
+    |         | prefixed with an underscore to indicate visibility
+----------------------------------------------------------------------
+
+
+FILE: ...e/umc/var/umc/Sportpat_HomeBanner/Model/ResourceModel/Banner.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 3 LINES
+----------------------------------------------------------------------
+ 13 | WARNING | Method name "_construct" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 42 | WARNING | Method name "_afterSave" should not be prefixed with
+    |         | an underscore to indicate visibility
+ 74 | WARNING | Method name "_afterLoad" should not be prefixed with
+    |         | an underscore to indicate visibility
+----------------------------------------------------------------------
+
+Time: 676ms; Memory: 10Mb
+

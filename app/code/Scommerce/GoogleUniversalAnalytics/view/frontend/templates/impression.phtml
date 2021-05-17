@@ -1,0 +1,185 @@
+<?php
+/**
+ * @var $this Scommerce_UniversalAnalytics_Block_Impression
+ */
+?>
+<?php
+$helper = $this->getHelper();
+$_JsProducts = $this->getJsProducts();
+$_JsProductUrls = $this->getJsProductUrls();
+$_clickLabel = $this->getclickLabel();
+$_pageView = $this->getPageView();
+$_SIOSEnabled = $this->getSIOSEnabled();
+$_PCIText = $this->getPCIText();
+
+if (!$helper->isEnabled() || !$helper->isEnhancedEcommerceEnabled() || (($_JsProducts=="[]"))) return;?>
+
+<script type='text/javascript'>
+    //<![CDATA[
+    var jsProducts<?php echo $_pageView?> = <?php echo $_JsProducts ?>;
+    var jsProductUrls<?php echo $_pageView?> = <?php echo $_JsProductUrls ?>;
+    var jsClickLabel<?php echo $_pageView?> = '<?php echo $_clickLabel?>';
+	<?php if ($_pageView=="Listing" && $_SIOSEnabled && strlen($_PCIText)) :
+		$productItemClass = $_PCIText;
+		if (strlen($productItemClass)==0) $productItemClass = "div.products ol.product-items li.product-item";?>
+		require(['jquery','mage/cookies'], function($) {
+			$(window).load(function () {
+				$.mage.cookies.clear("productlist");
+				$.mage.cookies.clear("googlecategory");
+				
+				<?php echo $this->getLayout()
+					->createBlock('Scommerce\GoogleUniversalAnalytics\Block\SendView')
+					->setEventLabel($_clickLabel)
+					->setTemplate('Scommerce_GoogleUniversalAnalytics::sendview.phtml')
+					->toHtml();?>
+			})
+		});
+		
+		require(['jquery','jqueryviewport'], function($) {
+			var intCtr = 0;
+			$(document).ready(function () {
+				$('<?php echo $productItemClass?>').inviewport({
+				  threshold: 10
+				});
+			});
+			$(window).bind("scroll load", function() {
+				//console.log($('.in-view').size());
+				$('.in-view').each(function(){
+					var id = this;
+					var classNames = $(this).attr('class');
+					$.each(jsProducts<?php echo $_pageView?>, function (index, product) {
+						var pos = classNames.indexOf('impressionSent');
+						if (pos < 0 && window.ga && ga.loaded && index>=intCtr){
+							ga('ec:addImpression', {
+								'id': product.id,
+								'name': product.name,
+								'category': product.category,
+								'brand': product.brand,
+								'list': product.list,
+								'position': product.position
+							});
+							ga('send', 'event', 'UX', 'scroll', jsClickLabel<?php echo $_pageView?> + ' - Viewed ' + product.name, {'nonInteraction': true});
+							//console.log(product.name);
+							<?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+							ga('<?php echo $helper->getLinkedAccountName()?>.ec:addImpression', {
+								'id': product.id,
+								'name': product.name,
+								'category': product.category,
+								'brand': product.brand,
+								'list': product.list,
+								'position': product.position
+							});
+							ga('<?php echo $helper->getLinkedAccountName()?>.send', 'event', 'UX', 'scroll', jsClickLabel<?php echo $_pageView?> + ' - Viewed ' + product.name, {'nonInteraction': true});
+							<?php endif;?>
+							$(id).addClass('impressionSent');			
+							intCtr++;
+							//console.log(intCtr);
+							return false;
+						}
+					});
+				});
+			});
+		});
+	<?php else:?>
+	require(['jquery','mage/cookies'], function($) {
+		$(window).load(function () {		
+			<?php if ((strtolower($_pageView)!="related") && (strtolower($_pageView)!="upsell")):?>
+			$.mage.cookies.clear("productlist");
+			$.mage.cookies.clear("googlecategory");			
+			<?php endif;?>
+			
+			$.each(jsProducts<?php echo $_pageView?>, function (index, product) {
+				ga('ec:addImpression', {
+					'id': product.id,
+					'name': product.name,
+					'category': product.category,
+					'brand': product.brand,
+					'list': product.list,
+					'position': product.position
+				});
+			});
+		
+			<?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+			$.each(jsProducts<?php echo $_pageView?>, function (index, product) {
+				ga('<?php echo $helper->getLinkedAccountName()?>.ec:addImpression', {
+					'id': product.id,
+					'name': product.name,
+					'category': product.category,
+					'brand': product.brand,
+					'list': product.list,
+					'position': product.position
+				});
+			});
+			<?php endif;
+			
+			if ((strtolower($_pageView)!="related") && (strtolower($_pageView)!="upsell")):
+				echo $this->getLayout()
+					->createBlock('Scommerce\GoogleUniversalAnalytics\Block\SendView')
+					->setEventLabel($_clickLabel)
+					->setTemplate('Scommerce_GoogleUniversalAnalytics::sendview.phtml')
+					->toHtml();
+			endif;?>
+		});
+	});
+	<?php endif;?>
+    //]]>
+</script>
+
+<script type='text/javascript'>
+    //<![CDATA[
+	require(['jquery','mage/cookies'], function($) {
+		$(window).load(function () {
+			jQuery('a').on('click', function(e){
+				var product;
+				var href = jQuery(this).attr('href');
+				var index = jsProductUrls<?php echo $_pageView?>.indexOf(href);
+				if (index==-1) return;
+				if (index != -1 && window.ga && ga.loaded){
+					e.preventDefault();
+					
+					product = jsProducts<?php echo $_pageView?>[index];
+					ga('ec:addProduct', {
+						'id': product.id,
+						'name': product.name,
+						'category': product.category,
+						'brand': product.brand,
+						'position': product.position
+					});
+
+					ga('ec:setAction', 'click', {list: product.list});
+					
+					$.mage.cookies.set('productlist', product.list);
+					<?php if ((strtolower($_pageView)!="related") && (strtolower($_pageView)!="upsell")):?>
+					$.mage.cookies.set('googlecategory', product.category);
+					<?php endif;?>
+					//Need to send this data before calling call back for initial click
+					<?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+					ga('<?php echo $helper->getLinkedAccountName()?>.ec:addProduct', {
+						'id': product.id,
+						'name': product.name,
+						'category': product.category,
+						'brand': product.brand,
+						'position': product.position
+					});
+
+					ga('<?php echo $helper->getLinkedAccountName()?>.ec:setAction', 'click', {list: product.list});
+					
+					ga('<?php echo $helper->getLinkedAccountName()?>.send', 'event', 'UX', 'click', jsClickLabel<?php echo $_pageView?> + ' Click - ' + product.name + ' - ' + product.id, {'nonInteraction': 1});
+					<?php endif;?>
+					
+					ga('send', 'event', 'UX', 'click', jsClickLabel<?php echo $_pageView?> + ' Click - ' + product.name + ' - ' + product.id , {'nonInteraction': 1,                
+						'hitCallback' : function() {
+							if (!(e.ctrlKey || e.which==2)){
+								document.location = href;
+							}
+						}
+					});
+				}
+				else{
+					document.location = href;
+				}
+			});
+		});
+	});
+    //]]>
+</script>

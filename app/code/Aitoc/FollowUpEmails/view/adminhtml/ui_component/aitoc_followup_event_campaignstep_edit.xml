@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aitoc_followup_event_campaignstep_edit.aitoc_followup_event_campaignstep_edit_data_source</item>
+            <item name="deps" xsi:type="string">aitoc_followup_event_campaignstep_edit.aitoc_followup_event_campaignstep_edit_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">aitoc_followup_event_campaign_edit</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Aitoc\FollowUpEmails\Block\Adminhtml\CampaignCommon\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Aitoc\FollowUpEmails\Block\Adminhtml\CampaignStep\Edit\DeleteButton</item>
+            <item name="save" xsi:type="string">Aitoc\FollowUpEmails\Block\Adminhtml\CampaignStep\Edit\SaveButton</item>
+        </item>
+    </argument>
+    <dataSource name="aitoc_followup_event_campaignstep_edit_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aitoc\FollowUpEmails\Ui\DataProvider\Form\LoadEmailForm</argument>
+            <argument name="name" xsi:type="string">aitoc_followup_event_campaignstep_edit_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="followup/event_campaignstep/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Edit Email</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="campaign_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Email Status</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataScope" xsi:type="string">status</item>
+                    <item name="toggleLabels" xsi:type="array">
+                        <item name="on" xsi:type="string">On</item>
+                        <item name="off" xsi:type="string">Off</item>
+                    </item>
+                    <item name="notice" xsi:type="string" translate="true">If the email status is off the email won't be sent.</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Email Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="template_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Email Template</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/loadTemplateContentSelect</item>
+                </item>
+                <item name="options" xsi:type="object">Magento\Email\Model\ResourceModel\Template\Collection</item>
+                <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="variables">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="template_subject">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Template Subject</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="template_content">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/textarea</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Template Content</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="rows" xsi:type="number">2</item>
+                    <item name="cols" xsi:type="number">15</item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-textarea</item>
+                </item>
+            </argument>
+        </field>
+        <field name="insert_email_variable">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/insertVariableButton</item>
+                    <item name="formElement" xsi:type="string">button</item>
+                    <item name="source" xsi:type="string">general</item>
+                    <item name="elementTmpl" xsi:type="string">Aitoc_FollowUpEmails/form/element/insertVariableButton</item>
+                </item>
+            </argument>
+        </field>
+        <container name="template_settings">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                </item>
+            </argument>
+            <field name="send_email">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/email</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">Send test email</item>
+                        <item name="formElement" xsi:type="string">email</item>
+                        <item name="source" xsi:type="string">general</item>
+                        <item name="notice" xsi:type="string" translate="true">Send test email</item>
+                        <item name="elementTmpl" xsi:type="string">Aitoc_FollowUpEmails/form/element/email</item>
+                    </item>
+                </argument>
+            </field>
+            <field name="preview">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/previewButton</item>
+                        <item name="title" xsi:type="string">Preview</item>
+                        <item name="formElement" xsi:type="string">button</item>
+                        <item name="template" xsi:type="string">Aitoc_FollowUpEmails/form/element/previewButton</item>
+                        <item name="additionalForGroup" xsi:type="boolean">true</item>
+                        <item name="displayArea" xsi:type="string">insideGroup</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+
+        <container name="template_save_settings">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="breakLine" xsi:type="boolean">false</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/components/group</item>
+                </item>
+            </argument>
+            <field name="new_template_name">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="label" xsi:type="string" translate="true">New Template Name</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <!--<item name="visible" xsi:type="boolean">false</item>-->
+                        <item name="disabled" xsi:type="boolean">true</item>
+                        <!--<item name="additionalClasses" xsi:type="string">admin__field-small</item>-->
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+            <field name="save_settings">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="dataType" xsi:type="string">number</item>
+                        <item name="formElement" xsi:type="string">select</item>
+                        <item name="disabled" xsi:type="boolean">true</item>
+                        <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/templateNameSelect</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="overwrite_original" xsi:type="array">
+                            <item name="value" xsi:type="string">overwrite_original</item>
+                            <item name="label" xsi:type="string" translate="true">Overwrite original template</item>
+                        </item>
+                        <item name="save_as_new" xsi:type="array">
+                            <item name="value" xsi:type="string">save_as_new</item>
+                            <item name="label" xsi:type="string" translate="true">Save as new template</item>
+                        </item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+            </field>
+        </container>
+
+        <field name="delay_period">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Delay Period</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="notice" xsi:type="string" translate="true">Set delay period before the email goes out. Choose below if you want the value in minutes, hours, or days.</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-digits" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="unit">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Units</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="minutes" xsi:type="array">
+                        <item name="value" xsi:type="string">minutes</item>
+                        <item name="label" xsi:type="string" translate="true">Minutes</item>
+                    </item>
+                    <item name="hours" xsi:type="array">
+                        <item name="value" xsi:type="string">hours</item>
+                        <item name="label" xsi:type="string" translate="true">Hours</item>
+                    </item>
+                    <item name="days" xsi:type="array">
+                        <item name="value" xsi:type="string">days</item>
+                        <item name="label" xsi:type="string" translate="true">Days</item>
+                    </item>
+                </item>
+                <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="reset_statistics">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Reset Statistics</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">0</item>
+                    </item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="ajax_links">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="visible" xsi:type="boolean">false</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                    </item>
+                </argument>
+        </field>
+    </fieldset>
+
+    <fieldset name="discount_settings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Discount Settings</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="discount_status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/discountStatusSelect</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Add Discounts to Email</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </item>
+                </item>
+                <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="discount_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Discount Type</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="visibleValue" xsi:type="string">discount_type</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="component" xsi:type="string">Aitoc_FollowUpEmails/js/form/element/apply-type</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Aitoc\FollowUpEmails\Ui\Component\Listing\Column\DiscountTypeOptions</item>
+            </argument>
+        </field>
+
+        <field name="sales_rule_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Use Coupon From Cart Rule</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="visibleValue" xsi:type="string">sales_rule_id</item>
+                    <item name="sortOrder" xsi:type="number">25</item>
+                </item>
+                <item name="options" xsi:type="object">Aitoc\FollowUpEmails\Ui\Component\Listing\Column\SaleRuleOptions</item>
+            </argument>
+        </field>
+
+        <field name="discount_percent">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Discount Amount</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="visibleValue" xsi:type="string">discount_percent</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[Choose any discount you want. <i>Remember:</i> 100 for <i>Percentage type</i> means <strong>FREE.</strong>]]></item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-digits" xsi:type="boolean">true</item>
+                        <item name="validate-number-range" xsi:type="array">
+                            <item name="0" xsi:type="string">1-100</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="discount_period">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="label" xsi:type="string" translate="true">Discount Period</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="visibleValue" xsi:type="string">discount_period</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[Use this option to set the number of days when the discount is active.]]></item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-digits" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+
+    <fieldset name="google_settings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string">Google Analytics</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+
+        <field name="utm_source">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">UTM Source</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[<strong>Required.</strong> Use <i>utm_source</i> to set and identify a search engine, newsletter name, or other source. <strong>Example:</strong> utm_source=google]]></item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="utm_medium">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">UTM Medium</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[<strong>Required.</strong> Use <i>utm_medium</i> to set and identify a medium like email or cost-per-click. <strong>Example:</strong> utm_medium=cpc]]></item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="utm_campaign">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">UTM Campaign</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[<strong>Required.</strong> Use <i>utm_campaign</i> for the keyword analysis to identify a specific product promotion or strategic campaign. <strong>Example:</strong> utm_campaign=holiday_sale]]></item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="utm_term">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">UTM Term</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[<strong>No Required.</strong> Use <i>utm_campaign</i> for paid search to note the keywords for this ad. <strong>Example:</strong> utm_term=training+shoes]]></item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="utm_content">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">UTM Content</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string"><![CDATA[<strong>No Required.</strong> Use <i>utm_content</i> for A/B testing and content-targeted ads to differentiate ads or links that point to the same URL. <strong>Example:</strong> utm_content=logolink or utm_content=textlink]]></item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

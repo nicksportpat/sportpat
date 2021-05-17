@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Sportpat\HomeBanner\Api\BannerRepositoryInterface" type="Sportpat\HomeBanner\Model\BannerRepository"/>
+    <preference for="Sportpat\HomeBanner\Api\Data\BannerInterface" type="Sportpat\HomeBanner\Model\Banner"/>
+    <preference for="Sportpat\HomeBanner\Api\Data\BannerSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sportpat_homebanner_banner_listing_data_source" xsi:type="string">SportpatHomeBannerBannerGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\HomeBanner\Model\ResourceModel\Banner\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Sportpat\HomeBanner\Model\Banner</argument>
+            <argument name="resourceModel" xsi:type="string">Sportpat\HomeBanner\Model\ResourceModel\Banner</argument>
+            <argument name="idFieldName" xsi:type="string">banner_id</argument>
+            <argument name="eventPrefix" xsi:type="string">sportpat_home_banner_banner_collection</argument>
+            <argument name="eventObject" xsi:type="string">banner_collection</argument>
+        </arguments>
+    </type>
+    <virtualType name="SportpatHomeBannerBannerGridCollection" type="Sportpat\HomeBanner\Model\ResourceModel\Banner\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+            <argument name="resourceModel" xsi:type="string">Sportpat\HomeBanner\Model\ResourceModel\Banner</argument>
+            <argument name="idFieldName" xsi:type="string">banner_id</argument>
+            <argument name="eventPrefix" xsi:type="string">sportpat_home_banner_banner_collection</argument>
+            <argument name="eventObject" xsi:type="string">banner_collection</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SportpatHomeBannerBannerImageUploader" type="Sportpat\HomeBanner\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Sportpat\HomeBanner\Model\UploadPath::BANNER_IMAGE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Sportpat\HomeBanner\Model\UploadPath::BANNER_IMAGE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Sportpat\HomeBanner\Controller\Adminhtml\Banner\Image\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SportpatHomeBannerBannerImageUploader</argument>
+            <argument name="aclResource" xsi:type="string">Sportpat_HomeBanner::homebanner_banner</argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\HomeBanner\Model\UploaderPool">
+        <arguments>
+            <argument name="uploaders" xsi:type="array">
+                <item name="image" xsi:type="object">SportpatHomeBannerBannerImageUploader</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\HomeBanner\Model\Banner">
+        <arguments>
+            <argument name="optionProviders" xsi:type="array">
+                <item name="banner_size" xsi:type="object">Sportpat\HomeBanner\Model\Banner\Source\BannerSize</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="SportpatHomeBannerBannerImageModel">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SportpatHomeBannerBannerImageUploader</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SportpatHomeBannerBlockBannerImageBuilder" type="Sportpat\HomeBanner\Block\ImageBuilder">
+        <arguments>
+            <argument name="entityCode" xsi:type="string">banner</argument>
+            <argument name="uploader" xsi:type="object">SportpatHomeBannerBannerImageUploader</argument>
+        </arguments>
+    </virtualType>
+    <type name="Sportpat\HomeBanner\Block\Banner\ViewBanner">
+        <arguments>
+            <argument name="imageBuilder" xsi:type="object">SportpatHomeBannerBlockBannerImageBuilder</argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\HomeBanner\Block\Banner\ListBanner">
+        <arguments>
+            <argument name="imageBuilder" xsi:type="object">SportpatHomeBannerBlockBannerImageBuilder</argument>
+        </arguments>
+    </type>
+</config>

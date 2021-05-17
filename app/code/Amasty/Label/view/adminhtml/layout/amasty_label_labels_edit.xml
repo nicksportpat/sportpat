@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+-->
+<!--
+/**
+ * Copyright © 2015 Amasty. All rights reserved.
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_Label::css/amlabel.css"/>
+        <css src="jquery/colorpicker/css/colorpicker.css"/>
+    </head>
+    <body>
+        <referenceContainer name="left">
+            <block class="Amasty\Label\Block\Adminhtml\Labels\Edit\Tabs" name="amasty_label_labels_edit_tabs">
+                <block class="Amasty\Label\Block\Adminhtml\Labels\Edit\Tab\Main" name="amasty_label_labels_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">amasty_label_labels_edit_tab_main</argument>
+                </action>
+                <block class="Amasty\Label\Block\Adminhtml\Labels\Edit\Tab\Product" name="amasty_label_labels_edit_tab_product"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">product_image_section</argument>
+                    <argument name="block" xsi:type="string">amasty_label_labels_edit_tab_product</argument>
+                </action>
+                <block class="Amasty\Label\Block\Adminhtml\Labels\Edit\Tab\Category" name="amasty_label_labels_edit_tab_category"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">category_image_section</argument>
+                    <argument name="block" xsi:type="string">amasty_label_labels_edit_tab_category</argument>
+                </action>
+                <block class="Amasty\Label\Block\Adminhtml\Labels\Edit\Tab\Conditions" name="amasty_label_labels_edit_tab_conditions"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">conditions_section</argument>
+                    <argument name="block" xsi:type="string">amasty_label_labels_edit_tab_conditions</argument>
+                </action>
+
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Amasty\Label\Block\Adminhtml\Labels\Edit" name="label_labels_edit"/>
+        </referenceContainer>
+    </body>
+</page>

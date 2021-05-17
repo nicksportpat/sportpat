@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sportpat_tabcontent_tabcontent" resource="default" engine="innodb" comment="Manage Content Table">
+        <column xsi:type="smallint" name="tabcontent_id" padding="6" unsigned="false" nullable="false" identity="true"  comment="Manage Content ID"/>
+        <column xsi:type="varchar" name="title" length="255" nullable="false" comment="Manage Content Title"/>
+        <column xsi:type="int" name="tab_contenttype" padding="11" nullable="false" comment="Manage Content Content Type"/>
+        <column xsi:type="mediumtext" name="content_html" nullable="true" comment="Manage Content Html / Text Content"/>
+        <column xsi:type="varchar" name="image" length="255" nullable="true" comment="Manage Content Image"/>
+        <column xsi:type="int" name="for_brand" padding="11" nullable="true" comment="Manage Content Appears for X Brand"/>
+        <column xsi:type="int" name="for_category" padding="11" nullable="true" comment="Manage Content Appears in Category"/>
+        <column xsi:type="text" name="use_for_skus" nullable="true" comment="Manage Content Specific Skus"/>
+        <column xsi:type="text" name="for_gender" nullable="true" comment="Manage Content Gender"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Manage Content Is Active"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Manage Content Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Manage Content Updated At"/>
+        <index referenceId="SPORTPAT_TABCONTENT_TABCONTENT_FULLTEXT" indexType="fulltext">
+            <column name="title" />
+            <column name="content_html" />
+            <column name="image" />
+            <column name="use_for_skus" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tabcontent_id"/>
+        </constraint>
+    </table>
+    <table name="sportpat_tabcontent_tabcontent_store" resource="default" engine="innodb" comment="Manage Content Store Link Table">
+        <column xsi:type="smallint" name="tabcontent_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tabcontent_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SPORTPAT_TABCONTENT_TABCONTENT_STORE_TABCONTENT_ID_SPORTPAT_TABCONTENT_TABCONTENT_TABCONTENT_ID" table="sportpat_tabcontent_tabcontent_store"
+                    column="tabcontent_id" referenceTable="sportpat_tabcontent_tabcontent" referenceColumn="tabcontent_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SPORTPAT_TABCONTENT_TABCONTENT_STORE_STORE_STORE_ID" table="sportpat_tabcontent_tabcontent_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SPORTPAT_TABCONTENT_TABCONTENT_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

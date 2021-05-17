@@ -1,0 +1,100 @@
+<?php
+	$enableSocialShare = $block->scopeConfig->getValue('emipro_socialshare/general/is_enabled', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableproductpage = $block->scopeConfig->getValue('emipro_socialshare/general/enable_in_product_page_only', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableFacebook = $block->scopeConfig->getValue('emipro_socialshare/facebook/enable_facebook', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableInstagram = $block->scopeConfig->getValue('emipro_socialshare/instagram/enable_instagram', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableGooglePlus = $block->scopeConfig->getValue('emipro_socialshare/googleplus/enable_google_plus', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableTwitter = $block->scopeConfig->getValue('emipro_socialshare/twitter/enable_twitter', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enablePInterest = $block->scopeConfig->getValue('emipro_socialshare/pinterest/enable_pinterest', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableWhatsApp = $block->scopeConfig->getValue('emipro_socialshare/whatsapp/enable_whatsapp', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$enableLinkedIn = $block->scopeConfig->getValue('emipro_socialshare/linkedin/enable_linkedin', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$facebookID = $block->scopeConfig->getValue('emipro_socialshare/facebook/facebook_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+	$facebookID = ($facebookID != "") ? $facebookID : '1082368948492595';
+
+	$currentUrl = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+
+	$productImage = $block->getProductImage();
+	$productName = $block->getProductName();
+
+	if( stristr($_SERVER['HTTP_USER_AGENT'],'ipad')) {
+		$device = "ipad";
+        $os = 'mobile';
+	} else if( stristr($_SERVER['HTTP_USER_AGENT'],'iphone') || strstr($_SERVER['HTTP_USER_AGENT'],'iphone')) {
+		$device = "iphone";
+		$os = 'mobile';
+	} else if( stristr($_SERVER['HTTP_USER_AGENT'],'blackberry')) {
+		$device = "Blackberry";
+		$os = 'mobile';
+	} else if( stristr($_SERVER['HTTP_USER_AGENT'],'android')) {
+		$device = "Android";
+		$os = 'mobile';
+	} else if( stristr($_SERVER['HTTP_USER_AGENT'],'Windows Phone')) {
+		$device = "Windows Phone";
+		$os = 'mobile';
+	} else {
+		$device = "web";
+	}
+?>
+<div class="ept-social-share">
+	<?php
+	if($enableSocialShare == 1):
+		if($enableFacebook == 1):
+	?>
+			<div class="ept-social-buttons facebook-share">
+                <a href="https://www.facebook.com/sharer.php?u=<?php echo urlencode($block->escapeUrl($currentUrl)); ?>" target="_blank"><i class="fab fa-2x fa-facebook"></i></a>
+			</div>
+	<?php
+		endif;
+		if($enableGooglePlus == 1):
+	?>
+			<div class="ept-social-buttons google-plus-share">
+				<a class="google-plus-button" href="https://plus.google.com/share?url=<?php echo urlencode($block->escapeUrl($currentUrl)); ?>" data-action="share" target="_blank"></a>
+			</div>
+	<?php
+		endif;
+		if($enableTwitter == 1):
+	?>
+			<div class="ept-social-buttons twitter-share">
+				<a href="https://twitter.com/share?<?php echo $block->escapeHtml($productName); ?>&url=<?php echo urlencode($block->escapeUrl($currentUrl)); ?>" target="_blank"><i class="fab fa-2x fa-twitter"></i></a>
+			</div>
+	<?php
+		endif;
+		if($enablePInterest == 1):
+	?>
+			<div class="ept-social-buttons pinterest-share">
+				<a class="pinterest-button" href="http://pinterest.com/pin/create/button/?url=<?php echo urlencode($block->escapeUrl($currentUrl)); ?>&description=<?php echo $productName; ?>" target="_blank"></a>
+			</div>
+	<?php
+		endif;
+		if($enableWhatsApp == 1):
+			if(isset($os) == 'mobile'):
+			 ?>
+			<div class="ept-social-buttons whatsapp-share">
+				<a class="whatsapp-button" href="whatsapp://send?text=<?php echo urlencode($block->escapeUrl($currentUrl)); ?>" data-action="share/whatsapp/share"></a>
+			</div>
+			<?php endif;
+		endif;
+		if($enableLinkedIn == 1):
+		?>
+			<div class="ept-social-buttons linkedin-share">
+				<a class="linkedin-button" href="https://www.linkedin.com/cws/share?url=<?php echo urlencode($block->escapeUrl($currentUrl)); ?>" target="_blank"></a>
+			</div>
+	<?php
+		endif;
+	endif;
+?>
+</div>
+
+<script type="text/javascript">
+	require(['jquery'], function($){
+		$(document).ready(function () {
+	        var enableproductpage = "<?php echo $enableproductpage; ?>" ;
+	        if(enableproductpage == 1){
+	        	$(".ept-social-share").addClass("ept-product-page");
+	        }
+	        else {
+	        	$(".ept-social-share").addClass("ept-socialshare-page");
+	        }
+		});
+	});
+</script>

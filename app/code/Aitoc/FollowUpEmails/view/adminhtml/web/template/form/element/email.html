@@ -1,0 +1,16 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<input class="admin__control-text" type="email" data-bind="
+    hasFocus: focused,
+    value: value,
+    attr: {
+        name: inputName,
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        id: uid,
+        disabled: disabled
+    }" style="width: 50%">
+<button type="button" data-action="action" click="$data.sendEmail.bind(this)" class="send_email_button">
+    <span>Send</span>
+</button>

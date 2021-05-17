@@ -1,0 +1,2 @@
+/* global jQuery */
+/* global document */

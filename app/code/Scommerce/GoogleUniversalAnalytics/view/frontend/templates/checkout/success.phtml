@@ -1,0 +1,77 @@
+<?php
+/**
+ * @var $this Scommerce_GoogleUniversalAnalytics_Block_Checkout_Success
+ */
+?>
+<?php $helper = $this->getHelper();
+if (!$helper->isEnabled() || !$helper->isEnhancedEcommerceEnabled()) return;
+$order = $this->getOrder();
+if ($helper->sendBaseData()):
+    $orderCurrency 		= $order->getBaseCurrencyCode();
+    $orderGrandTotal 	= $order->getBaseGrandTotal();
+    $orderShippingTotal	= $order->getBaseShippingAmount();
+    $orderTax			= $order->getBaseTaxAmount();
+else:
+    $orderCurrency 		= $order->getOrderCurrencyCode();
+    $orderGrandTotal 	= $order->getGrandTotal();
+    $orderShippingTotal	= $order->getShippingAmount();
+    $orderTax			= $order->getTaxAmount();
+endif;
+
+if (!$helper->sendTransactionDataOnInvoice() && !$helper->sendTransactionDataOffline()):?>
+    <script>
+        //<![CDATA[
+        ga('set', '&cu', '<?php echo $orderCurrency ?>');
+        <?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+        ga('<?php echo $helper->getLinkedAccountName()?>.set', '&cu', '<?php echo $orderCurrency ?>');
+        <?php endif;?>
+        <?php foreach($order->getAllItems() as $item): ?>
+        <?php if($item->getParentItemId()) continue; ?>
+        ga('ec:addProduct', {
+            'id': '<?php echo $this->escapeJsQuote($item->getSku()) ?>',
+            'name': '<?php echo $this->escapeJsQuote($item->getName()) ?>',
+            'category': '<?php echo $helper->getQuoteCategoryName($item) ?>',
+            'brand': '<?php echo $this->escapeJsQuote($helper->getBrand($item->getProduct()), '"') ?>',
+            'price': '<?php echo $item->getBasePrice() ?>',
+            'quantity': '<?php echo $item->getQtyOrdered() ?>'
+        });
+        <?php endforeach;?>
+
+        ga('ec:setAction', 'purchase', {
+            'id': '<?php echo $order->getIncrementId()?>',
+            'affiliation': '<?php echo $order->getAffiliation() ?>',
+            'revenue': '<?php echo $orderGrandTotal?>',
+            'shipping': '<?php echo $orderShippingTotal?>',
+            'tax': '<?php echo $orderTax?>',
+            'coupon': '<?php echo $order->getCouponCode() ?>'
+        });
+
+        ga('send', 'pageview');
+
+        <?php if (strlen($helper->isLinkAccountsEnabled())>0):?>
+        <?php foreach($order->getAllItems() as $item): ?>
+        <?php if($item->getParentItemId()) continue; ?>
+        ga('<?php echo $helper->getLinkedAccountName()?>.ec:addProduct', {
+            'id': '<?php echo $this->escapeJsQuote($item->getSku(), '"') ?>',
+            'name': '<?php echo $this->escapeJsQuote($item->getName(), '"') ?>',
+            'category': '<?php echo $helper->getQuoteCategoryName($item) ?>',
+            'brand': '<?php echo $this->escapeJsQuote($helper->getBrand($item->getProduct()), '"') ?>',
+            'price': '<?php echo $item->getBasePrice() ?>',
+            'quantity': '<?php echo $item->getQtyOrdered() ?>'
+        });
+        <?php endforeach;?>
+
+        ga('<?php echo $helper->getLinkedAccountName()?>.ec:setAction', 'purchase', {
+            'id': '<?php echo $order->getIncrementId()?>',
+            'affiliation': '<?php echo $order->getAffiliation() ?>',
+            'revenue': '<?php echo $orderGrandTotal?>',
+            'shipping': '<?php echo $orderShippingTotal?>',
+            'tax': '<?php echo $orderTax?>',
+            'coupon': '<?php echo $order->getCouponCode() ?>'
+        });
+
+        ga('<?php echo $helper->getLinkedAccountName()?>.send', 'pageview');
+        <?php endif;?>
+        //]]>
+    </script>
+<?php endif;?>

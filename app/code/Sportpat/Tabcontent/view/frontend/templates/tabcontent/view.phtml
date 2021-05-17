@@ -1,0 +1,63 @@
+<?php
+/** @var \Sportpat\Tabcontent\Block\Tabcontent\ViewTabcontent $block */
+?>
+<?php $tabcontent = $block->getCurrentTabcontent();?>
+<div class="tabcontent-view">
+    <div class="tabcontent-title">
+        <strong><?= $block->escapeHtml(__('Title')) ?></strong>:
+        <?= $block->escapeHtml($tabcontent->getTitle());?>
+    </div>
+    <?php if ($tabContenttype = $tabcontent->getTabContenttype()) :?>
+    <div class="tabcontent-tab-contenttype">
+        <strong><?= $block->escapeHtml(__('Content Type')) ?></strong>:
+        <?= $block->escapeHtml($tabcontent->getAttributeText('tab_contenttype'));?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($tabcontent->getContentHtml()) :?>
+    <div class="tabcontent-content-html">
+        <strong><?= $block->escapeHtml(__('Html / Text Content')) ?></strong>:
+        <?= $tabcontent->getContentHtmlHtml();?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($tabcontent->getImage()) :?>
+    <div class="tabcontent-image">
+        <strong><?= $block->escapeHtml(__('Image')) ?></strong>:
+        <?= $block->getImage(
+            $tabcontent,
+            'tabcontent_list',
+            ['width' => 100, 'height' => 100, 'type' => 'image']
+        )->toHtml(); ?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($forBrand = $tabcontent->getForBrand()) :?>
+    <div class="tabcontent-for-brand">
+        <strong><?= $block->escapeHtml(__('Appears for X Brand')) ?></strong>:
+        <?= $block->escapeHtml($tabcontent->getAttributeText('for_brand'));?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($forCategory = $tabcontent->getForCategory()) :?>
+    <div class="tabcontent-for-category">
+        <strong><?= $block->escapeHtml(__('Appears in Category')) ?></strong>:
+        <?= $block->escapeHtml($tabcontent->getAttributeText('for_category'));?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($useForSkus = $tabcontent->getUseForSkus()) :?>
+    <div class="tabcontent-use-for-skus">
+        <strong><?= $block->escapeHtml(__('Specific Skus')) ?></strong>:
+        <?= $block->escapeHtml($useForSkus);?>
+    </div>
+    <?php endif;?>
+
+    <?php if ($forGender = $tabcontent->getForGender()) :?>
+    <div class="tabcontent-for-gender">
+        <strong><?= $block->escapeHtml(__('Gender')) ?></strong>:
+        <?= $block->escapeHtml($tabcontent->getAttributeText('for_gender'));?>
+    </div>
+    <?php endif;?>
+
+</div>

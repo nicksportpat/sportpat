@@ -1,0 +1,351 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+function imagePreFetcher($product) {
+
+
+
+    $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $imageHelper  = $_objectManager->get('\Magento\Catalog\Helper\Image');
+    $image_url = $imageHelper->init($product, 'product_thumbnail_image')->setImageFile($product->getFile())->resize(210)->getUrl();
+    return $image_url;
+
+
+}
+
+function swatchPreFetcher($product) {
+
+
+
+    $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $imageHelper  = $_objectManager->get('\Magento\Catalog\Helper\Image');
+    $image_url = $imageHelper->init($product, 'product_thumbnail_image')->setImageFile($product->getFile())->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(90)->getUrl();
+    return $image_url;
+
+    $lsid = $product->getLightspeedId();
+    $optImage = "/home/sportpat/pub/media/import/swatches/${lsid}.jpg";
+    if(file_exists($optImage)) {
+        $prefix = "data:image/jpeg;base64,";
+        $baseimage = base64_encode(file_get_contents($optImage));
+        return $prefix.$baseimage;
+    } else {
+        $optImage = "/home/sportpat/pub/media/import/swatches/${lsid}.png";
+        if(file_exists($optImage)) {
+            $prefix = "data:image/png;base64,";
+            $baseimage = base64_encode(file_get_contents($optImage));
+            return $prefix.$baseimage;
+        }
+    }
+
+    $image = $product->getImage();
+    $dir = "/home/sportpat/pub/media/catalog/product".$image;
+
+    $filename = $dir;
+    $prefix = "";
+    $baseimage = "";
+    if(strpos($filename, "jpg")) {
+        $prefix = "data:image/jpeg;base64,";
+    }
+    if(strpos($filename, "png")) {
+        $prefix = "data:image/png;base64,";
+    }
+    if(file_exists($filename)) {
+        $baseimage = base64_encode(file_get_contents($filename));
+    }
+    return str_replace("/home/sportpat/pub","",$optImage);
+
+}
+
+function getAllSwatches($product) {
+
+    $children = $product->getTypeInstance()->getUsedProducts($product);
+    $childlsids = [];
+    $colors = [];
+
+    $i=0;
+    $currentColor = "";
+    foreach($children as $child) {
+
+        $colors[$i] = $child->getColor();
+        $childlsids[$i] = $child->getId();
+
+        $i++;
+    }
+
+    array_unique($colors);
+
+    $dupids = [];
+    $i=0;
+    $n=0;
+    foreach($children as $child) {
+
+        for($n = 0; $n < count($colors); $n++) {
+
+            if($child->getColor() == $colors[$n]){
+                $dupids[$colors[$n]] = $child->getId();
+            }
+
+        }
+
+        $i++;
+
+    }
+
+
+
+
+    $htmltoappend = "";
+    $f=0;
+    $fi = "";
+    $fid = 0;
+    $fname = "";
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    foreach($dupids as $prod => $id) {
+
+        $mproduct = $objectManager->create('\Magento\Catalog\Model\Product')->load($id);
+        $imurl = swatchPreFetcher($mproduct);
+        $lgurl = imagePreFetcher($mproduct);
+        $htmltoappend .= "<div class='switem' style='display:block;float:left;border:1px #ccc solid;padding:1px;text-align:center !important;max-width:28px;max-height:28px;overflow:hidden;'><img   data-src='" . $imurl . "' id='" . $id . "' src='/media/blank.gif'  width='58px' height='58px' data-large='".$lgurl."' class='lazy customswatches-" . $product->getId() . "' style='width:88px !important;max-width:88px !important;margin-top:-30px;margin-left:-30px'></div>";
+
+    $f++;
+
+    }
+
+
+    return $htmltoappend;
+
+
+
+}
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <?= $block->getToolbarHtml() ?>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?= /* @escapeNotVerified */ $viewMode ?> products-<?= /* @escapeNotVerified */ $viewMode ?>">
+        <?php $iterator = 1; ?>
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product):
+
+if($_product->getTypeId() == "configurable"){
+                $children = $_product->getTypeInstance()->getUsedProducts($_product);
+                $pp=0;
+                $csku = "";
+                foreach($children as $child) {
+
+                    if($pp == 0) {
+                        $csku = $child->getSku();
+                    }
+
+
+                }
+} else {
+
+$csku = $_product->getSku();
+}
+                $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $imageHelper  = $_objectManager->get('\Magento\Catalog\Helper\Image');
+                $image_url = $imageHelper->init($_product, 'product_thumbnail_image')->setImageFile($_product->getFile())->resize(210)->getUrl();
+
+
+            $ihtml = "<img data-src='".$image_url."' src='/media/blank.gif'  width='250' height='250' style='max-height:250px !important; width:250px;' alt='".$_product->getName()."' class='lazy activeswatch-".$_product->getId()."'>";
+
+            ?>
+                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <div class="product-item-info" data-container="product-<?= /* @escapeNotVerified */ $viewMode ?>">
+
+                    <div class='product-swatch-container-<?php echo $_product->getId()?>' style='   width:100%;
+        height:auto;
+        float:left;
+        display:block;
+        overflow:hidden;
+        position:relative;'><div class='imageswatchcontainer' style='height:250px;' id='imgswcontainer_<?php echo $_product->getId()?>' onclick='window.location.href="<?php echo $_product->getProductUrl()?>"'><?php echo $ihtml?></div><div class='swcontainer'>
+
+
+                    <?php
+                    if($_product->getTypeID() ==  \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+                        echo getAllSwatches($_product);
+                    }
+                    ?>
+                        </div>
+                    </div>
+                    <div class="product details product-item-details">
+                        <?php
+                        $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                        ?>
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                                <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                            </a>
+                            <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" title="pick a color, size and buy <?= /* @escapeNotVerified */ $_productNameStripped ?>"
+                            ><span id="<?php echo $_product->getId()?>_brand"><?php echo $block->getProductDetailsHtml($_product); ?></span></a>
+                            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+                            <div class="star_container <?php echo $csku; ?>"></div>
+                            <span class="product-sku"><?php echo $_product->getSku(); ?></span>
+
+                            <?php //if ($showDescription):?>
+                            <div class="product description product-item-description">
+                                <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+
+                            </div>
+                            <?php //endif; ?>
+                            <?php //$block->getProductDetailsHtml($_product) ?>
+                        </strong>
+
+
+
+
+
+
+                    </div>
+                </div>
+            <?= ($iterator == count($_productCollection)+1) ? '</li>' : '' ?>
+            <?php
+
+
+            $im = "";
+
+            $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
+
+            $im = imagePrefetcher($_product);
+
+
+
+            ?>
+
+                <script type="text/javascript">
+                    require([
+                        'jquery'
+                    ], function ($) {
+
+
+
+
+                        var $container = $("#imgswcontainer_<?php echo $_product->getId(); ?>");
+                        var $firstimage = $(".product-swatch-container-<?php echo $_product->getId(); ?> img").eq(0);
+
+                        if(typeof $firstimage.attr('src') !== "undefined" && $firstimage.attr('src') !== "/media/catalog/product/") {
+                            var html = "<img data-src='<?php echo $im; ?>'   src='/media/blank.gif'  width='250' height='250' style='max-height:250px !important; width:250px;' alt='<?php echo urlencode($product->getName()); ?>' data-color='' class='lazy activeswatch-<?php echo $_product->getId(); ?>'>";
+
+                        } else {
+
+                            var html = "<img data-src='<?php echo $im; ?>' src='/media/blank.gif'  width='250' height='250' style='max-height:250px !important; width:250px;' alt='<?php echo urlencode($product->getName()); ?>' class='lazy activeswatch-<?php echo $_product->getId(); ?>'>";
+                        }
+                      //  $container.prepend(html);
+
+                        var images = $(".customswatches-<?php echo $_product->getId(); ?>");
+                        $.each(images, function(i, el){
+
+
+                            $(el).on('mouseenter', function(e){
+                                $(".activeswatch-<?php echo $_product->getId(); ?>").animate({
+                                    'opacity':0.8
+                                },200);
+                                $(".activeswatch-<?php echo $_product->getId(); ?>").attr('src', $(this).attr('data-large'));
+
+                                $(".activeswatch-<?php echo $_product->getId(); ?>").animate({
+                                    'opacity':1
+                                },200);
+
+
+                            });
+
+
+                        });
+
+                        $(".amasty-label-container").css('bottom','40px');
+                    });
+
+
+
+
+                </script>
+            <?php endforeach; ?>
+
+
+
+        </ol>
+    </div>
+    <?= $block->getToolbarHtml() ?>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+<script type="text/javascript">
+
+    var yall=function(){"use strict";return function(e){var n=(e=e||{}).lazyClass||"lazy",t=e.lazyBackgroundClass||"lazy-bg",o="idleLoadTimeout"in e?e.idleLoadTimeout:200,i=e.observeChanges||!1,r=e.events||{},a=window,s="requestIdleCallback",u="IntersectionObserver",c=["srcset","src","poster"],d=[],l=function(e,o){return d.slice.call((o||document).querySelectorAll(e||"img."+n+",video."+n+",iframe."+n+",."+t))},f=function(n){var o,i=n.parentNode;"PICTURE"==i.nodeName&&(o=i),"VIDEO"==n.nodeName&&(o=n),g(l("source",o),b),b(n),n.autoplay&&n.load();var r=n.classList;r.contains(t)&&(r.remove(t),r.add(e.lazyBackgroundLoaded||"lazy-bg-loaded"))},v=function(e){for(var n in r)e.addEventListener(n,r[n].listener||r[n],r[n].options||void 0)},b=function(e){var n=function(n){c[n]in e.dataset&&a.requestAnimationFrame((function(){e.setAttribute(c[n],e.dataset[c[n]])}))};for(var t in c)n(t)},g=function(e,n){for(var t in e)n instanceof a[u]?n.observe(e[t]):n(e[t])},m=function(e){if(e.isIntersecting||e.intersectionRatio){var t=e.target;s in a&&o?a[s]((function(){f(t)}),{timeout:o}):f(t),t.classList.remove(n),p.unobserve(t),(h=h.filter((function(e){return e!=t}))).length||i||p.disconnect()}},y=function(e){h.indexOf(e)<0&&(h.push(e),v(e),p.observe(e))},h=l();if(/baidu|(?:google|bing|yandex|duckduck)bot/i.test(navigator.userAgent))g(h,f);else if(u in a&&u+"Entry"in a){var p=new a[u]((function(e){g(e,m)}),{rootMargin:("threshold"in e?e.threshold:200)+"px 0%"});g(h,v),g(h,p),i&&g(l(e.observeRootSelector||"body"),(function(n){new MutationObserver((function(){g(l(),y)})).observe(n,e.mutationObserverOptions||{childList:!0,subtree:!0})}))}}}();
+    document.addEventListener("DOMContentLoaded", function() {
+        yall({
+            observeChanges: true
+        });
+    });
+</script>
+<style>
+
+    @media screen and (min-width:1280px) {
+        .products-grid .product-item-info:hover, .products-grid .product-item-info.active, .products-grid .product-item-info {
+            height:650px !important;
+        }
+    }
+
+    span.normal-price span.price-container span.price {
+        color: #c82e00 !important;
+    }
+
+    @media (max-width: 767px) {
+        div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:last-of-type, div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:last-of-type {
+            display:block !important;
+        }
+    }
+
+    div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:last-of-type, div.block-content.filter-content > div#narrow-by-list.filter-options > div.filter-options-item:last-of-type {
+        display:block !important;
+    }
+</style>

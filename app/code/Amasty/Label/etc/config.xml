@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Label
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_label>
+            <display>
+                <product>.fotorama__stage, #amasty-main-container</product>
+                <category>.product-image-container, .product-item-photo, .cdz-product-top</category>
+            </display>
+            <on_sale>
+                <sale_min>0</sale_min>
+                <sale_min_percent>0</sale_min_percent>
+                <rounding>round</rounding>
+            </on_sale>
+            <new>
+                <is_new>1</is_new>
+                <creation_date>0</creation_date>
+                <days>0</days>
+            </new>
+            <stock_status>
+                <out_of_stock_only>0</out_of_stock_only>
+                <default_label>3</default_label>
+            </stock_status>
+        </amasty_label>
+    </default>
+</config>

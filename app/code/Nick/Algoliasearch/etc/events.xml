@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="algolia_after_create_configuration">
+        <observer name="customalgolia_frontend_configuration" instance="Nick\Algoliasearch\Observer\UpdateFrontendConfiguration" />
+    </event>
+    <event name="algolia_products_index_before_set_settings">
+        <observer name="customalgolia_products_settings" instance="Nick\Algoliasearch\Observer\UpdateProductsSettings" />
+    </event>
+    <event name="algolia_after_create_product_object">
+        <observer name="customalgolia_frontend_configuration" instance="Nick\Algoliasearch\Observer\MultiLanguageObserver" />
+        <observer name="nick_custom_price_indexer" instance="Nick\Algoliasearch\Observer\PriceIndexObserver" />
+       <observer name="nick_custom_brand_gender_indexer" instance="Nick\Algoliasearch\Observer\BrandIndexObserver" />
+    </event>
+</config>

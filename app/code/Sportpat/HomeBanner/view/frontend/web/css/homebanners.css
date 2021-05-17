@@ -1,0 +1,72 @@
+ul.home-promo-banners {
+    list-style: none;
+    margin-top: 30px;
+    padding: 0;
+    margin-bottom: 30px;
+    height: auto;
+    overflow: hidden;
+    display: block;
+    float: left;
+    width: 100%
+}
+
+ul.home-promo-banners > li.promo-banner.rl, ul.home-promo-banners > li.promo-banner.ss {
+    list-style-type: none;
+    display: block;
+    float: left;
+    overflow: hidden;
+    min-width: 397px;
+    max-width: 795px;
+    height: 294px;
+    margin-bottom: 15px
+}
+
+ul.home-promo-banners > li.promo-banner.rs, ul.home-promo-banners > li.promo-banner.rs {
+    list-style-type: none;
+    display: block;
+    float: left;
+    overflow: hidden;
+    min-width: 397px;
+    height: 223px
+}
+
+ul.home-promo-banners > li.promo-banner:nth-of-type(1) img {
+    padding-right: 15px;
+   /* padding-bottom: 30px*/
+}
+
+ul.home-promo-banners > li.promo-banner:nth-of-type(4) img {
+    padding-right: 15px;
+   /* margin-left: 12px*/
+}
+
+ul.home-promo-banners > li.promo-banner:nth-of-type(5) img, ul.home-promo-banners > li.promo-banner:nth-of-type(2) img {
+   /*padding-left: 18px*/
+}
+
+ul.home-promo-banners > li.promo-banner:nth-of-type(3) img {
+    padding-right: 15px;
+   /* padding-bottom: 30px*/
+}
+
+ul.home-brands {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px
+}
+
+ul.home-brands li {
+    height: 200px;
+    overflow: hidden;
+    display: inline-block;
+    float: left;
+    text-align: center
+}
+
+ul.home-brands li img {
+    max-height: 100px;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    vertical-align: center
+}

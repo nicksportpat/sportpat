@@ -1,0 +1,170 @@
+/*
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+/* ----------- reset ----------- */
+body {
+    width: 100%;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    mso-margin-top-alt: 0px;
+    mso-margin-bottom-alt: 0px;
+    mso-padding-alt: 0px 0px 0px 0px;
+}
+
+p, h1, h2, h3, h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+span.preheader {
+    display: none;
+    font-size: 1px;
+}
+
+html {
+    width: 100%;
+}
+
+table {
+    font-size: 14px;
+    border: 0;
+}
+
+/* ----------- responsivity ----------- */
+@media only screen and (max-width: 640px) {
+
+    /*------ top header ------ */
+    body[yahoo] .main-header {
+        font-size: 24px !important;
+    }
+
+    body[yahoo] .main-section-header {
+        font-size: 34px !important;
+    }
+
+    body[yahoo] .show {
+        display: block !important;
+    }
+
+    body[yahoo] .hide {
+        display: none !important;
+    }
+
+    body[yahoo] .align-center {
+        text-align: center !important;
+    }
+
+    body[yahoo] .display-block {
+        display: block !important;
+    }
+
+    body[yahoo] .no-bg {
+        background: none !important;
+    }
+
+    /*----- main image -------*/
+    body[yahoo] .main-image img {
+        width: 440px !important;
+        height: auto !important;
+    }
+
+    /* ====== divider ====== */
+    body[yahoo] .main-img img {
+        width: 440px !important;
+    }
+
+    body[yahoo] .divider img {
+        width: 440px !important;
+    }
+
+    /*-------- container --------*/
+    body[yahoo] .container590 {
+        width: 440px !important;
+    }
+
+    body[yahoo] .container580 {
+        width: 400px !important;
+    }
+
+    body[yahoo] .larger-container800 {
+        width: 100% !important;
+    }
+
+    body[yahoo] .blog-container590 {
+        width: 320px !important;
+    }
+
+    body[yahoo] .blog-container580 {
+        width: 290px !important;
+    }
+
+    /*-------- secions ----------*/
+    body[yahoo] .section-img img {
+        width: 320px !important;
+        height: auto !important;
+    }
+
+}
+
+@media only screen and (max-width: 479px) {
+
+    body[yahoo] .hide-280 {
+        display: none !important;
+    }
+
+    body[yahoo] .show-280 {
+        display: block !important;
+    }
+
+    body[yahoo] .center-280 {
+        text-align: center !important;
+    }
+
+    /*------ top header ------ */
+    body[yahoo] .main-header {
+        font-size: 20px !important;
+    }
+
+    body[yahoo] .main-section-header {
+        font-size: 28px !important;
+    }
+
+    /* ====== divider ====== */
+    body[yahoo] .main-img img {
+        width: 280px !important;
+    }
+
+    body[yahoo] .divider img {
+        width: 280px !important;
+    }
+
+    /*-------- container --------*/
+    body[yahoo] .container590 {
+        width: 280px !important;
+    }
+
+    body[yahoo] .container580 {
+        width: 260px !important;
+    }
+
+    body[yahoo] .blog-container590 {
+        width: 280px !important;
+    }
+
+    body[yahoo] .blog-container580 {
+        width: 240px !important;
+    }
+
+    /*-------- sections ----------*/
+    body[yahoo] .section-img img {
+        width: 280px !important;
+        height: auto !important;
+    }
+}
+
+/*-------- styles ----------*/

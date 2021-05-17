@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sportpat_homebanner_banner_form.banner_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Banner Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Sportpat\HomeBanner\Block\Adminhtml\Button\Back"/>
+            <button name="delete" class="Sportpat\HomeBanner\Block\Adminhtml\Button\Banner\Delete"/>
+            <button name="reset" class="Sportpat\HomeBanner\Block\Adminhtml\Button\Reset"/>
+            <button name="save" class="Sportpat\HomeBanner\Block\Adminhtml\Button\Save"/>
+            <button name="save_and_continue" class="Sportpat\HomeBanner\Block\Adminhtml\Button\SaveAndContinue"/>
+        </buttons>
+        <namespace>sportpat_home_banner_banner_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>sportpat_homebanner_banner_form.banner_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="banner_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="sportpat_homebanner/banner/save"/>
+        </settings>
+        <dataProvider class="Sportpat\HomeBanner\Model\Banner\DataProvider" name="banner_form_data_source">
+            <settings>
+                <requestFieldName>banner_id</requestFieldName>
+                <primaryFieldName>banner_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Banner Information</label>
+        </settings>
+        <field name="banner_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>banner_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">is_active</item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="banner_name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Banner name (not visible)</label>
+                <dataScope>banner_name</dataScope>
+                <notice>will not be visible on frontend</notice>
+            </settings>
+        </field>
+
+        <field name="banner_image" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Banner image</label>
+                <dataScope>banner_image</dataScope>
+                <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="sportpat_homebanner/banner_image/upload/field/banner_image"/>
+                        </uploaderConfig>
+                        <previewTmpl>Sportpat_HomeBanner/image-preview</previewTmpl>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+
+        <field name="banner_link" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Banner link to</label>
+                <dataScope>banner_link</dataScope>
+                <notice>where will the banner link to</notice>
+            </settings>
+        </field>
+
+        <field name="banner_width" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Banner width</label>
+                <dataScope>banner_width</dataScope>
+            </settings>
+        </field>
+
+        <field name="banner_height" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Banner height</label>
+                <dataScope>banner_height</dataScope>
+            </settings>
+        </field>
+
+        <field name="banner_size" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Banner size</label>
+                <dataScope>banner_size</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sportpat\HomeBanner\Model\Banner\Source\BannerSize"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="banner_order" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Banner order</label>
+                <dataScope>banner_order</dataScope>
+                <notice>order of the banner on homepage</notice>
+            </settings>
+        </field>
+
+        <field name="banner_showfromdate" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Show from date</label>
+                <dataScope>banner_showfromdate</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <notice>if set will only show the banner from specific date</notice>
+            </settings>
+        </field>
+
+        <field name="banner_showtodate" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">banner</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Stop showing on</label>
+                <dataScope>banner_showtodate</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <notice>Banner will automatically stop showing on this date</notice>
+            </settings>
+        </field>
+
+    <field name="store_id" formElement="multiselect">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="source" xsi:type="string">banner</item>
+                <item name="default" xsi:type="number">0</item>
+            </item>
+        </argument>
+        <settings>
+            <validation>
+                <rule name="required-entry" xsi:type="boolean">true</rule>
+            </validation>
+            <dataType>int</dataType>
+            <label translate="true">Store View</label>
+            <dataScope>store_id</dataScope>
+        </settings>
+        <formElements>
+            <multiselect>
+                <settings>
+                    <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                </settings>
+            </multiselect>
+        </formElements>
+    </field>
+    </fieldset>
+</form>

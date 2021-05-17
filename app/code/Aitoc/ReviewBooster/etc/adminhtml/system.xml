@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_ReviewBooster
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+        <section id="review_booster" translate="label" type="text" sortOrder="81" showInDefault="1" showInWebsite="1" showInStore="0">
+            <label>Product Reviews &amp; Ratings</label>
+            <tab>aitoc_extensions</tab>
+            <resource>Aitoc_ReviewBooster::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General Settings</label>
+
+                <field id="order_statuses" translate="label" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order Statuses</label>
+                    <comment>Choose which statuses will be used to send out an email with a review request.</comment>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+
+                <field id="add_rich_snippets" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Add Rich Snippets</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+            </group>
+
+            <group id="review_email_notification" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Admin Notification Settings</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Notifications</label>
+                    <comment>If you choose 'Yes' option, you’ll receive a notification every time a review is created.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="recipient" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Email recipient</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <comment>Notifications will be sent to this email address.</comment>
+                    <depends>
+                        <field id="enable_notification">1</field>
+                    </depends>
+                </field>
+
+            </group>
+
+            <group id="review_images" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Review Settings</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Allow Image Upload</label>
+                    <comment>Allow image upload on product page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="width" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set Uploaded Image Width</label>
+                    <comment>px</comment>
+                    <validate>integer validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="height" translate="label" type="text" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Set Uploaded Image Height</label>
+                    <comment>px</comment>
+                    <validate>integer validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+        </section>
+
+    </system>
+</config>

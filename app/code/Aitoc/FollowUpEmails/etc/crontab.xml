@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="aitoc_followUp_generate_emails" instance="Aitoc\FollowUpEmails\Cron\EmailProcess" method="generateEmails">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="aitoc_followUp_send_emails" instance="Aitoc\FollowUpEmails\Cron\EmailProcess" method="sendEmails">
+            <schedule>* * * * *</schedule>
+        </job>
+        <job name="aitoc_followUp_update_statistic" instance="Aitoc\FollowUpEmails\Cron\StatisticProcess" method="updateStatistic">
+            <schedule>* * * * *</schedule>
+        </job>
+    </group>
+</config>

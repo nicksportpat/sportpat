@@ -1,0 +1,256 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $_objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeID = $storeManager->getStore()->getStoreId();
+
+?>
+<?php $_product = $block->getProduct(); ?>
+
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="actions">
+            <div class="control" style="float:left;display:inline-block; height:52px;">
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       min="0"
+                       value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                       class="input-text qty not-cart"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       style="height:52px;"
+                       />
+            </div>
+
+                <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button" style="float:left;display:inline-block" >
+                    <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+
+        </div>
+        <?php if($storeID == 2) { ?>
+                <div class="shipping-time col-12 text-center">
+                    <strong class="shipping-time-title col-12">Temps de livraison</strong>
+                    <span style="shipping not-loaded col-12" id="ship_when">Veuillez configurer votre produit</span>
+                </div>
+            <?php } else { ?>
+                <div class="shipping-time col-12 text-center">
+                    <strong class="shipping-time-title col-12">Shipping Time</strong>
+                    <span style="shipping not-loaded col-12" id="ship_when">Please Select Your Product Options</span>
+                </div>
+            <?php } ?>
+
+        <?php endif; ?>
+
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php if($storeID == 2) { ?>
+
+    <script type="text/javascript">
+        require(["jquery"], function(jQuery) {
+            jQuery(".product-options-wrapper select[id^='attribute']").last().on('change', function () {
+                setTimeout(function () {
+                    simpleId = jQuery("input[name=selected_configurable_option]").val();
+                    var shipWhen = jQuery("#ship_when");
+                    shipWhen.removeClass("not-loaded");
+                    shipWhen.addClass("loading");
+                    shipWhen.html("nous calculons le temps d'attente...veuillez patienter");
+                    jQuery.post("https://sportpat.com/shippingtime",{"lang":"fr","sku":simpleId} ,function (response) {
+
+                        shipWhen.removeClass("loading");
+                        shipWhen.addClass("loaded");
+
+                        var resp = response;
+                        shipWhen.html(resp.sentence);
+                        var skucontainer = jQuery(".product.attribute.sku div.value");
+                        skucontainer.html("<span style='color:limegreen;'>" + resp.sku + "</span>");
+                        var namecontainer = jQuery("h1.page-title > span.base");
+                        var currentName = "<?php echo $_product->getName(); ?>";
+                        currentName += " -  "+jQuery(".clicked-active").attr("data-color");
+                        currentName += " - "+jQuery("#attribute144 option:selected").html();
+                        namecontainer.html(currentName.toLowerCase());
+
+
+                    });
+                }, 30);
+            });
+
+            jQuery(".clicked-active").removeClass("clicked-active");
+
+
+
+
+        });
+    </script>
+
+<?php } else { ?>
+<script type="text/javascript">
+    require(["jquery"], function(jQuery) {
+        jQuery(".product-options-wrapper select[id^='attribute']").last().on('change', function () {
+            setTimeout(function () {
+                simpleId = jQuery("input[name=selected_configurable_option]").val();
+                var shipWhen = jQuery("#ship_when");
+                shipWhen.removeClass("not-loaded");
+                shipWhen.addClass("loading");
+                shipWhen.html("loading information for this product...please wait");
+                jQuery.post("https://sportpat.com/shippingtime",{"lang":"en","sku":simpleId}, function (response) {
+
+
+                    shipWhen.removeClass("loading");
+                    shipWhen.addClass("loaded");
+
+                    var resp = response;
+                    shipWhen.html(resp.sentence);
+                    var skucontainer = jQuery(".product.attribute.sku div.value");
+                    skucontainer.html("<span style='color:limegreen;'>" + resp.sku + "</span>");
+                    var namecontainer = jQuery("h1.page-title > span.base");
+                    var currentName = "<?php echo $_product->getName(); ?>";
+                    currentName += " -  "+jQuery(".clicked-active").attr("data-color");
+                    currentName += " - "+jQuery("#attribute144 option:selected").html();
+                    namecontainer.html(currentName.toLowerCase());
+
+
+                });
+            }, 30);
+        });
+
+        jQuery(".clicked-active").removeClass("clicked-active");
+
+
+
+
+    });
+    </script>
+<?php } ?>
+
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+        jQuery(document).ready(minicartOpenClose);
+        function minicartOpenClose () {
+            $("select#attribute144").removeAttr('disabled');
+            if($('.message-success').is(':visible') && ($('.counter-number').text() > 0)){
+                var successMsg = $('.message-success').text();
+                var msgOne = "been added to shopping cart";
+                var msgTwo = "to your shopping cart";
+                if(successMsg.includes(msgOne) || successMsg.includes(msgTwo)){
+                    $('.action.showcart').trigger("click");
+                    setTimeout(function(){
+                        if($('.action.showcart').hasClass('active')){
+                            $('.action.showcart').trigger("click");
+                        }
+                    }, 7000);
+                }
+            } else {
+                setTimeout(minicartOpenClose, 50);
+            }
+        }
+    });
+    </script>
+
+<style>
+    @media (min-width:768px) {
+
+        .product.data.items > .item.title > .switch {
+            background:#e43635 !important;
+        }
+
+        .product.data.items > .item.title.active > .switch{
+            background:rgba(0,0,0,0.8) !important;
+        }
+
+
+
+
+        .product.data.items > .item.title > a,   .product.data.items > .item.title > .alink,
+        .product.data.items > .item.title > a:visited,.product.data.items > .item.title > .alink:visited
+        {
+
+            color:#fff !important;
+            font-weight:bolder;
+
+        }
+
+        .box-tocart .action.tocart {
+            width:88% !important;
+        }
+
+        .box-tocart .actions, .product-options-bottom {
+            display:block;
+            float:left;
+            width:100%;
+            height:auto;
+            overflow:hidden;
+        }
+
+        .product-add-form .product-options-wrapper .field .control {
+            width:100%;
+        }
+
+        .box-tocart .fieldset > .field > .label, .fieldset > .fields > .field > .label {
+            width:100%;
+        }
+
+
+    }
+
+    .shipping-time {
+        width:100%;
+        height:auto;
+        border:1px dashed rgba(0,0,0,0.5);
+        color:rgba(0,0,0,0.75);
+        font-size:0.9em;
+        display:block;
+        float:left;
+        margin-top:10px;
+        padding:10px;
+    }
+
+    .shipping-time .loading {
+        color: #ffb33c;
+        font-size:1em;
+        font-weight:bold;
+    }
+
+    .shipping-time .loaded {
+        color: limegreen;
+        font-size:1em;
+        font-weight:bold;
+    }
+
+    div.product.attribute.description div.value {
+        width:100%;
+        height:auto;
+        overflow:hidden;
+        display:block;
+    }
+
+    .minicart-wrapper {
+        height:auto;
+        
+
+    }
+</style>
+

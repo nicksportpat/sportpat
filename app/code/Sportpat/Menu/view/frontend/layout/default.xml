@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Sportpat_Menu::css/webslidemenu/flaticon.css" />
+        <css src="Sportpat_Menu::css/webslidemenu/dropdown-effects/fade-down.css" />
+        <css src="Sportpat_Menu::css/webslidemenu/webslidemenu.css" />
+        <css src="Sportpat_Menu::css/webslidemenu/color-skins/white-red.css" />
+        <script src="Sportpat_Menu::js/webslidemenu.js"/>
+    </head>
+    <body>
+        <referenceBlock name="category_list_on_left" remove="true"/>
+        <referenceContainer name="root">
+            <block class="Sportpat\Menu\Block\Menu" name="catalog.topnav" template="Sportpat_Menu::topmenu.phtml" before="-" />
+
+
+        </referenceContainer>
+    </body>
+</page>

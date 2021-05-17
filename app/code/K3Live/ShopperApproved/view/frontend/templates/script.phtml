@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * K3Live Module for ShopperApproved
+ *
+ * @package   ShopperApproved
+ * @author    K3Live <support@k3live.com>
+ * @copyright 2018 Copyright (c) Woopra (http://www.k3live.com/)
+ * @license   Open Software License (OSL 3.0)
+ */
+
+?>
+<?php if ($block->getSetting('enabled')) {
+        echo "\n";
+    if ($block->getSetting('popup_inline')) {
+        $saLoadScript = 'inline/'.$block->getSetting('site_id');
+    } else {
+        $saLoadScript = 'rate/'.$block->getSetting('site_id');
+    }
+    if ($block->getSetting('auto_populate')) {
+        $orderDetails = ", 'orderid':'".$block->getSetting('order_id').
+        "', 'name':'".$block->getSetting('customer_name').
+        "', 'email':'".$block->getSetting('customer_email').
+        "', 'country':'".$block->getSetting('customer_country').
+        "', 'state':'".$block->getSetting('customer_region')."'";
+    }
+    if ($block->getSetting('send_all')) {
+        $sendAll = ", 'emailAll':1";
+    } else {
+        $sendAll = '';
+    }
+    if ($block->getSetting('mandatory_comments')) {
+        $forceComments = ", 'forcecomments':1";
+    } else {
+        $forceComments = '';
+    }
+    $saValues = '"site":'.$block->getSetting('site_id').
+    ', "token":"'.$block->getSetting('site_token').'"'.$orderDetails.$sendAll.$forceComments;
+?>
+<!-- Start of ShopperApproved Code -->
+<script type="text/javascript">
+<?php echo 'var sa_values = { '.$saValues.' }; function saLoadScript(src) { '.
+'var js = window.document.createElement("script"); js.src = src; js.type = "text/javascript";'.
+'document.getElementsByTagName("head")[0].appendChild(js); } var d = new Date();'.
+'if (d.getTime() - 172800000 > 1477399567000) saLoadScript("//www.shopperapproved.com/thankyou/'.$saLoadScript.'.js");'.
+'else saLoadScript("//direct.shopperapproved.com/thankyou/'.$saLoadScript.'.js?d=" + d.getTime());'; ?>
+</script>
+<!-- End of ShopperApproved Code -->
+<?php } ?>
+

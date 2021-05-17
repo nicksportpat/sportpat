@@ -1,0 +1,52 @@
+<?php
+/**
+ * @var $this \Scommerce\GoogleUniversalAnalytics\Block\Checkout\Cart
+ */
+?>
+<?php
+$helper = $this->getHelper();
+
+if (!$helper->isEnhancedEcommerceEnabled()) return;
+
+$_impressionList    = 'Cross Sell';
+$_clickLabel        = 'Cross';
+$_loop = 1;
+
+$_products = array();
+$_productUrls = array();
+
+foreach ($this->getItems() as $_product){
+    $_productUrls[] = $_product->getProductUrl();
+
+    $_products[] = array(
+        'id' => $this->escapeJsQuote($_product->getSku()),
+        'name'  => $this->escapeJsQuote($_product->getName()),
+        'category' => $this->escapeJsQuote($helper->getProductCategoryName($_product)),
+        'brand' => $this->escapeJsQuote($helper->getBrand($_product)),
+        'list'  => $_impressionList,
+        'position' => $_loop
+    );
+
+    $_loop++;
+}
+
+$_JsProducts = json_encode($_products);
+$_JsProductUrls = json_encode($_productUrls);
+
+echo $this->getLayout()
+			->createBlock('Scommerce\GoogleUniversalAnalytics\Block\Impression')
+			->setJsProducts($_JsProducts)
+			->setJsProductUrls($_JsProductUrls)
+			->setclickLabel($_clickLabel)
+			->setPageView('Upsell') //leave it as upsell because there is if condition in impression.phtml
+			->setTemplate('Scommerce_GoogleUniversalAnalytics::impression.phtml')
+			->toHtml();?>
+<script type='text/javascript'>
+//<![CDATA[			
+<?php echo $this->getLayout()
+					->createBlock('Scommerce\GoogleUniversalAnalytics\Block\SendView')
+					->setTemplate('Scommerce_GoogleUniversalAnalytics::sendview.phtml')
+					->toHtml();
+?>
+//]]>
+</script>

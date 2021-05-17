@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+-->
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="follow_up_test_email" label="Follow Up Test Email" file="follow_up_test_email.html" type="html" module="Aitoc_FollowUpEmails" area="frontend"/>
+    <template id="follow_up_header" label="Header (Follow Up Emails by Aitoc)" file="header.html" type="html" module="Aitoc_FollowUpEmails" area="frontend"/>
+    <template id="follow_up_footer" label="Footer (Follow Up Emails by Aitoc)" file="footer.html" type="html" module="Aitoc_FollowUpEmails" area="frontend"/>
+</config>

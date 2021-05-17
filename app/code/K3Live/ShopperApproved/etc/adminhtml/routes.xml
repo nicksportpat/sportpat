@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * K3Live Module for ShopperApproved
+ *
+ * @package   ShopperApproved
+ * @author    K3Live <support@k3live.com>
+ * @copyright 2018 Copyright (c) Woopra (http://www.k3live.com/)
+ * @license   Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="admin">
+        <route id="k3live_shopperapproved" frontName="k3live_shopperapproved">
+            <module name="K3Live_ShopperApproved" />
+        </route>
+    </router>
+</config>

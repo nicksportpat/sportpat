@@ -1,0 +1,27 @@
+<!--
+  ~ Copyright © 2019 Aitoc. All rights reserved.
+  -->
+<div
+    if="$row().status == 'active'"
+    data-bind="mageInit: {'tabs':{'openedState':'active'}}">
+    <ul>
+        <!--ko foreach: $row().statistics-->
+        <li><a data-bind="text: title, attr: {href: '#section-'+type+$row().id}"/></li>
+        <!--/ko-->
+    </ul>
+    <!--ko foreach: $row().statistics-->
+    <div class="stat-wrapper" data-bind="attr: {id: 'section-'+type+$row().id}" style="display: none;">
+        <table>
+            <tbody>
+            <!--ko foreach: lines-->
+            <tr data-bind="attr: {class: trclass}">
+                <!--ko foreach: items-->
+                <td data-bind="html: $data"/>
+                <!--/ko-->
+            </tr>
+            <!--/ko-->
+            </tbody>
+        </table>
+    </div>
+    <!--/ko-->
+</div>

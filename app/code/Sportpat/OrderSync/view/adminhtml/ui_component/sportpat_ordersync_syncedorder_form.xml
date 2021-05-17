@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sportpat_ordersync_syncedorder_form.syncedorder_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Synced Order Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Sportpat\OrderSync\Block\Adminhtml\Button\Back"/>
+            <button name="delete" class="Sportpat\OrderSync\Block\Adminhtml\Button\Syncedorder\Delete"/>
+            <button name="reset" class="Sportpat\OrderSync\Block\Adminhtml\Button\Reset"/>
+            <button name="save" class="Sportpat\OrderSync\Block\Adminhtml\Button\Save"/>
+            <button name="save_and_continue" class="Sportpat\OrderSync\Block\Adminhtml\Button\SaveAndContinue"/>
+        </buttons>
+        <namespace>sportpat_order_sync_syncedorder_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>sportpat_ordersync_syncedorder_form.syncedorder_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="syncedorder_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="sportpat_ordersync/syncedorder/save"/>
+        </settings>
+        <dataProvider class="Sportpat\OrderSync\Model\Syncedorder\DataProvider" name="syncedorder_form_data_source">
+            <settings>
+                <requestFieldName>syncedorder_id</requestFieldName>
+                <primaryFieldName>syncedorder_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Synced Order Information</label>
+        </settings>
+        <field name="syncedorder_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">syncedorder</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>syncedorder_id</dataScope>
+            </settings>
+        </field>
+        <field name="magento_orderid" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">syncedorder</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Magento Order Id</label>
+                <dataScope>magento_orderid</dataScope>
+            </settings>
+        </field>
+
+        <field name="lightspeed_orderid" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">syncedorder</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Lightspeed Order id</label>
+                <dataScope>lightspeed_orderid</dataScope>
+            </settings>
+        </field>
+
+        <field name="status" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">syncedorder</item>
+                    <item name="default" xsi:type="string">PENDING</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="chipsEnabled" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/grid/filters/elements/ui-select</elementTmpl>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <dataScope>status</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sportpat\OrderSync\Model\Syncedorder\Source\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="details" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">syncedorder</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Details</label>
+                <dataScope>details</dataScope>
+            </settings>
+        </field>
+
+    </fieldset>
+</form>

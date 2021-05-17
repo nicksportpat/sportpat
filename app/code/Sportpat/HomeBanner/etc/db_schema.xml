@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sportpat_home_banner_banner" resource="default" engine="innodb" comment="Banner Table">
+        <column xsi:type="smallint" name="banner_id" padding="6" unsigned="false" nullable="false" identity="true"  comment="Banner ID"/>
+        <column xsi:type="varchar" name="banner_name" length="255" nullable="false" comment="Banner Banner name (not visible)"/>
+        <column xsi:type="varchar" name="banner_image" length="255" nullable="true" comment="Banner Banner image"/>
+        <column xsi:type="varchar" name="banner_link" length="255" nullable="false" comment="Banner Banner link to"/>
+        <column xsi:type="varchar" name="banner_width" length="255" nullable="true" comment="Banner Banner width"/>
+        <column xsi:type="varchar" name="banner_height" length="255" nullable="true" comment="Banner Banner height"/>
+        <column xsi:type="int" name="banner_size" padding="11" nullable="false" comment="Banner Banner size"/>
+        <column xsi:type="int" name="banner_order" padding="11" nullable="false" comment="Banner Banner order"/>
+        <column xsi:type="timestamp" name="banner_showfromdate" nullable="true" comment="Banner Show from date"/>
+        <column xsi:type="timestamp" name="banner_showtodate" nullable="true" comment="Banner Stop showing on"/>
+        <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Banner Is Active"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Banner Created at"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Banner Updated At"/>
+        <index referenceId="SPORTPAT_HOME_BANNER_BANNER_FULLTEXT" indexType="fulltext">
+            <column name="banner_name" />
+            <column name="banner_image" />
+            <column name="banner_link" />
+            <column name="banner_width" />
+            <column name="banner_height" />
+        </index>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="banner_id"/>
+        </constraint>
+    </table>
+    <table name="sportpat_home_banner_banner_store" resource="default" engine="innodb" comment="Banner Store Link Table">
+        <column xsi:type="smallint" name="banner_id" padding="6" unsigned="false" nullable="false" identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="banner_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="SPORTPAT_HOME_BANNER_BANNER_STORE_BANNER_ID_SPORTPAT_HOME_BANNER_BANNER_BANNER_ID" table="sportpat_home_banner_banner_store"
+                    column="banner_id" referenceTable="sportpat_home_banner_banner" referenceColumn="banner_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="SPORTPAT_HOME_BANNER_BANNER_STORE_STORE_STORE_ID" table="sportpat_home_banner_banner_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="SPORTPAT_HOME_BANNER_BANNER_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

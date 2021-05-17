@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Sportpat\Tabcontent\Api\TabcontentRepositoryInterface" type="Sportpat\Tabcontent\Model\TabcontentRepository"/>
+    <preference for="Sportpat\Tabcontent\Api\Data\TabcontentInterface" type="Sportpat\Tabcontent\Model\Tabcontent"/>
+    <preference for="Sportpat\Tabcontent\Api\Data\TabcontentSearchResultInterface" type="Magento\Framework\Api\SearchResults"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sportpat_tabcontent_tabcontent_listing_data_source" xsi:type="string">SportpatTabcontentTabcontentGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\Tabcontent\Model\ResourceModel\Tabcontent\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Sportpat\Tabcontent\Model\Tabcontent</argument>
+            <argument name="resourceModel" xsi:type="string">Sportpat\Tabcontent\Model\ResourceModel\Tabcontent</argument>
+            <argument name="idFieldName" xsi:type="string">tabcontent_id</argument>
+            <argument name="eventPrefix" xsi:type="string">sportpat_tabcontent_tabcontent_collection</argument>
+            <argument name="eventObject" xsi:type="string">tabcontent_collection</argument>
+        </arguments>
+    </type>
+    <virtualType name="SportpatTabcontentTabcontentGridCollection" type="Sportpat\Tabcontent\Model\ResourceModel\Tabcontent\Collection">
+        <arguments>
+            <argument name="model" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\Document</argument>
+            <argument name="resourceModel" xsi:type="string">Sportpat\Tabcontent\Model\ResourceModel\Tabcontent</argument>
+            <argument name="idFieldName" xsi:type="string">tabcontent_id</argument>
+            <argument name="eventPrefix" xsi:type="string">sportpat_tabcontent_tabcontent_collection</argument>
+            <argument name="eventObject" xsi:type="string">tabcontent_collection</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SportpatTabcontentTabcontentImageUploader" type="Sportpat\Tabcontent\Model\Uploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="const">Sportpat\Tabcontent\Model\UploadPath::TABCONTENT_IMAGE_TMP_PATH</argument>
+            <argument name="basePath" xsi:type="const">Sportpat\Tabcontent\Model\UploadPath::TABCONTENT_IMAGE_PATH</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Sportpat\Tabcontent\Controller\Adminhtml\Tabcontent\Image\Upload">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SportpatTabcontentTabcontentImageUploader</argument>
+            <argument name="aclResource" xsi:type="string">Sportpat_Tabcontent::tabcontent_tabcontent</argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\Tabcontent\Model\UploaderPool">
+        <arguments>
+            <argument name="uploaders" xsi:type="array">
+                <item name="image" xsi:type="object">SportpatTabcontentTabcontentImageUploader</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\Tabcontent\Model\Tabcontent">
+        <arguments>
+            <argument name="optionProviders" xsi:type="array">
+                <item name="tab_contenttype" xsi:type="object">Sportpat\Tabcontent\Model\Tabcontent\Source\TabContenttype</item>
+                <item name="for_brand" xsi:type="object">Sportpat\Tabcontent\Model\Tabcontent\Source\ForBrand</item>
+                <item name="for_category" xsi:type="object">Sportpat\Tabcontent\Model\Tabcontent\Source\ForCategory</item>
+                <item name="for_gender" xsi:type="object">Sportpat\Tabcontent\Model\Tabcontent\Source\ForGender</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="SportpatTabcontentTabcontentImageModel">
+        <arguments>
+            <argument name="uploader" xsi:type="object">SportpatTabcontentTabcontentImageUploader</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SportpatTabcontentBlockTabcontentImageBuilder" type="Sportpat\Tabcontent\Block\ImageBuilder">
+        <arguments>
+            <argument name="entityCode" xsi:type="string">tabcontent</argument>
+            <argument name="uploader" xsi:type="object">SportpatTabcontentTabcontentImageUploader</argument>
+        </arguments>
+    </virtualType>
+    <type name="Sportpat\Tabcontent\Block\Tabcontent\ViewTabcontent">
+        <arguments>
+            <argument name="imageBuilder" xsi:type="object">SportpatTabcontentBlockTabcontentImageBuilder</argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\Tabcontent\Block\Tabcontent\ListTabcontent">
+        <arguments>
+            <argument name="imageBuilder" xsi:type="object">SportpatTabcontentBlockTabcontentImageBuilder</argument>
+        </arguments>
+    </type>
+    <type name="Sportpat\Tabcontent\Model\Output">
+        <arguments>
+            <argument name="templateProcessor" xsi:type="object">Magento\Widget\Model\Template\Filter</argument>
+        </arguments>
+    </type>
+</config>

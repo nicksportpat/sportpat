@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * K3Live Module for ShopperApproved
+ *
+ * @package   ShopperApproved
+ * @author    K3Live <support@k3live.com>
+ * @copyright 2018 Copyright (c) Woopra (http://www.k3live.com/)
+ * @license   Open Software License (OSL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <k3live_shopperapproved>
+            <shopperapproved>
+                <enabled>1</enabled>
+                <site_id></site_id>
+                <site_token></site_token>
+                <api_token></api_token>
+            </shopperapproved>
+            <shopper_approved_customize>
+                <popup_inline>0</popup_inline>
+                <auto_populate>1</auto_populate>
+                <send_all>0</send_all>
+                <mandatory_comments>0</mandatory_comments>
+                <cancel_review>0</cancel_review>
+            </shopper_approved_customize>
+        </k3live_shopperapproved>
+    </default>
+</config>

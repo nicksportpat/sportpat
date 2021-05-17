@@ -1,0 +1,75 @@
+@font-face {
+    font-family: flaticon;
+    src: url(./Flaticon.eot);
+    src: url(./Flaticon.eot?#iefix) format("embedded-opentype"), url(./Flaticon.woff2) format("woff2"), url(./Flaticon.woff) format("woff"), url(./Flaticon.ttf) format("truetype"), url(./Flaticon.svg#Flaticon) format("svg");
+    font-weight: 400 !important;
+    font-style: normal !important
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+        font-family: flaticon;
+        font-weight: 400 !important;
+        src: url(./Flaticon.svg#Flaticon) format("svg")
+    }
+}
+
+[class^=flaticon-]:before, [class*=" flaticon-"]:before, [class^=flaticon-]:after, [class*=" flaticon-"]:after {
+    font-family: Flaticon;
+    font-size: 34px;
+    font-style: normal;
+    margin-left: 0;
+    width:100px;
+    height:59px;
+}
+
+.flaticon-dirt.bike:before, .flaticon-motocross:before {
+    content: "\f102";
+    margin-top: 0;
+    padding-bottom: 3px;
+    display: block;
+
+}
+
+.flaticon-atv:before {
+    content: "\f103";
+
+    display: block;
+    /*  margin-top: -25px;
+     padding-bottom: 25px*/
+
+}
+
+.flaticon-snowmobile:before, .flaticon-motoneige:before {
+    content: "\f104";
+    padding-right: 20px;
+    display: block;
+    margin-top: -15px;
+    height:69px;
+    width:130px;
+
+}
+
+.flaticon-motorcycle:before, .flaticon-moto:before {
+    content: "\f105";
+
+    padding-right: 20px;
+    /*  margin-top: -25px;
+     padding-bottom: 25px*/
+    display: block;
+
+}
+
+.flaticon-casual:before, .flaticon-mode:before {
+    content: "\f106";
+    display: block;
+
+}
+
+.flaticon-famous:before {
+    content: "\f107";
+    display: block;
+
+    /*  margin-top: -25px;
+     padding-bottom: 25px*/
+}

@@ -1,0 +1,48 @@
+
+FILE: /home/umc/var/umc/Sportpat_Tabcontent/Setup/Uninstall.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 29 | WARNING | The method parameter $context is never used
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_Tabcontent/Setup/InstallSchema.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 19 | WARNING | The method parameter $context is never used
+----------------------------------------------------------------------
+
+
+FILE: ...portpat_Tabcontent/Model/ResourceModel/Tabcontent/Collection.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------
+  53 | WARNING | fetchAll() can be memory inefficient for large data
+     |         | sets.
+ 101 | WARNING | Possible slow SQL method group detected
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_Tabcontent/Model/Tabcontent.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 336 | WARNING | Plugin beforeSave function should have at least two
+     |         | parameters.
+ 349 | WARNING | Plugin afterLoad function should have at least two
+     |         | parameters.
+----------------------------------------------------------------------
+
+
+FILE: /home/umc/var/umc/Sportpat_Tabcontent/Helper/Image.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 894 | WARNING | Comment refers to a TODO task "return entity name
+     |         | here"
+----------------------------------------------------------------------
+
+Time: 25.25 secs; Memory: 8Mb
+

@@ -1,0 +1,22 @@
+/*
+ * Copyright © 2019 Aitoc. All rights reserved.
+ */
+
+
+.admin__control-textarea {
+    height: 300px;
+}
+.preview-block {
+    float: right;
+    margin-top: 0 !important;
+}
+.pre-button-block{
+    padding-top: 0;
+}
+.message_container_success{
+    color: #79a22e;
+}
+
+.message_container_error {
+    color: red;
+}

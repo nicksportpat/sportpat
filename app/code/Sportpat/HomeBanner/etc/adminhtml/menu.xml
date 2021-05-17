@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Sportpat_HomeBanner::homebanner"
+             title="Home Banners"
+             module="Sportpat_HomeBanner"
+             sortOrder="0"
+             resource="Sportpat_HomeBanner::homebanner"
+             parent="Magento_Backend::content" />
+        <add id="Sportpat_HomeBanner::homebanner_banner"
+             title="Banners"
+             module="Sportpat_HomeBanner"
+             sortOrder="10"
+             action="sportpat_homebanner/banner"
+             resource="Sportpat_HomeBanner::homebanner_banner"
+             parent="Sportpat_HomeBanner::homebanner"
+        />
+    </menu>
+</config>

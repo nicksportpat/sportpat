@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="scommerce_googleuniversalanalytics_cart_add_after" instance="Scommerce\GoogleUniversalAnalytics\Model\Observer\CheckoutCartAddAfter" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="scommerce_googleuniversalanalytics_sales_quote_remove_item" instance="Scommerce\GoogleUniversalAnalytics\Model\Observer\CheckoutRemoveItemAfter" />
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="scommerce_googleuniversalanalytics_sales_order_place_after" instance="Scommerce\GoogleUniversalAnalytics\Model\Observer\SalesOrderPlacedAfter" />
+        <observer name="scommerce_googleuniversalanalytics_send_order_data_to_google" instance="Scommerce\GoogleUniversalAnalytics\Model\Observer\SendOrderDataToGoogle" />
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="scommerce_googleuniversalanalytics_sales_order_invoice_save_after" instance="Scommerce\GoogleUniversalAnalytics\Model\Observer\SendInvoiceDataToGoogle" />
+    </event>
+	<event name="sales_quote_item_set_product">
+        <observer name="scommerce_googleuniversalanalytics_sales_quote_item_set_product" instance="Scommerce\GoogleUniversalAnalytics\Model\Observer\SalesQuoteItemSetGoogleCategory" />
+    </event>
+	
+
+</config>

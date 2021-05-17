@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<googleuniversalanalytics>
+			<general>
+				<base>1</base>
+				<ajax_enabled>1</ajax_enabled>
+			</general>
+			<enhanced>
+				<admin_source>admin</admin_source>
+				<admin_medium>phone</admin_medium>
+				<product_item_class>div.products ol.product-items li.product-item</product_item_class>
+			</enhanced>
+		</googleuniversalanalytics>
+	</default>
+</config>

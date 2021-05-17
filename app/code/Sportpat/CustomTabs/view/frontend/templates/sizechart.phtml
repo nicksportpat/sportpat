@@ -1,0 +1,131 @@
+<?php
+$product = $block->getProduct();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of object manager
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = 'sportpat_tabcontent_tabcontent';
+$brandid = $product->getBrand();
+$sm = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+$sid = $sm->getStore()->getId();
+
+
+$categoryIds = $product->getCategoryIds();
+
+$query = "SELECT s2.store_id, s1.image, s1.for_category, s1.for_brand, s1.for_gender FROM sportpat_tabcontent_tabcontent s1 LEFT JOIN sportpat_tabcontent_tabcontent_store s2 on s1.tabcontent_id = s2.tabcontent_id WHERE s1.for_brand = '".$brandid."' AND s1.tab_contenttype = '1' AND s2.store_id = '".$sid."'";
+$result = $connection->fetchAll($query);
+$image = null;
+$display = "";
+foreach($result as $data) {
+
+    if($data["for_gender"] != "") {
+
+        if($product->getGender() == 38 && $data["for_gender"] == "1") {
+            if($data["for_category"] != "") {
+
+                if(in_array($data["for_category"], $categoryIds)) {
+                    $image = $data["image"];
+                }
+
+            } else {
+
+                if ($data["image"] != null) {
+                    $image = $data["image"];
+                } else {
+                    $display = "no";
+                }
+            }
+        }
+
+        if($product->getGender() == 46 && $data["for_gender"] == "2") {
+            if($data["for_category"] != "") {
+
+                if(in_array($data["for_category"], $categoryIds)) {
+                    $image = $data["image"];
+                }
+
+            } else {
+
+                if ($data["image"] != null) {
+                    $image = $data["image"];
+                } else {
+                    $display = "no";
+                }
+            }
+        }
+
+        if($product->getGender() == 6365 && $data["for_gender"] == "3") {
+            if($data["for_category"] != "") {
+
+                if(in_array($data["for_category"], $categoryIds)) {
+                    $image = $data["image"];
+                }
+
+            } else {
+
+                if ($data["image"] != null) {
+                    $image = $data["image"];
+                } else {
+                    $display = "no";
+                }
+            }
+        }
+
+        if($product->getGender() == 42 && $data["for_gender"] == "4") {
+            if($data["for_category"] != "") {
+
+                if(in_array($data["for_category"], $categoryIds)) {
+                    $image = $data["image"];
+                }
+
+            } else {
+
+                if ($data["image"] != null) {
+                    $image = $data["image"];
+                } else {
+                    $display = "no";
+                }
+            }
+        }
+
+    } else {
+
+        if ($data["for_category"] != "") {
+
+            if (in_array($data["for_category"], $categoryIds)) {
+                $image = $data["image"];
+            }
+
+        } else {
+
+            if ($data["image"] != null) {
+                $image = $data["image"];
+            } else {
+                $display = "no";
+            }
+        }
+    }
+}
+
+if($image !== null):
+
+    if($sid == 2) {
+    ?>
+    <div class="col-12">
+        <div class="row"> <div class="col-12"><img src="<?php echo "/media/sportpat_tabcontent/tabcontent/image".$image; ?>" alt="size chart" class="ml-auto mr-auto image-fluid"></div></div>
+        <div class="row"> <div class="col-12 text-center"><a href="<?php echo "/media/sportpat_tabcontent/tabcontent/image".$image; ?>" class="btn btn-lg btn-danger mt-3 ml-auto mr-auto col-xs-12 col-sm-12 col-md-4" style="color:#fff !important;" download><?php echo __("Telechargez la charte");?></a></div></div>
+    </div>
+    <?php
+} else {
+    ?>
+
+    <div class="col-12">
+        <div class="row"> <div class="col-12"><img src="<?php echo "/media/sportpat_tabcontent/tabcontent/image".$image; ?>" alt="size chart" class="ml-auto mr-auto image-fluid"></div></div>
+        <div class="row"> <div class="col-12 text-center"><a href="<?php echo "/media/sportpat_tabcontent/tabcontent/image".$image; ?>" class="btn btn-lg btn-danger mt-3 ml-auto mr-auto col-xs-12 col-sm-12 col-md-4" style="color:#fff !important;" download><?php echo __("Download Size Chart");?></a></div></div>
+    </div>
+    <?php
+}
+    ?>
+
+
+<?php endif; ?>

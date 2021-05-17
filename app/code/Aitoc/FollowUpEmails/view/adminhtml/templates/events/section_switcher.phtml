@@ -1,0 +1,37 @@
+<?php
+/**
+ * @author Aitoc Team
+ * @copyright Copyright (c) 2020 Aitoc (https://www.aitoc.com)
+ * @package Aitoc_FollowUpEmailsEnt
+ */
+?>
+<!--
+/**
+ * Copyright © 2018 Aitoc. All rights reserved.
+ */
+-->
+<?php if (count($block->getLinks())): ?>
+<div class="followup-menu admin__action-dropdown-wrap">
+    <a
+        href="#"
+        class="admin__action-dropdown"
+        data-mage-init='{"dropdown":{}}'
+        data-toggle="dropdown">
+        <span class="admin__action-dropdown-text">
+            <span class="admin-user-account-text"><?= $block->escapeHtml($block->getCurrentPageName()) ?></span>
+        </span>
+    </a>
+    <ul class="admin__action-dropdown-menu">
+        <?php foreach ($block->getLinks() as $link): ?>
+        <li>
+            <a
+                href="<?= /* @escapeNotVerified */ $block->getLinkUrl($link) ?>"
+                title="<?= $block->getLinkName($link) ?>"
+                class="store-front">
+                <?= /* @escapeNotVerified */ $block->getLinkText($link) ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>

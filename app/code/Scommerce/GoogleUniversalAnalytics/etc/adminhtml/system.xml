@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <!-- Add new Tab -->
+        <tab id="scommerce" translate="label" sortOrder="400">
+            <label>Scommerce Configuration</label>
+        </tab>
+        <section id="googleuniversalanalytics" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Google Universal Analytics</label>
+            <tab>scommerce</tab>
+            <!-- resource tag name which we have to defined in the acl.xml -->
+            <resource>Scommerce_GoogleUniversalAnalytics::config_googleuniversalanalytics</resource>
+			<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>General</label>
+				<field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="license_key" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>License Key</label>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+				<field id="account_id" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account Id</label>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="anonymize_ip" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Anonymize Ip</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="display_feature" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Feature</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="enable_userid" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable User ID</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>The User-ID lets you associate engagement data from different devices and multiple sessions, so you can discover how users interact with your content over an extended period of time. Please make sure this feature is enabled in Google Analytics first before enabling in Magento.</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="ecommerce_enabled" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>E-commerce Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="domain_auto" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Domain Auto</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="linker_enabled" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Linker Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="domains_to_link" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Domains to link</label>
+                    <comment>Example 'destination.com', 'dest3.com' or /^example\.(com|de|nl)$/</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                        <field id="*/*/linker_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="link_accounts_enabled" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Linker Accounts Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+                <field id="linked_account_id" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Linked Account Id</label>
+                    <comment>If you want to send page data to more than one account then add another GA account id here</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                        <field id="*/*/link_accounts_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="linked_account_name" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Linked Account Name</label>
+                    <comment>Give the name of the another linked GA account for tracking purpose, this could be any arbitrary name</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                        <field id="*/*/link_accounts_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="base" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Base</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set 'Yes' if you want to send base order data and 'No' to send store order data to Google</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+				<field id="ajax_enabled" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ajax Add To Basket Enabled</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Set this to yes when you have Ajax add to basket enabled</comment>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+			</group>
+            <group id="enhanced" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enhanced Ecommerce</label>
+                <field id="enhanced_ecommerce_enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Enhanced Ecommerce</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Please make sure this feature is enabled in Google Analytics first before enabling in Magento.</comment>
+                </field>
+                <field id="steps" translate="label" type="multiselect" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Steps</label>
+                    <source_model>Scommerce\GoogleUniversalAnalytics\Model\Source\Step</source_model>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="brand_dropdown" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Attribute</label>
+                    <source_model>Scommerce\GoogleUniversalAnalytics\Model\Source\Brand</source_model>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                    <comment>Please select brand attribute if you have one otherwise put your brand name in the below input box.</comment>
+                </field>
+                <field id="brand_text" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Name</label>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="send_offline_order_transaction" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Transactional Data Offline</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable this feature only if your payment gateway show their own success page instead of Magento order confirmation page like Klarna and you don't create invoices</comment>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="send_transaction_on_invoice" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Transactional Data Only On Invoice Creation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable this feature only if you either take payment on dispatch or your payment gateway show their own success page instead of Magento order confirmation page</comment>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="send_phone_order_transaction" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Phone or Admin Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable this feature only if you want to send admin orders on order creation</comment>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="admin_source" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Source</label>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                        <field id="*/*/send_phone_order_transaction">1</field>
+                    </depends>
+                </field>
+                <field id="admin_medium" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Medium</label>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                        <field id="*/*/send_phone_order_transaction">1</field>
+                    </depends>
+                </field>
+				<field id="send_impression_on_scroll" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Product Impression On Scroll</label>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+					<comment>Enable this feature when you have loads of products on product listing / category pages</comment>
+                </field>
+				<field id="product_item_class" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product item class on category / product listing page</label>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                        <field id="*/*/send_impression_on_scroll">1</field>
+                    </depends>
+					<comment><![CDATA[Make sure this product class item heirarchy is as unique as possible for example for luma theme you can use <strong>div.products ol.product-items li.product-item</strong>]]></comment>
+                </field>
+                <field id="debugging" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Debugging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Turn on debugging to see the transactional data going to Google using measurement protocol</comment>
+                    <depends>
+                        <field id="*/*/enhanced_ecommerce_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+		</section>
+    </system>
+</config>
